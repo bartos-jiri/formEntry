@@ -98,7 +98,7 @@
             <form class="my-form" id="form2">
                 <div class="form-group">
                     <label for="sendConversationEmail" class="form-check-label">
-                        <input type="radio" class="form-check-input" id="check_form2" value="">            
+                        <input type="checkbox" class="form-check-input" id="check_form2" value="">            
                     Chci poslat přepis konverzace</label>
                     <input type="email" class="form-control" id="email_form2" placeholder="Email">
                 </div>
@@ -184,7 +184,7 @@
                 type: "FEEDBACK_ACTION",
                 email: checkEmailForm2.checked ? emailForm2.value : null,
                 content: 'Zákazník byl naprosto spokojen'
-            })
+            }, "*");
             
             
         }
