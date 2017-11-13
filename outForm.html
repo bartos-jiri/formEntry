@@ -33,6 +33,7 @@
       }
       .btn[type="button"] {
         width: 200px;
+        margin: 0 auto;
       }
       /* #page_1 {
         width: 100%;
@@ -42,9 +43,9 @@
         padding: 0 20px;
         display: block;
       }
-      #form_1 {
+      #form1 {
           width: 160px;
-
+        margin: 0 auto;
       }
     </style>
   </head>
@@ -56,30 +57,43 @@
           <button id="new_client" type="button" class="btn btn-info btn-block">Nový zákazník</button>
           <button id="old_client" type="button" class="btn btn-info btn-block">Stávající zákazník</button>
       </div> -->
-      <p id="question">Byly Vám naši operátoři nápomocní?</p>
-      <form id="form_1" class="my-form">
+        <div id="form1_wrapper">
+            <p id="question">Byly Vám naši operátoři nápomocní?</p>
+            <form id="form1" class="my-form">
 
-            <div class="form-check">
-                <label for="value3" class="form-check-label">
-                    <input type="radio" class="form-check-input" name="sessionEvaluation" id="value3" value="3">
-                Naprosto</label>
-            </div>
+                    <div class="form-check">
+                        <label for="value3" class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="value3" value="3">
+                        Naprosto</label>
+                    </div>
 
-            <div class="form-check">
-                <label for="value2" class="form-check-label">
-                    <input type="radio" class="form-check-input" name="sessionEvaluation" id="value2" value="2">            
-                Do jisté míry</label>
-            </div>
+                    <div class="form-check">
+                        <label for="value2" class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="value2" value="2">            
+                        Do jisté míry</label>
+                    </div>
 
-            <div class="form-check">
-                <label for="value1" class="form-check-label">
-                    <input type="radio" class="form-check-input" name="sessionEvaluation" id="value1" value="1">            
-                Nikoliv</label>
-            </div>
-
+                    <div class="form-check">
+                        <label for="value1" class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="value1" value="1">            
+                        Nikoliv</label>
+                    </div>
             
-      </form>
-      <button type="button" class="btn btn-info btn-block" id="submit_form_1">Pokračovat</button>
+            </form>
+            <button type="button" class="btn btn-info btn-block" id="eval_form_1">Pokračovat</button>
+        </div>
+
+        <div id="form2_wrapper">
+            <p>Naprosto spokojen</p>
+        </div>
+
+        <div id="form3_wrapper">
+            <p>Do jiste miry spokojen</p>
+        </div>
+
+        <div id="form4_wrapper">
+            <p>Nespokojen.</p>
+        </div>
 
       <!-- <form id="form_2" class="my-form">
         <div class="form-group">
@@ -105,7 +119,35 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.8/popper.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
     <script type="text/javascript">
+        const form1wrapper = document.getElementById('form1_wrapper');
+        const form2wrapper = document.getElementById('form2_wrapper');
+        const form3wrapper = document.getElementById('form3_wrapper');
+        const form4wrapper = document.getElementById('form4_wrapper');
+        const buttonEvaluation = document.getElementById('eval_form_1');
+        const form1_val1 = document.getElementById('value1');
+        const form1_val2 = document.getElementById('value2');
+        const form1_val3 = document.getElementById('value3');
 
+        form2wrapper.style.setProperty('display', 'none', 'important');
+        form3wrapper.style.setProperty('display', 'none', 'important');
+        form4wrapper.style.setProperty('display', 'none', 'important');
+        
+
+        buttonEvaluation.addEventListener('click', function() {
+            if(form1_val3.checked || form1_val2.checked || form1_val1.checked) {
+                form1wrapper.style.setProperty('display', 'none', 'important');
+            }
+
+            if(form1_val3.checked) {
+                form2wrapper.style.removeProperty('display');
+            }
+            else if(form1_val2.checked) {
+                form3wrapper.style.removeProperty('display');
+            }
+            else if(form1_val1.checked) {
+                form4wrapper.style.removeProperty('display');
+            }
+        });
 
     </script>
   </body>
