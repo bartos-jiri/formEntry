@@ -47,6 +47,15 @@
           width: 160px;
         margin: 0 auto;
       }
+      #form2, #form2_wrapper {
+        width: 100%;
+      }
+      #form2 {
+          padding: 20px;
+      }
+      .bold {
+          font-weight: bold;
+      }
     </style>
   </head>
 
@@ -84,7 +93,19 @@
         </div>
 
         <div id="form2_wrapper">
-            <p>Naprosto spokojen</p>
+            <p id="question">Děkujeme za Vaši zpětnou vazbu.</p>
+            <p id="question" class="bold">Přejete si poslat přepis emailové konverzace?</p>
+            <form class="my-form" id="form2">
+                <div class="form-group">
+                    <label for="sendConversationEmail" class="form-check-label">
+                        <input type="radio" class="form-check-input" id="sendConversationEmail" value="">            
+                    Chci poslat email s přepisem konverzace</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-info btn-block" id="submit_form2">Pokračovat</button>                        
+                </div>
+            </form>
         </div>
 
         <div id="form3_wrapper">
