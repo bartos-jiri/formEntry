@@ -179,12 +179,16 @@
      
         form2.onsubmit = function (e) {
             e.preventDefault();
-            
-            window.parent.postMessage({
+
+            const data = {
                 type: "FEEDBACK_ACTION",
                 email: checkEmailForm2.checked ? emailForm2.value : null,
                 content: "Zákazník byl naprosto spokojen"
-            }, "*");
+            };
+
+            console.log(data);
+            
+            window.parent.postMessage(data, "*");
             
             
         }
