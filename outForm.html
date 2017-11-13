@@ -98,12 +98,12 @@
             <form class="my-form" id="form2">
                 <div class="form-group">
                     <label for="sendConversationEmail" class="form-check-label">
-                        <input type="radio" class="form-check-input" id="sendConversationEmail" value="">            
-                    Chci poslat email s přepisem konverzace</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="radio" class="form-check-input" id="check_form2" value="">            
+                    Chci poslat přepis konverzace</label>
+                    <input type="email" class="form-control" id="email_form2" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-info btn-block" id="submit_form2">Pokračovat</button>                        
+                    <button type="submit" class="btn btn-info btn-block" id="submit_form2">Pokračovat</button>                        
                 </div>
             </form>
         </div>
@@ -144,10 +144,17 @@
         const form2wrapper = document.getElementById('form2_wrapper');
         const form3wrapper = document.getElementById('form3_wrapper');
         const form4wrapper = document.getElementById('form4_wrapper');
+
         const buttonEvaluation = document.getElementById('eval_form_1');
+
         const form1_val1 = document.getElementById('value1');
         const form1_val2 = document.getElementById('value2');
         const form1_val3 = document.getElementById('value3');
+
+        const form2 = document.getElementById('form2');
+        const checkEmailForm2 = document.getElementById('check_form2');
+        const emailForm2 = document.getElementById('email_form2');
+
 
         form2wrapper.style.setProperty('display', 'none', 'important');
         form3wrapper.style.setProperty('display', 'none', 'important');
@@ -169,6 +176,18 @@
                 form4wrapper.style.removeProperty('display');
             }
         });
+     
+        form2.onsubmit = function (e) {
+            e.preventDefault();
+            
+            window.parent.postMessage({
+                type: "FEEDBACK_ACTION",
+                email: checkEmailForm2.checked ? emailForm2.value : null,
+                content: 'Zákazník byl naprosto spokojen'
+            })
+            
+            
+        }
 
     </script>
   </body>
