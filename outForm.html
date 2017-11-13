@@ -109,11 +109,7 @@
         </div>
 
         <div id="form3_wrapper">
-            <p>Do jiste miry spokojen</p>
-        </div>
 
-        <div id="form4_wrapper">
-            <p>Nespokojen.</p>
         </div>
 
       <!-- <form id="form_2" class="my-form">
@@ -143,56 +139,41 @@
         const form1wrapper = document.getElementById('form1_wrapper');
         const form2wrapper = document.getElementById('form2_wrapper');
         const form3wrapper = document.getElementById('form3_wrapper');
-        const form4wrapper = document.getElementById('form4_wrapper');
-
         const buttonEvaluation = document.getElementById('eval_form_1');
-
         const form1_val1 = document.getElementById('value1');
         const form1_val2 = document.getElementById('value2');
         const form1_val3 = document.getElementById('value3');
-
         const form2 = document.getElementById('form2');
         const checkEmailForm2 = document.getElementById('check_form2');
         const emailForm2 = document.getElementById('email_form2');
-
-
         form2wrapper.style.setProperty('display', 'none', 'important');
         form3wrapper.style.setProperty('display', 'none', 'important');
-        form4wrapper.style.setProperty('display', 'none', 'important');
         
-
         buttonEvaluation.addEventListener('click', function() {
             if(form1_val3.checked || form1_val2.checked || form1_val1.checked) {
                 form1wrapper.style.setProperty('display', 'none', 'important');
             }
-
             if(form1_val3.checked) {
                 form2wrapper.style.removeProperty('display');
             }
             else if(form1_val2.checked) {
                 form3wrapper.style.removeProperty('display');
             }
-            else if(form1_val1.checked) {
-                form4wrapper.style.removeProperty('display');
-            }
         });
      
         form2.onsubmit = function (e) {
             e.preventDefault();
-
             const data = {
                 type: "FEEDBACK_ACTION",
                 email: checkEmailForm2.checked ? emailForm2.value : null,
-                content: "Zákazník byl naprosto spokojen"
+                content: {evaluation: "Zákazník byl naprosto spokojen"}
             };
-
             console.log(data);
             
             window.parent.postMessage(data, "*");
             
             
         }
-
     </script>
   </body>
 </html>
