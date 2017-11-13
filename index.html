@@ -90,12 +90,12 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
     <script type="text/javascript">
 
-      const page1 = document.getElementById('page_1');
-      const form1 = document.getElementById('form_1');
-      const form2 = document.getElementById('form_2');
+      var page1 = document.getElementById('page_1');
+      var form1 = document.getElementById('form_1');
+      var form2 = document.getElementById('form_2');
 
-      const buttonNewClient = document.getElementById('new_client');
-      const buttonOldClient = document.getElementById('old_client');
+      var buttonNewClient = document.getElementById('new_client');
+      var buttonOldClient = document.getElementById('old_client');
 
       form1.style.setProperty('display', 'none', 'important');
       form2.style.setProperty('display', 'none', 'important');
@@ -115,8 +115,8 @@
       form1.onsubmit = function (e) {
         e.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const clientNumber = document.getElementById('client_number').value;
+        var name = document.getElementById('name').value;
+        var clientNumber = document.getElementById('client_number').value;
 
         window.parent.postMessage({
           type: "SET_NAME",
