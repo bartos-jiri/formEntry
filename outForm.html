@@ -201,7 +201,7 @@
             e.preventDefault();
             const data = {
                 type: "FEEDBACK_ACTION",
-                email: checkEmailForm2.checked ? emailForm2.value : null,
+                email: null,
                 content: {
                     evaluation: "Zákazník nebyl spokojen", 
                     zavolat_znovu: true, 
@@ -209,6 +209,7 @@
                     reason: reasonForm4
                 }
             }
+            console.log(data);
 
             window.parent.postMessage(data, "*");
         }
@@ -221,7 +222,7 @@
         CallYes.addEventListener('click', function() {
             form3wrapper.style.setProperty('display', 'none', 'important');
             form4wrapper.style.removeProperty('display');
-        })
+        });
 
     </script>
   </body>
