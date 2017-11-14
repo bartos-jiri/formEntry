@@ -9,7 +9,7 @@
         height: 100%;
         background-color: transparent;
       }
-      .vertical-align-middle {
+      .OutForm {
         display: flex;
         flex-flow: column;
         width: 100%;
@@ -26,12 +26,12 @@
       .form-control, .btn {
         border-radius: 8px;
       }
-      .btn[type="submit"], #eval_form_1 {
+      .btn[type="submit"], #Form1-submit {
         background-color: #005a97; /* Barva talčítka */
         color: white; /* Barva textu tlačítka */
         
       }
-      #eval_form_1 {
+      #Form1-submit {
         width: 200px;
         margin: 0 auto;
       }
@@ -42,19 +42,32 @@
         text-align: center;
         padding: 0 20px;
         display: block;
+        margin-bottom: 25px;
       }
-      .form-text.form3-text {
+      .form-text.Form3-text {
           margin-top: 20px;
       }
-      #form1 {
+      #Form1-form {
           width: 160px;
         margin: 0 auto;
       }
-      #form2, #form2_wrapper {
+      #Form2, #Form2-form {
         width: 100%;
       }
-      #form2 {
+      #Form2-form {
           padding: 20px;
+      }
+      #Hints {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 32px;
+        background-color: #f16663;
+        color: #fff;
+        text-align: center;
+        padding: 8px;
+        font-size: 12px;
+        box-sizing: border-box;
       }
       .bold {
           font-weight: bold;
@@ -66,76 +79,82 @@
       .call-button {
           width: 150px;
       }
+      .btn-200 {
+          width: 200px;
+          margin: 0 auto;
+      }
     </style>
   </head>
 
   <body>
-    <div class="vertical-align-middle">
-        <div id="form1_wrapper">
+    <div class="OutForm">
+        <p id="Hints" style="display: none;"></p>
+
+        <div id="Form1">
             <p class="form-text">Byly Vám naši operátoři nápomocní?</p>
-            <form id="form1" class="my-form">
+            <form id="Form1-form" class="my-form">
 
                     <div class="form-check">
-                        <label for="value3" class="form-check-label">
-                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="value3" value="3">
+                        <label for="Form1-value3" class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="Form1-value3" value="3">
                         Naprosto</label>
                     </div>
 
                     <div class="form-check">
-                        <label for="value2" class="form-check-label">
-                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="value2" value="2">            
+                        <label for="Form1-value2" class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="Form1-value2" value="2">            
                         Do jisté míry</label>
                     </div>
 
                     <div class="form-check">
-                        <label for="value1" class="form-check-label">
-                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="value1" value="1">            
+                        <label for="Form1-value1" class="form-check-label">
+                            <input type="radio" class="form-check-input" name="sessionEvaluation" id="Form1-value1" value="1">            
                         Nikoliv</label>
                     </div>
             
             </form>
-            <button type="button" class="btn btn-info btn-block" id="eval_form_1">Pokračovat</button>
+            <button type="button" class="btn btn-info btn-block" id="Form1-submit">Pokračovat</button>
         </div>
 
-        <div id="form2_wrapper" style="display: none !important">
+        <div id="Form2" style="display: none !important">
             <p class="form-text">Děkujeme za Vaši zpětnou vazbu.</p>
             <p class="form-text" class="bold">Přejete si poslat přepis emailové konverzace?</p>
-            <form class="my-form" id="form2">
+            <form class="my-form" id="Form2-form">
                 <div class="form-group">
                     <label for="sendConversationEmail" class="form-check-label">
-                        <input type="checkbox" class="form-check-input" id="check_form2" value="">            
+                        <input type="checkbox" class="form-check-input" id="Form2-check" value="">            
                     Chci poslat přepis konverzace</label>
-                    <input type="email" class="form-control" id="email_form2" placeholder="Email">
+                    <input type="email" class="form-control" id="Form2-email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info btn-block" id="submit_form2">Pokračovat</button>                        
+                    <button type="submit" class="btn btn-info btn-block btn-200">Ok</button>                        
                 </div>
             </form>
         </div>
 
-        <div id="form3_wrapper" style="display: none !important">
-            <p class="form-text form3-text">Je nám líto, že jsme Vám nedokázali pomoci.</p>          
-            <p class="form-text form3-text">Chcete, abychom Vás ještě jednou kontaktovali a na věc se znovu podívali?</p>
+        <div id="Form3" style="display: none !important">
+            <p class="form-text Form3-text">Je nám líto, že jsme Vám nedokázali pomoci.</p>          
+            <p class="form-text Form3-text">Chcete, abychom Vás ještě jednou kontaktovali a na věc se znovu podívali?</p>
             <div class="call-buttons">
-                <button type="button" class="btn btn-success call-button" id="call-yes">Ano</button>
-                <button type="button" class="btn btn-danger call-button" id="call-no">Ne</button> 
+                <button type="button" class="btn btn-success call-button" id="Form3-yes">Ano</button>
+                <button type="button" class="btn btn-danger call-button" id="Form3-no">Ne</button> 
             </div> 
            
         </div>
 
-        <div id="form4_wrapper" style="display: none !important">
-            <form id="form4" class="my-form">
+        <div id="Form4" style="display: none !important">
+            <form id="Form4-form" class="my-form" novalidate>
 
                 <div class="form-group">
-                    <label for="phone">Vyplňte, prosím, Vaše telefonní číslo, kam Vám můžeme zavolat.</label>
-                    <input type="text" class="form-control" id="phone-form4" placeholder="Telefon" required>
+                    <label for="Form4-phone">Vyplňte, prosím, Vaše telefonní číslo, kam Vám můžeme zavolat.</label>
+                    <input type="text" class="form-control" id="Form4-phone" placeholder="Telefon" required>
                 </div>
                 <div class="form-group">
-                    <label for="reason">Popiště prosím, v čem Vám můžeme pomoci.</label>
-                    <textarea cols="30" rows="5" class="form-control" id="reason-form4" placeholder="Zde můžete popsat Váš problém"></textarea>
+                    <label for="Form4-reason">Popište prosím, v čem Vám můžeme pomoci.</label>
+                    <textarea cols="30" rows="5" class="form-control" id="Form4-reason" placeholder="Zde můžete popsat Váš problém"></textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-info btn-block" id="submit_form_4">Zavolejte mi</button>
+                <button type="submit" class="btn btn-info btn-block btn-200">Zavolejte mi</button>
             </form>
         </div>
             
@@ -145,51 +164,50 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.8/popper.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
     <script type="text/javascript">
-        const form1wrapper = document.getElementById('form1_wrapper');
-        const form2wrapper = document.getElementById('form2_wrapper');
-        const form3wrapper = document.getElementById('form3_wrapper');
-        const form4wrapper = document.getElementById('form4_wrapper');
+        const Form1 = document.getElementById('Form1');
+        const Form2 = document.getElementById('Form2');
+        const Form3 = document.getElementById('Form3');
+        const Form4 = document.getElementById('Form4');
 
-        const buttonEvaluation = document.getElementById('eval_form_1');
+        // form 1
+        const Form1Value1 = document.getElementById('Form1-value1');
+        const Form1Value2 = document.getElementById('Form1-value2');
+        const Form1Value3 = document.getElementById('Form1-value3');
+        const Form1Submit = document.getElementById('Form1-submit');
 
-        const form1_val1 = document.getElementById('value1');
-        const form1_val2 = document.getElementById('value2');
-        const form1_val3 = document.getElementById('value3');
+        // form 2
+        const Form2Form = document.getElementById('Form2-form');
+        const Form2Check = document.getElementById('Form2-check');
+        const Form2Email = document.getElementById('Form2-email');
 
-        const form2 = document.getElementById('form2');
-        const form4 = document.getElementById('form4');
+        // form 3
+        const Form3Yes = document.getElementById('Form3-yes');
+        const Form3No = document.getElementById('Form3-no');
 
-        // form 2 inputs
-        const checkEmailForm2 = document.getElementById('check_form2');
-        const emailForm2 = document.getElementById('email_form2');
+        // form 4
+        const Form4Form = document.getElementById('Form4-form');
+        const Form4Phone = document.getElementById('Form4-phone');
+        const Form4Reason = document.getElementById('Form4-reason');
 
-        // form 4 inputs
-        const phoneForm4 = document.getElementById('phone-form4');
-        const reasonForm4 = document.getElementById('reason-form4');
-
-        const CallYes = document.getElementById('call-yes');
-        const CallNo = document.getElementById('call-no');
-
-        // form2wrapper.style.setProperty('display', 'none', 'important');
-        // form3wrapper.style.setProperty('display', 'none', 'important');
+        const Hints = document.getElementById('Hints');
         
-        buttonEvaluation.addEventListener('click', function() {
-            if(form1_val3.checked || form1_val2.checked || form1_val1.checked) {
-                form1wrapper.style.setProperty('display', 'none', 'important');
+        Form1Submit.addEventListener('click', function() {
+            if(Form1Value3.checked || Form1Value2.checked || Form1Value1.checked) {
+                Form1.style.setProperty('display', 'none', 'important');
             }
-            if(form1_val3.checked || form1_val2.checked) {
-                form2wrapper.style.removeProperty('display');
+            if(Form1Value3.checked || Form1Value2.checked) {
+                Form2.style.removeProperty('display');
             }
-            else if(form1_val1.checked) {
-                form3wrapper.style.removeProperty('display');
+            else if(Form1Value1.checked) {
+                Form3.style.removeProperty('display');
             }
         });
      
-        form2.onsubmit = function (e) {
+        Form2Form.onsubmit = function (e) {
             e.preventDefault();
             const data = {
                 type: "FEEDBACK_ACTION",
-                email: checkEmailForm2.checked ? emailForm2.value : null,
+                email: Form2Check.checked ? Form2Email.value : null,
                 content: {evaluation: "Zákazník byl naprosto spokojen"}
             };
             console.log(data);
@@ -197,16 +215,27 @@
             window.parent.postMessage(data, "*");
         }
 
-        form4.onsubmit = function (e) {
+        Form4Form.onsubmit = function (e) {
             e.preventDefault();
+
+            const regPhone = new RegExp('^\\d{9}$');
+
+            if(!regPhone.test(Form4Phone.value)) {
+                Hints.innerText = 'Zadejte prosím devítimístné číslo';
+                Hints.style.removeProperty('display'); 
+                return false
+            }
+
+            Hints.style.setProperty('display', 'none', 'important');
+
             const data = {
                 type: "FEEDBACK_ACTION",
                 email: null,
                 content: {
                     evaluation: "Zákazník nebyl spokojen", 
                     zavolat_znovu: true, 
-                    phone: phoneForm4.value,
-                    reason: reasonForm4.value
+                    phone: Form4Phone.value,
+                    reason: Form4Reason.value
                 }
             }
             console.log(data);
@@ -214,14 +243,14 @@
             window.parent.postMessage(data, "*");
         }
 
-        CallNo.addEventListener('click', function() {
-            form3wrapper.style.setProperty('display', 'none', 'important');
-            form2wrapper.style.removeProperty('display');
+        Form3No.addEventListener('click', function() {
+            Form3.style.setProperty('display', 'none', 'important');
+            Form2.style.removeProperty('display');
         });
 
-        CallYes.addEventListener('click', function() {
-            form3wrapper.style.setProperty('display', 'none', 'important');
-            form4wrapper.style.removeProperty('display');
+        Form3Yes.addEventListener('click', function() {
+            Form3.style.setProperty('display', 'none', 'important');
+            Form4.style.removeProperty('display');
         });
 
     </script>

@@ -9,35 +9,19 @@
         height: 100%;
         background-color: transparent;
       }
-      .vertical-align-middle {
+      .EntryForm {
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: center;
         align-items: center;
       }
-      .my-form {
-        width: 100%;
-        max-height: 100%;
-        overflow: auto;
-        padding: 1rem;
-      }
-      .form-control, .btn {
-        border-radius: 8px;
-      }
-      .btn[type="submit"], .btn[type="button"] {
-        background-color: #005a97; /* Barva talčítka */
-        color: white; /* Barva textu tlačítka */
-        width: 100%;
-      }
-      /* #page_1 {
-        width: 100%;
-      } */
-      #question {
+      .InfoText {
         text-align: center;
         padding: 0 20px;
+        margin-bottom: 25px;
       }
-      #hints {
+      #Hints {
         position: absolute;
         top: 0;
         width: 100%;
@@ -49,53 +33,62 @@
         font-size: 12px;
         box-sizing: border-box;
       }
+      .btn {
+        background-color: #005a97; /* Barva talčítka */
+        color: white; /* Barva textu tlačítka */
+        margin-top: 25px !important;
+      }
+      .u-form {
+        width: 100%;
+        max-height: 100%;
+        overflow: auto;
+        padding: 1rem;
+      }
+      .u-btn-200 {
+          width: 200px;
+          margin: 0 auto;
+      }
     </style>
   </head>
 
   <body>
-    <p id="hints" style="display: none;"></p>
+    <p id="Hints" style="display: none;"></p>
 
-    <div class="vertical-align-middle">
-      <div id='page_1'>
-          <p id="question">Potřebujete poradit?</p>
-          <button id="new_client" type="button" class="btn btn-info btn-block">Nový zákazník</button>
-          <button id="old_client" type="button" class="btn btn-info btn-block">Stávající zákazník</button>
+    <div class="EntryForm">
+      <div id='Menu'>
+          <p class="InfoText">Potřebujete poradit?</p>
+          <button id="Menu-newClient" type="button" class="btn btn-info btn-block">Nový zákazník</button>
+          <button id="Menu-oldClient" type="button" class="btn btn-info btn-block">Stávající zákazník</button>
       </div>
 
 
-      <form id="form_1" class="my-form" novalidate style="display: none !important;">
+      <form id="Form1" class="u-form" novalidate style="display: none !important;">
           <div class="form-group">
-            <label for="name">Jméno</label>
-            <input type="text" class="form-control" id="nameForm1" placeholder="Jméno" required>
+            <label for="Form1-name">Jméno</label>
+            <input type="text" class="form-control" id="Form1-name" placeholder="Jméno">
           </div>
           <div class="form-group">
-            <label for="client_number">Číslo smlouvy</label>
-            <input type="text" class="form-control" id="client_number" placeholder="Číslo smlouvy" required>
+            <label for="Form1-clientNumber">Číslo smlouvy</label>
+            <input type="text" class="form-control" id="Form1-clientNumber" placeholder="Číslo smlouvy">
           </div>
-          <div class="form-group">
-            <p>Všechna pole jsou povinná</p>
-          </div>
-          <button type="submit" class="btn btn-info btn-block" id="submit_form_1">Pokračovat</button>
+          <button type="submit" class="btn btn-info btn-block u-btn-200">Pokračovat</button>
       </form>
 
 
-      <form id="form_2" class="my-form" novalidate style="display: none !important;">
+      <form id="Form2" class="u-form" novalidate style="display: none !important;">
         <div class="form-group">
-          <label for="name">Jméno</label>
-          <input type="text" class="form-control" id="nameForm2" placeholder="Jméno" required>
+          <label for="Form2-name">Jméno</label>
+          <input type="text" class="form-control" id="Form2-name" placeholder="Jméno">
         </div>
         <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+          <label for="Form2-email">E-mail</label>
+          <input type="email" class="form-control" id="Form2-email" placeholder="E-mail">
         </div>
         <div class="form-group">
-          <label for="phone">Telefon</label>
-          <input type="text" class="form-control" id="phone" placeholder="Telefon" required>
+          <label for="Form2-phone">Telefon</label>
+          <input type="text" class="form-control" id="Form2-phone" placeholder="Telefon">
         </div>
-        <div class="form-group">
-            <p>Všechna pole jsou povinná</p>
-          </div>
-        <button type="submit" class="btn btn-info btn-block" id="submit_form_2">Pokračovat</button>
+        <button type="submit" class="btn btn-info btn-block u-btn-200">Pokračovat</button>
       </form>
     </div>
 
@@ -104,34 +97,34 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
     <script type="text/javascript">
 
-      var page1 = document.getElementById('page_1');
-      var form1 = document.getElementById('form_1');
-      var form2 = document.getElementById('form_2');
+      const menu = document.getElementById('Menu');
+      const form1 = document.getElementById('Form1');
+      const form2 = document.getElementById('Form2');
 
-      var buttonNewClient = document.getElementById('new_client');
-      var buttonOldClient = document.getElementById('old_client');
+      const menuNewClient = document.getElementById('Menu-newClient');
+      const menuOldClient = document.getElementById('Menu-oldClient');
 
-      const hints = document.getElementById('hints');
+      const hints = document.getElementById('Hints');
 
-      buttonNewClient.addEventListener('click', function(e) {
+      menuNewClient.addEventListener('click', function(e) {
         e.preventDefault();
         form2.style.removeProperty('display');
-        page1.style.setProperty('display', 'none', 'important');
+        menu.style.setProperty('display', 'none', 'important');
       });
 
-      buttonOldClient.addEventListener('click', function(e) {
+      menuOldClient.addEventListener('click', function(e) {
         e.preventDefault();
         form1.style.removeProperty('display');
-        page1.style.setProperty('display', 'none', 'important');        
+        menu.style.setProperty('display', 'none', 'important');        
       })
 
       form1.onsubmit = function (e) {
         e.preventDefault();
 
-        var name = document.getElementById('nameForm1').value;
-        var clientNumber = document.getElementById('client_number').value;
+        const name = document.getElementById('Form1-name').value;
+        const clientNumber = document.getElementById('Form1-clientNumber').value;
 
-        var regClientNumber = new RegExp('^\\d{10}$');
+        const regClientNumber = new RegExp('^\\d{10}$');
 
         if(name === '') {
           hints.innerText = 'Zadejte prosím své jméno.';
@@ -140,7 +133,7 @@
         }
 
         if(!regClientNumber.test(clientNumber)) {
-          hints.innerText = 'Zadejte prosím 10 místné číslo zákazníka.';
+          hints.innerText = 'Zadejte prosím desetimístné číslo Vaší smlouvy.';
           hints.style.removeProperty('display');
           return false;
         }
@@ -168,12 +161,12 @@
 
       form2.onsubmit = function (e) {
         e.preventDefault();
-        var name = document.getElementById('nameForm2').value;
-        var email = document.getElementById('email').value;
-        var phone = document.getElementById('phone').value;
+        const name = document.getElementById('Form2-name').value;
+        const email = document.getElementById('Form2-email').value;
+        const phone = document.getElementById('Form2-phone').value;
 
-        var regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var regPhone = new RegExp('^\\d{9}$');
+        const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const regPhone = new RegExp('^\\d{9}$');
 
         if(name === '') {
           hints.innerText = 'Zadejte prosím své jméno.';
