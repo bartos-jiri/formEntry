@@ -209,6 +209,8 @@
                     reason: reasonForm4
                 }
             }
+
+            window.parent.postMessage(data, "*");
         }
 
         CallNo.addEventListener('click', function() {
