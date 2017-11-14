@@ -61,7 +61,7 @@
       </div>
 
 
-      <form id="form_1" class="my-form">
+      <form id="form_1" class="my-form" style="display: none !important;">
           <div class="form-group">
             <label for="name">Jméno</label>
             <input type="text" class="form-control" id="nameForm1" placeholder="Jméno" required>
@@ -77,7 +77,7 @@
       </form>
 
 
-      <form id="form_2" class="my-form" novalidate>
+      <form id="form_2" class="my-form" novalidate style="display: none !important;">
         <div class="form-group">
           <label for="name">Jméno</label>
           <input type="text" class="form-control" id="nameForm2" placeholder="Jméno" required>
@@ -110,9 +110,6 @@
       var buttonOldClient = document.getElementById('old_client');
 
       const hints = document.getElementById('hints');
-
-      form1.style.setProperty('display', 'none', 'important');
-      form2.style.setProperty('display', 'none', 'important');
 
       buttonNewClient.addEventListener('click', function(e) {
         e.preventDefault();
