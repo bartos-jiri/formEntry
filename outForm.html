@@ -44,9 +44,6 @@
         display: block;
         margin-bottom: 25px;
       }
-      .form-text.Form3-text {
-          margin-top: 20px;
-      }
       #Form1-form {
           width: 160px;
         margin: 0 auto;
@@ -56,6 +53,20 @@
       }
       #Form2-form {
           padding: 20px;
+      }
+      .Form3-text {
+          margin: 30px 0;
+      }
+      .Form3-text--first {
+          margin: 0 0 80px 0;
+      }
+      #Form3-Yes {
+        background-color: #005a97; /* Barva talčítka */
+        border: none;
+      }
+      #Form3-No {
+        background-color: #2E78A9; /* Barva talčítka */
+        border: none;        
       }
       #Hints {
         position: absolute;
@@ -133,11 +144,11 @@
         </div>
 
         <div id="Form3" style="display: none !important">
-            <p class="form-text Form3-text">Je nám líto, že jsme Vám nedokázali pomoci.</p>          
+            <p class="form-text Form3-text Form3-text--first">Je nám líto, že jsme Vám nedokázali pomoci.</p>          
             <p class="form-text Form3-text">Chcete, abychom Vás ještě jednou kontaktovali a na věc se znovu podívali?</p>
             <div class="call-buttons">
-                <button type="button" class="btn btn-success call-button" id="Form3-yes">Ano</button>
-                <button type="button" class="btn btn-danger call-button" id="Form3-no">Ne</button> 
+                <button type="button" class="btn btn-success call-button" id="Form3-Yes">Ano</button>
+                <button type="button" class="btn btn-danger call-button" id="Form3-No">Ne</button> 
             </div> 
            
         </div>
@@ -181,8 +192,8 @@
         const Form2Email = document.getElementById('Form2-email');
 
         // form 3
-        const Form3Yes = document.getElementById('Form3-yes');
-        const Form3No = document.getElementById('Form3-no');
+        const Form3Yes = document.getElementById('Form3-Yes');
+        const Form3No = document.getElementById('Form3-No');
 
         // form 4
         const Form4Form = document.getElementById('Form4-form');
@@ -190,16 +201,30 @@
         const Form4Reason = document.getElementById('Form4-reason');
 
         const Hints = document.getElementById('Hints');
+
+        let evaluation;
         
         Form1Submit.addEventListener('click', function() {
+            Hints.style.setProperty('display', 'none', 'important');
+            
             if(Form1Value3.checked || Form1Value2.checked || Form1Value1.checked) {
                 Form1.style.setProperty('display', 'none', 'important');
             }
-            if(Form1Value3.checked || Form1Value2.checked) {
+            if(Form1Value3.checked) {
+                evaluation = 'Naprosto spokojený';
+                Form2.style.removeProperty('display');
+            }
+            else if (Form1Value2.checked) {
+                evaluation = 'Do jisté míry spokojený';                
                 Form2.style.removeProperty('display');
             }
             else if(Form1Value1.checked) {
+                evaluation = 'Nespokojený';                                
                 Form3.style.removeProperty('display');
+            }
+            else {
+                Hints.innerText = 'Dejte nám prosím feedback!';
+                Hints.style.removeProperty('display');
             }
         });
      
@@ -208,7 +233,7 @@
             const data = {
                 type: "FEEDBACK_ACTION",
                 email: Form2Check.checked ? Form2Email.value : null,
-                content: {evaluation: "Zákazník byl naprosto spokojen"}
+                content: {evaluation: evaluation}
             };
             console.log(data);
             
@@ -232,7 +257,7 @@
                 type: "FEEDBACK_ACTION",
                 email: null,
                 content: {
-                    evaluation: "Zákazník nebyl spokojen", 
+                    evaluation: evaluation, 
                     zavolat_znovu: true, 
                     phone: Form4Phone.value,
                     reason: Form4Reason.value
