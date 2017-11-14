@@ -26,22 +26,25 @@
       .form-control, .btn {
         border-radius: 8px;
       }
-      .btn[type="submit"], .btn[type="button"] {
+      .btn[type="submit"], #eval_form_1 {
         background-color: #005a97; /* Barva talčítka */
         color: white; /* Barva textu tlačítka */
         
       }
-      .btn[type="button"] {
+      #eval_form_1 {
         width: 200px;
         margin: 0 auto;
       }
       /* #page_1 {
         width: 100%;
       } */
-      #question {
+      .form-text {
         text-align: center;
         padding: 0 20px;
         display: block;
+      }
+      .form-text.form3-text {
+          margin-top: 20px;
       }
       #form1 {
           width: 160px;
@@ -56,18 +59,20 @@
       .bold {
           font-weight: bold;
       }
+      .call-buttons {
+          margin: 20px auto 0;
+          text-align: center;
+      }
+      .call-button {
+          width: 150px;
+      }
     </style>
   </head>
 
   <body>
     <div class="vertical-align-middle">
-      <!-- <div id='page_1'>
-          <p id="question">Byly Vám naši operátoři nápomocní?</p>
-          <button id="new_client" type="button" class="btn btn-info btn-block">Nový zákazník</button>
-          <button id="old_client" type="button" class="btn btn-info btn-block">Stávající zákazník</button>
-      </div> -->
         <div id="form1_wrapper">
-            <p id="question">Byly Vám naši operátoři nápomocní?</p>
+            <p class="form-text">Byly Vám naši operátoři nápomocní?</p>
             <form id="form1" class="my-form">
 
                     <div class="form-check">
@@ -92,9 +97,9 @@
             <button type="button" class="btn btn-info btn-block" id="eval_form_1">Pokračovat</button>
         </div>
 
-        <div id="form2_wrapper">
-            <p id="question">Děkujeme za Vaši zpětnou vazbu.</p>
-            <p id="question" class="bold">Přejete si poslat přepis emailové konverzace?</p>
+        <div id="form2_wrapper" style="display: none !important">
+            <p class="form-text">Děkujeme za Vaši zpětnou vazbu.</p>
+            <p class="form-text" class="bold">Přejete si poslat přepis emailové konverzace?</p>
             <form class="my-form" id="form2">
                 <div class="form-group">
                     <label for="sendConversationEmail" class="form-check-label">
@@ -108,31 +113,32 @@
             </form>
         </div>
 
-        <div id="form3_wrapper">
-            <p id="question">Je nám líto, že jsme Vám nedokázali pomoci.</p>          
-            <p id="question">Chcete, abychom Vás ještě jednou kontaktovali a na věc se znovu podívali?</p> 
-            <button type="button" class="btn btn-success" id="eval_form_1">Ano</button>
-            <button type="button" class="btn btn-danger" id="eval_form_1">Ne</button>            
+        <div id="form3_wrapper" style="display: none !important">
+            <p class="form-text form3-text">Je nám líto, že jsme Vám nedokázali pomoci.</p>          
+            <p class="form-text form3-text">Chcete, abychom Vás ještě jednou kontaktovali a na věc se znovu podívali?</p>
+            <div class="call-buttons">
+                <button type="button" class="btn btn-success call-button" id="call-yes">Ano</button>
+                <button type="button" class="btn btn-danger call-button" id="call-no">Ne</button> 
+            </div> 
+           
         </div>
 
-      <!-- <form id="form_2" class="my-form">
-        <div class="form-group">
-          <label for="name">Jméno</label>
-          <input type="text" class="form-control" id="name" placeholder="Jméno" required>
+        <div id="form4_wrapper" style="display: none !important">
+            <form id="form4" class="my-form">
+
+                <div class="form-group">
+                    <label for="phone">Vyplňte, prosím, Vaše telefonní číslo, kam Vám můžeme zavolat.</label>
+                    <input type="text" class="form-control" id="phone-form4" placeholder="Telefon" required>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Popiště prosím, v čem Vám můžeme pomoci.</label>
+                    <textarea cols="30" rows="5" class="form-control" id="reason-form4" placeholder="Zde můžete popsat Váš problém"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-info btn-block" id="submit_form_4">Zavolejte mi</button>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" class="form-control" id="email" placeholder="E-mail" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Telefon</label>
-          <input type="text" class="form-control" id="phone" placeholder="Telefon" required>
-        </div>
-        <div class="form-group">
-            <p>Všechna pole jsou povinná</p>
-          </div>
-        <button type="submit" class="btn btn-info btn-block" id="submit_form_2">Pokračovat</button>
-      </form> -->
+            
     </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
@@ -142,24 +148,39 @@
         const form1wrapper = document.getElementById('form1_wrapper');
         const form2wrapper = document.getElementById('form2_wrapper');
         const form3wrapper = document.getElementById('form3_wrapper');
+        const form4wrapper = document.getElementById('form4_wrapper');
+
         const buttonEvaluation = document.getElementById('eval_form_1');
+
         const form1_val1 = document.getElementById('value1');
         const form1_val2 = document.getElementById('value2');
         const form1_val3 = document.getElementById('value3');
+
         const form2 = document.getElementById('form2');
+        const form4 = document.getElementById('form4');
+
+        // form 2 inputs
         const checkEmailForm2 = document.getElementById('check_form2');
         const emailForm2 = document.getElementById('email_form2');
-        form2wrapper.style.setProperty('display', 'none', 'important');
-        form3wrapper.style.setProperty('display', 'none', 'important');
+
+        // form 4 inputs
+        const phoneForm4 = document.getElementById('phone-form4');
+        const reasonForm4 = document.getElementById('reason-form4');
+
+        const CallYes = document.getElementById('call-yes');
+        const CallNo = document.getElementById('call-no');
+
+        // form2wrapper.style.setProperty('display', 'none', 'important');
+        // form3wrapper.style.setProperty('display', 'none', 'important');
         
         buttonEvaluation.addEventListener('click', function() {
             if(form1_val3.checked || form1_val2.checked || form1_val1.checked) {
                 form1wrapper.style.setProperty('display', 'none', 'important');
             }
-            if(form1_val3.checked) {
+            if(form1_val3.checked || form1_val2.checked) {
                 form2wrapper.style.removeProperty('display');
             }
-            else if(form1_val2.checked) {
+            else if(form1_val1.checked) {
                 form3wrapper.style.removeProperty('display');
             }
         });
@@ -174,9 +195,32 @@
             console.log(data);
             
             window.parent.postMessage(data, "*");
-            
-            
         }
+
+        form4.onsubmit = function (e) {
+            e.preventDefault();
+            const data = {
+                type: "FEEDBACK_ACTION",
+                email: checkEmailForm2.checked ? emailForm2.value : null,
+                content: {
+                    evaluation: "Zákazník nebyl spokojen", 
+                    zavolat_znovu: true, 
+                    phone: phoneForm4,
+                    reason: reasonForm4
+                }
+            }
+        }
+
+        CallNo.addEventListener('click', function() {
+            form3wrapper.style.setProperty('display', 'none', 'important');
+            form2wrapper.style.removeProperty('display');
+        });
+
+        CallYes.addEventListener('click', function() {
+            form3wrapper.style.setProperty('display', 'none', 'important');
+            form4wrapper.style.removeProperty('display');
+        })
+
     </script>
   </body>
 </html>
