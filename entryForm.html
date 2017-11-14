@@ -131,6 +131,22 @@
         var name = document.getElementById('nameForm1').value;
         var clientNumber = document.getElementById('client_number').value;
 
+        var regClientNumber = new RegExp('^\\d{10}$');
+
+        if(name === '') {
+          hints.innerText = 'Zadejte prosím své jméno.';
+          hints.style.removeProperty('display');
+          return false;
+        }
+
+        if(!regClientNumber.test(clientNumber)) {
+          hints.innerText = 'Zadejte prosím 10 místné číslo zákazníka.';
+          hints.style.removeProperty('display');
+          return false;
+        }
+
+        hints.style.setProperty('display', 'none', 'important');
+
         window.parent.postMessage({
           type: "SET_NAME",
           name: name
@@ -165,13 +181,13 @@
           return false;
         }
 
-        if(!regEmail.test(email) || email === '') {
+        if(!regEmail.test(email)) {
           hints.innerText = 'Zadejte prosím validní email.';
           hints.style.removeProperty('display');
           return false;
         }
 
-        if(!regPhone.test(phone) || phone === '') {
+        if(!regPhone.test(phone)) {
           hints.innerText = 'Zadejte prosím devítimístné číslo';    
           hints.style.removeProperty('display');                
           return false;
