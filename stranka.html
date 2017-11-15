@@ -1,0 +1,171 @@
+
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+body{
+ background: url('./o2_bg_komplet.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#logo{
+	background-image: url('o2_logo_top_left.png');
+	background-repeat: no-repeat;
+	width: 155px;
+    height: 150px;
+}
+
+#centerDiv{
+position: absolute;
+background-color:white;
+top:50%;
+left: 50%;
+margin-top: -125px;
+margin-left: -175px;
+width: 350px;
+height: 250px;
+border-radius: 8px;
+}
+
+.online{
+background-image: url("online.png");
+background-repeat: no-repeat;
+background-position: center 20px;
+}
+
+.offline{
+background-image: url("NA.png");
+background-repeat: no-repeat;
+background-position: center 20px;
+}
+
+.busy{
+background: url("busy.png");
+background-repeat: no-repeat;
+background-position: center 20px;
+}
+
+#numInput{
+    position: absolute;
+    bottom: 70px;
+    width: 200px;
+    left: 75px;
+text-align: center;
+    height: 30px;
+    border-radius: 5px;
+border-style: solid;
+border-width: 1px;
+border-color: #ccc;
+}
+
+#submitBtn{
+    position: absolute;
+    bottom: 35px;
+    width: 200px;
+    left: 75px;
+  height: 30px;
+    border-radius: 5px;
+    color: #fff;
+ 
+}
+
+.wrongCode{
+   border-style: none;
+  background: #999;
+}
+
+.goodCode{
+   border-style: solid;
+  background: -webkit-linear-gradient(#a5cd00, #7bb300); 
+  background: -o-linear-gradient(#a5cd00, #7bb300);
+  background: -moz-linear-gradient(#a5cd00, #7bb300);
+  background: linear-gradient(#a5cd00, #7bb300);
+  border-top-color: #d3e780;	
+  border-bottom-color: #538000;
+  border-left: none;
+  border-right: none;
+}
+</style>
+
+
+</head>
+
+<body>
+<div id='logo' ></div>
+<div id="centerDiv" class="offline">
+<input type="text" id="numInput" placeholder="Vložte kód" >
+<input type="submit" id="submitBtn" class="wrongCode" value="Vstoupit do místnosti">
+</div>
+
+<script type="text/javascript">
+(function () {
+  var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+  scr.src = '//virtualni-prodejna.o2.cz/widget/OOWidget.js';
+
+  var onlineBool = false;
+  scr.$owidgetOnLoad = function (owidget) {
+    if (!owidget.isSupported) { return; }
+    owidget.init('7392a0bc-52c7-9e49-7f5c-97aa899077dc', null);
+    owidget.setStatusUpdateCallback(function(code) {
+      var statusDiv = document.getElementById("centerDiv");
+      statusDiv.className="online";
+      onlineBool = true;
+
+      /*	switch (code) {
+
+        case 0:
+          var statusDiv=document.getElementById("centerDiv");
+          statusDiv.className="offline";
+          onlineBool = false;
+          break;
+        case 1:
+          var statusDiv=document.getElementById("centerDiv");
+          statusDiv.className="online";
+          onlineBool = true;
+          break;	
+        case 2:
+          var statusDiv=document.getElementById("centerDiv");
+          statusDiv.className="busy";
+          onlineBool = true;
+          break;
+
+      } */
+
+    });
+
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("submitBtn").onclick = function () {
+      var callshowNr = document.getElementById("numInput").value;
+      if (onlineBool) {
+        owidget.openAppOnCurrentPage('callshow', callshowNr);
+      }
+    };
+    document.getElementById("numInput").oninput = function () {
+      var str = document.getElementById("numInput").value;
+      if (str.match("^[()/0-9. -]{6}$")) {
+        document.getElementById("submitBtn").disabled = false;
+        document.getElementById("submitBtn").className = "goodCode";
+      } else {
+        document.getElementById("submitBtn").disabled = true;
+        document.getElementById("submitBtn").className = "wrongCode";
+      }
+    };
+    document.getElementById("numInput").onpropertychange = document.getElementById("numInput").oninput;
+    document.onkeypress = function keypressed(e) {
+      var keyCode = (window.event) ? e.which : e.keyCode;
+      if (keyCode == 13 && !document.getElementById("submitBtn").disabled && onlineBool) {
+        owidget.openAppOnCurrentPage('callshow', document.getElementById("numInput").value);
+      }
+    };
+
+    owidget.connectToServer();
+  };
+  var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+})();
+</script>
+
+</body>
+</html>

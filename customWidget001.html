@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>    
+    <title>Custom Widget 1</title>
+    <style type="text/css">
+        .Page {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .Menu {
+
+        }
+        .Button {
+            display: block;
+            margin: 10px 0;
+            width: 200px;
+            border: none;
+            background-color: #005a97;            
+        }
+        .Button-av {
+     
+        }
+        .Button-cb {
+            padding: 5px 6px;
+        }
+        .Button-cs {
+            padding: 5px 6px;
+        }
+        .Button--isOnline {
+            background-color: #005a97;
+        }
+        .Button--isOffline {
+            background-color: #721817;
+        }
+        .Button--isBusy {
+            background-color: #FCBA3B;
+        }
+        .Input {
+            display: inline-block;
+            padding: 2px;
+            text-align: center;
+            width: 70%;
+            margin: 0;
+            box-sizing: border-box;
+            
+        }
+        .GoButton {
+            display: inline-block;
+            width: 28%;
+            border-radius: .25rem;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="Page">
+        <div class="Menu">
+            <button type='button' class="Button btn btn-primary" id="button1">Chat</button>
+            <button type='button' class="Button Button-av btn btn-primary" id="button2">Videohovor</button>
+            <div class="Button Button-cb btn btn-primary" id="button3">
+                <input type="text" class="Input form-control" id="clientNumber" placeholder="Callback">
+                <div class="GoButton" id="goButton1">Spojit</div>
+            </div>
+            <div class="Button Button-cs btn btn-primary" id="button4">
+                <input type="text" class="Input form-control" id="clientCode" placeholder="Callshow">
+                <div class="GoButton" id="goButton2">Spojit</div>                
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+          var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+          scr.src = '//app.mluvii.com/widget/OOWidget.js';
+          scr.$owidgetOnLoad = function (owidget) {
+            if (!owidget.isSupported) { return; }
+            owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTestCustomWidget');
+
+
+            owidget.setStatusUpdateCallback(function(code) {
+                const buttons = [
+                    ...document.getElementsByClassName('Button')
+                    ];
+                console.log(buttons);
+                switch(code) {
+                    case 0:
+                        buttons.forEach(button => {
+                            removeStatusClasses(button);
+                            button.classList.add('Button--isOffline');
+                        });
+                        break;
+                    case 1:
+                        buttons.forEach(button => {
+                            removeStatusClasses(button);
+                            button.classList.add('Button--isOnline');
+                        });
+                        break;
+                    case 2:
+                        buttons.forEach(button => {
+                            removeStatusClasses(button);                            
+                            button.classList.add('Button--isBusy');
+                        });
+                        break;
+                }
+            });
+
+            const menu = document.getElementsByClassName('Menu')[0];
+            const clientNumberInput = document.getElementById('clientNumber');
+            const clientCodeInput = document.getElementById('clientCode');
+
+            // chatovaci okno
+            const buttonChat = document.getElementById('button1');
+            buttonChat.addEventListener('click', function() {
+                owidget.openChat();
+            });
+
+            // videohovor
+            const buttonVideohovor = document.getElementById('button2');
+            buttonVideohovor.addEventListener('click', function() {
+                owidget.openApp('av');
+            });
+
+            // callback
+            const goButtonCallback = document.getElementById('goButton1');
+            goButtonCallback.addEventListener('click', function(e) {
+                owidget.openApp('callback', clientNumberInput.value);
+            });
+
+            // callshow
+            const goButtonCallshow = document.getElementById('goButton2');
+            goButtonCallshow.addEventListener('click', function() {
+                owidget.openApp('callshow', clientCodeInput.value);
+            });
+
+            // enter listener for client number to connect
+            menu.addEventListener('keypress', function(e) {
+                if(e.charCode === 13) {
+                    if(clientNumberInput === document.activeElement) {
+                        owidget.openApp('callback', clientNumberInput.value);                        
+                    }
+                    if(clientCodeInput === document.activeElement) {
+                        owidget.openApp('callshow', clientCodeInput.value);                        
+                    }
+                }
+            });
+    
+
+            owidget.connectToServer();
+          };
+          var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+        })();
+
+
+        function removeStatusClasses(el) {
+            el.classList.remove('Button--isOffline');
+            el.classList.remove('Button--isOnline');
+            el.classList.remove('Button--isBusy');
+        }
+    </script>
+</body>
+</html>
