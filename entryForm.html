@@ -126,17 +126,17 @@
 
         const regClientNumber = new RegExp('^\\d{10}$');
 
-        // if(name === '') {
-        //   hints.innerText = 'Zadejte prosím své jméno.';
-        //   hints.style.removeProperty('display');
-        //   return false;
-        // }
+        if(name === '') {
+          hints.innerText = 'Zadejte prosím své jméno.';
+          hints.style.removeProperty('display');
+          return false;
+        }
 
-        // if(!regClientNumber.test(clientNumber)) {
-        //   hints.innerText = 'Zadejte prosím desetimístné číslo Vaší smlouvy.';
-        //   hints.style.removeProperty('display');
-        //   return false;
-        // }
+        if(!regClientNumber.test(clientNumber)) {
+          hints.innerText = 'Zadejte prosím desetimístné číslo Vaší smlouvy.';
+          hints.style.removeProperty('display');
+          return false;
+        }
 
         hints.style.setProperty('display', 'none', 'important');
 
