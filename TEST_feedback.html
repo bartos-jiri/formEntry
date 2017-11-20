@@ -67,7 +67,7 @@
       form.onsubmit = function (e) {
         e.preventDefault();
 
-        var content = document.getElementById('content').value;
+        var content = {content: document.getElementById('content').value};
         var email = document.getElementById('email').value;
         var checked = document.getElementById('send_to_email').checked;
 
