@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>mluvii-custom-feedback</title>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+    <style type="text/css">
+      html, body {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+      }
+      .vertical-align-middle {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+      .my-form {
+        width: 100%;
+        max-height: 100%;
+        overflow: auto;
+        padding: 1rem;
+      }
+      .form-control, .btn {
+        border-radius: 8px;
+      }
+      .btn[type="submit"] {
+        background-color: #39A2EF; /* Barva talčítka */
+        color: white; /* Barva textu tlačítka */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="vertical-align-middle">
+      <form id="my_form" class="my-form">
+        <div class="form-group">
+          <label for="content">Vaše zpětná vazba</label>
+          <textarea class="form-control" id="content" rows="3"></textarea>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" id="send_to_email">
+            Odeslat přepis chatu na e-mail
+          </label>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control email" id="email" placeholder="E-mail" disabled>
+        </div>
+        <button type="submit" class="btn btn-info btn-block">Odeslat</button>
+      </form>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.8/popper.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+    <script type="text/javascript">
+      var checkbox = document.getElementById('send_to_email');
+      var form = document.getElementById('my_form');
+
+      checkbox.onchange = function (e) {
+        document.getElementById('email').disabled = !e.target.checked;
+      };
+
+      form.onsubmit = function (e) {
+        e.preventDefault();
+
+        var content = document.getElementById('content').value;
+        var email = document.getElementById('email').value;
+        var checked = document.getElementById('send_to_email').checked;
+
+        window.parent.postMessage({
+          type: "FEEDBACK_ACTION",
+          email: checked ? email : null,
+          content: content
+        }, "*");
+      };
+    </script>
+  </body>
+</html>
