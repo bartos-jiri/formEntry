@@ -129,13 +129,13 @@
         if(name === '') {
           hints.innerText = 'Zadejte prosím své jméno.';
           hints.style.removeProperty('display');
-          return false;
+          return true;
         }
 
         if(!regClientNumber.test(clientNumber)) {
           hints.innerText = 'Zadejte prosím desetimístné číslo Vaší smlouvy.';
           hints.style.removeProperty('display');
-          return false;
+          return true;
         }
 
         hints.style.setProperty('display', 'none', 'important');
