@@ -58,10 +58,23 @@
             box-sizing: border-box;
             text-align: center;
         }
+        #Hints {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 32px;
+            background-color: #f16663;
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
 
     </style>
 </head>
 <body>
+    <p id="Hints" style="display: none;"></p>        
     <div class="Page">
         <div class="Menu">
             <button type='button' class="Button btn btn-primary" id="button1">Chat</button>
@@ -82,33 +95,37 @@
           var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
           scr.src = '//app.mluvii.com/widget/OOWidget.js';
           scr.$owidgetOnLoad = function (owidget) {
+
             if (!owidget.isSupported) { return; }
             owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTestCustomWidget');
 
+            let widgetOnline;
 
             owidget.setStatusUpdateCallback(function(code) {
                 const buttons = [
                     ...document.getElementsByClassName('Button')
                     ];
-                console.log(buttons);
                 switch(code) {
                     case 0:
                         buttons.forEach(button => {
                             removeStatusClasses(button);
                             button.classList.add('Button--isOffline');
                         });
+                        widgetOnline = false; 
                         break;
                     case 1:
                         buttons.forEach(button => {
                             removeStatusClasses(button);
                             button.classList.add('Button--isOnline');
                         });
+                        widgetOnline = true;
                         break;
                     case 2:
                         buttons.forEach(button => {
                             removeStatusClasses(button);                            
                             button.classList.add('Button--isBusy');
                         });
+                        widgetOnline = true;                        
                         break;
                 }
             });
@@ -120,51 +137,99 @@
             // chatovaci okno
             const buttonChat = document.getElementById('button1');
             buttonChat.addEventListener('click', function() {
+                if(!widgetOnline) return;
                 owidget.openChat();
             });
 
             // videohovor
             const buttonVideohovor = document.getElementById('button2');
             buttonVideohovor.addEventListener('click', function() {
+                if(!widgetOnline) return;                
                 owidget.openApp('av');
             });
 
             // callback
             const goButtonCallback = document.getElementById('goButton1');
             goButtonCallback.addEventListener('click', function(e) {
+                if(!widgetOnline) return;                
+                if(!validateNumberLength(clientNumberInput.value, 9, 'Zadejte prosím devítimístné telefonní číslo.')) return;
                 owidget.openApp('callback', clientNumberInput.value);
+            });
+            // callback - hide hints if ok
+            clientNumberInput.addEventListener('input', function(e) {
+                const regNumber = new RegExp(`^\\d{9}$`);
+                if(regNumber.test(this.value)) {
+                    hideHint();
+                }
             });
 
             // callshow
             const goButtonCallshow = document.getElementById('goButton2');
             goButtonCallshow.addEventListener('click', function() {
+                if(!widgetOnline) return;                
+                if(!validateNumberLength(clientCodeInput.value, 6, 'Zadejte prosím šestimístné číslo pozvánky.')) return;
                 owidget.openApp('callshow', clientCodeInput.value);
             });
 
-            // enter listener for client number to connect
+
+            // callshow - hide hints if ok
+            clientCodeInput.addEventListener('input', function(e) {
+                const regNumber = new RegExp(`^\\d{6}$`);
+                if(regNumber.test(this.value)) {
+                    hideHint();
+                }
+            });
+
+            // enter listener for focused imputs
             menu.addEventListener('keypress', function(e) {
+                if(!widgetOnline) return;                
                 if(e.charCode === 13) {
                     if(clientNumberInput === document.activeElement) {
+                        if(!validateNumberLength(clientNumberInput.value, 9, 'Zadejte prosím devítimístné telefonní číslo.')) return;
                         owidget.openApp('callback', clientNumberInput.value);                        
                     }
                     if(clientCodeInput === document.activeElement) {
+                        if(!validateNumberLength(clientCodeInput.value, 6, 'Zadejte prosím šestimístné číslo pozvánky.')) return;
                         owidget.openApp('callshow', clientCodeInput.value);                        
                     }
                 }
             });
-    
 
             owidget.connectToServer();
+
+            function removeStatusClasses(el) {
+                el.classList.remove('Button--isOffline');
+                el.classList.remove('Button--isOnline');
+                el.classList.remove('Button--isBusy');
+            }
+
+            function validateNumberLength(numberToEval, length, hintMessage) {
+                const regNumber = new RegExp(`^\\d{${length}}$`);
+                if (!regNumber.test(numberToEval)) {
+                    showHint(hintMessage);
+                    return false;
+                }
+                hideHint();
+                return true;
+            }
+            function showHint(message) {
+                const hints = document.getElementById('Hints');
+                hints.innerText = message;
+                hints.style.removeProperty('display');
+            }
+            function hideHint() {
+                const hints = document.getElementById('Hints');
+                hints.style.setProperty('display', 'none', 'important');
+            }
           };
           var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
         })();
 
-
-        function removeStatusClasses(el) {
-            el.classList.remove('Button--isOffline');
-            el.classList.remove('Button--isOnline');
-            el.classList.remove('Button--isBusy');
-        }
     </script>
 </body>
 </html>
+
+
+<!-- je mozne zavolat si offline formular? -->
+<!-- delame u custom developmentu napr zcela custom widget? -->
+<!-- je mozne si zavolat nastaveni (barvy) z nastaveni widgetu v adminovi? -->

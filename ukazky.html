@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ukazky</title>
+  <style>
+    body, html {
+      margin: 0;
+    }
+    .Page {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+
+  </style>
+</head>
+<body>
+    <script>
+      let page = document.createElement('iframe'); page.type = 'text/html'; page.async = true; page.charset = 'UTF-8';
+      page.classList.add('Page');
+      page.src = 'https://www.cez.cz/';
+      let scriptNode = document.getElementsByTagName('script')[0];
+      scriptNode.parentNode.insertBefore(page, scriptNode);
+
+
+      (function () {
+        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+        scr.src = '//app.mluvii.com/widget/OOWidget.js';
+        scr.$owidgetOnLoad = function (owidget) {
+          if (!owidget.isSupported) { return; }
+          owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTestPP');
+          owidget.connectToServer();
+        };
+        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+      })();
+      </script>
+</body>
+</html>

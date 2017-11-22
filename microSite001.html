@@ -9,11 +9,20 @@
     <style>
         body {
             background-image: linear-gradient(to right, #6ca6bd, #8dc63f);
+            font-size: Raleway;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        input, button, p, label {
+            font-family: Raleway;            
         }
         .Logo {
             position: absolute;
-            width: 400px;
+            width: 25%;
             margin: 20px;
+            min-width: 200px;
         }
         .Page {
             display: flex;
@@ -29,6 +38,7 @@
             border-radius: 10px;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
         .StatusIndicator {
             flex: 3;
@@ -51,10 +61,16 @@
         }
         .StatusIndicatorCore-text {
             flex: 7;
+            display: flex;
+            align-items: center;
+        }
+        .StatusIndicatorCore-textSelf {
             font-size: 35px;
             font-family: Raleway;
             font-weight: bold;
             color: #8dc63f;
+            text-align: center;
+            margin: 0;
         }
         .WidgetInput {
             width: 100%;
@@ -63,6 +79,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         .WidgetInput-input {
             width: 60%;
@@ -72,33 +89,211 @@
             font-size: 20px;
             text-align: center;
             color: #8dc63f;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .WidgetInput-input:focus, .WidgetInput-button:focus {
+            outline: 0;
+            border: 2px solid #6ca6bd;            
         }
         .WidgetInput-button {
-
+            width: 60%;
+            border-radius: 8px;
+            border: 1px solid #6ca6bd;
+            background-color: #8dc63f;    
+            transition: all 0.3s;
+            color: #fff;
+            height: 40px;
+            font-size: 20px;
+            margin-bottom: 20px;
         }
-
+        .WidgetInput-button:hover {
+            background-color: #6ca6bd;
+        }
+        .Hints {
+            position: absolute;
+            bottom: 0;
+            background-color: #bf464f;
+            color: white;
+            width: 100%;
+            padding: 10px 8px;
+            text-align: center;
+            box-sizing: border-box;
+            margin: 0;
+            transition: all ease-out 0.3s;
+        }
+        .Hints.isHidden {
+            transform: translateY(100%);
+        }
+        .CustomVariables {
+            position: absolute;
+            bottom: 0;
+            margin: 0 auto;
+            height: 50px;
+            width: 800px;
+            border-radius: 10px 10px 0 0;
+            background-color: #fff;
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+        }
+        .CustomVariables-input {
+            flex: 1;
+            text-align: center;
+        }
+        .CustomInput {
+            width: 250px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid #6ca6bd;
+            font-size: 18px;
+            text-align: center;
+            color: #8dc63f;
+            box-sizing: border-box;
+            margin: 10px 0;
+            margin-left: 5px;
+            outline: 0;
+        }
+        .CustomInput:focus {
+            border: 2px solid #6ca6bd;
+        }
+        label {
+            font-size: 20px;
+            color: #5b5b5b;
+        }
     </style>
 </head>
 <body>
-    <img src="/Images/logo-transparent-no-safezone.png" alt="" class="Logo">
+    <img src="Images/logo-transparent-no-safezone.png" alt="" class="Logo">
     <div class="Page">
         <div class="Frame">
             <div class="StatusIndicator">
                 <div class="StatusIndicatorCore">
                     <div class="StatusIndicatorCore-image">
-                        <img src="Images/ikonka_konverzace-01.png" alt="">                        
+                        <img class="StatusIndicatorCore-imageSelf" src="Images/ikonka_konverzace-01_online.png" alt="">                        
                     </div>
-                    <p class="StatusIndicatorCore-text">
-                        Jsme online
-                    </p>
+                    <div class="StatusIndicatorCore-text">
+                        <p class="StatusIndicatorCore-textSelf">
+                            Jsme online
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="WidgetInput">
-                <input type="text" class="WidgetInput-input" placeholder="Vložte č. pozvánky">
+                <p class="Hints isHidden">Zadejte prosím devítimístné telefonní číslo nebo šestímístné číslo pozvánky.</p>
+                <input type="text" class="WidgetInput-input" placeholder="Telefon / č. pozvánky">
                 <button class="WidgetInput-button">Začít hovor</button>
             </div>
         </div>
+        <div class="CustomVariables">
+            <div class="CustomVariables-input">
+                <label for="inputName">Jméno:</label>
+                <input type="text" class="CustomInput" id="inputName">
+            </div>
+
+            <div class="CustomVariables-input">
+                <label for="inputId">ID zákazníka:</label>
+                <input type="text" class="CustomInput" id="inputId">
+            </div>
+        </div>
     </div>
+
+
+    <script type="text/javascript">
+        (function () {
+        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+        scr.src = '//appdev.mluvii.com/widget/OOWidget.js';
+        scr.$owidgetOnLoad = function (owidget) {
+            if (!owidget.isSupported) { return; }
+            owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'NavodHidden');
+
+            let widgetOnline = true;
+
+            owidget.setStatusUpdateCallback(function(code) {
+                const statusIndicatorImage = document.getElementsByClassName('StatusIndicatorCore-imageSelf')[0];
+                const statusIndicatorText = document.getElementsByClassName('StatusIndicatorCore-textSelf')[0];
+
+                switch(code) {
+                    case 0:
+                        statusIndicatorImage.src = 'Images/ikonka_konverzace-01_offline.png';
+                        statusIndicatorText.innerText = 'Jsme offline';
+                        statusIndicatorText.style.color = '#bf464f';
+                        widgetOnline = false; 
+                        break;
+                    case 1:
+                        statusIndicatorImage.src = 'Images/ikonka_konverzace-01_online.png';
+                        statusIndicatorText.innerText = 'Jsme online';
+                        statusIndicatorText.style.color = '#8dc63f';
+                        widgetOnline = true;
+                        break;
+                    case 2:
+                        statusIndicatorImage.src = 'Images/ikonka_konverzace-01_busy.png';
+                        statusIndicatorText.innerText = 'Máme toho hodně';
+                        statusIndicatorText.style.color = '#ffbb06';                                           
+                        widgetOnline = true;                        
+                        break;
+                }
+            });
+
+
+            const widgetButton = document.getElementsByClassName('WidgetInput-button')[0];
+            const widgetInput = document.getElementsByClassName('WidgetInput-input')[0];
+            const hints = document.getElementsByClassName('Hints')[0];
+
+            const nameInput = document.getElementById('inputName');
+            const idInput = document.getElementById('inputId');
+
+            const regNumberLength6 = new RegExp('^\\d{6}$');
+            const regNumberLength9 = new RegExp('^\\d{9}$');
+
+            widgetButton.addEventListener('click', function(e) {
+                if(!widgetOnline) return;
+
+                // const customData = {};
+                if(nameInput.value !== '') {
+                    owidget.addCustomData('navod_clientName', nameInput.value);
+                    // customData.navod_clientName = nameInput.value;
+                }
+                if(idInput.value !== '') {
+                    owidget.addCustomData('navod_clientId', idInput.value);
+                    // customData.navod_clientId = idInput.value;                    
+                }
+                // owidget.setCustomData(customData);
+
+                
+                if(!regNumberLength6.test(widgetInput.value) || !regNumberLength9.test(widgetInput.value)) {
+                    hints.classList.remove('isHidden');
+                }
+                if(regNumberLength6.test(widgetInput.value)) {
+                    owidget.openApp('callshow', widgetInput.value)
+                    // const openedCS = owidget.openApp('callshow', widgetInput.value); 
+                    // console.log(openedCS);
+                    // if(!openedCS) return;
+                }
+                if(regNumberLength9.test(widgetInput.value)) {
+                    owidget.numberNormalization(widgetInput.value)
+                    // const normalizedNumber = owidget.numberNormalization(widgetInput.value);
+                    // const openedCB = owidget.openApp('callback', normalizedNumber); 
+                    // if(!openedCB) return;
+                }
+            });
+
+            widgetInput.addEventListener('input', function() {
+                if(regNumberLength6.test(widgetInput.value) || regNumberLength9.test(widgetInput.value)) {
+                    hints.classList.add('isHidden');
+                }
+            });
+
+            owidget.connectToServer();
+        };
+        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+        })();
+    </script>
 </body>
 </html>
+
+
+<!-- Problem se zobrazovanim hinut, z nejakeho duvodu to odstrani isHidden class po otevreni velke mistnosti -->
+<!-- Problem s custom daty, nezobrazuji se u operatora -->
+<!-- Vraci openApp metoda return, kdyz jsou vsichni operatori offline? Jak toho muzu vyuzit? -->
+<!-- Jakou casovou dotaci by Fogy potreboval? -->
