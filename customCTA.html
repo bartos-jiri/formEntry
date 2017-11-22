@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>    
+    <title>CTA Dummy</title>
+    <style>
+        .CTAWrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .CTA {
+            width: 250px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e4e5e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #d5d6d9;
+        }
+        .CTA-image {
+            /* max-width: 70%; */
+            max-height: 70%;
+            transform: rotateY(180deg);
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .CTA-text {
+            padding: 5px;
+        }
+        #Message {
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="CTAWrapper">
+        <div class="CTA">
+            <img src="/images/mluvik_konverzace-01.png" alt="" class="CTA-image">
+            <div class="CTA-text">
+                <p id="Message">Chcete se dozvědět více o našem produktu?</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    
+        const message = document.getElementById('Message');
+        let firstTrigger = true;
+        let messageToShow;
+        setInterval(function() {
+            if(firstTrigger) {
+                messageToShow = 'Chcete se dozvědět více o našem produktu?';
+            }
+            else {
+                messageToShow = 'Neváhejte nás kontaktovat!';
+            }
+            message.innerText = messageToShow;
+            firstTrigger = !firstTrigger;
+        }, 5000);
+
+    </script>
+</body>
+</html>
