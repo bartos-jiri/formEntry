@@ -6,18 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>     -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CTA Dummy</title>
     <style>
         body {
             margin: 0;
         }
-        /* .CTAWrapper {
-            display: flex;
+        .CTAWrapper {
+            /* display: flex;
             width: 100%;
             height: 100vh;
             justify-content: center;
-            align-items: center;
-        } */
+            align-items: center; */
+            width: 200px;
+            height: 110px;
+            position: relative;
+        }
         .CTA {
             width: 200px;
             height: 110px;
@@ -65,13 +69,23 @@
             transform: translateY(120%);
             opacity: 0;
         }
+        .Close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #3c6879;
+            margin: 3px;
+        }
 
     </style>
 </head>
 <body>
     <div class="CTAWrapper">
+        <div class="Close">
+            <i class="fa fa-times" aria-hidden="true"></i>                
+        </div>
         <div class="CTA">
-            <img src="https://patricke004.github.io/formEntry/Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
+            <img src="Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
             <div class="CTA-text">
                 <p class="Message Message--first">Chcete se dozvědět více o našem produktu?</p>
                 <p class="Message Message--second isSecondMessageHidden">Neváhejte nás kontaktovat!</p>
@@ -98,6 +112,11 @@
             // message.innerText = messageToShow;
             firstTrigger = !firstTrigger;
         }, 5000);
+
+        const closeCross = document.getElementsByClassName('Close')[0];
+        closeCross.addEventListener('click', function() {
+            window.parent.postMessage({type:"HIDE_MLUVII_CHAT"},"*");
+        });
 
     </script>
 </body>
