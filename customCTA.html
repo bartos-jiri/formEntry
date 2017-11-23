@@ -106,19 +106,19 @@
         const firstMessage = document.getElementsByClassName('Message--first')[0];
         const secondMessage = document.getElementsByClassName('Message--second')[0];
         let firstTrigger = true;
-        let messageToShow;
+
         let basicMessageInterval = setInterval(function() {
             if(firstTrigger) {
-                // messageToShow = 'Neváhejte nás kontaktovat!';
+
                 firstMessage.classList.add('isFirstMessageHiddden');
                 secondMessage.classList.remove('isSecondMessageHidden');
             }
             else {
-                // messageToShow = 'Chcete se dozvědět více o našem produktu?';
+  
                 firstMessage.classList.remove('isFirstMessageHiddden');
                 secondMessage.classList.add('isSecondMessageHidden');
             }
-            // message.innerText = messageToShow;
+
             firstTrigger = !firstTrigger;
         }, 5000);
 
@@ -135,10 +135,10 @@
         window.addEventListener('message', function(msg) {
             if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
                 if(msg.data.params.oo1_widget_lang === 'cs') {
-                    firstMessage.innetText = textCZ.firstMessage;
+                    firstMessage.innerText = textCZ.firstMessage;
                     secondMessage.innerText = textCZ.secondMessage;
-                } else {
-                    firstMessage.innetText = textENG.firstMessage;
+                } else if(msg.data.params.oo1_widget_lang === 'en') {
+                    firstMessage.innerText = textENG.firstMessage;
                     secondMessage.innerText = textENG.secondMessage;
                 }
             }
