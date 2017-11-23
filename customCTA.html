@@ -149,6 +149,7 @@
                     
                 }
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page2.html') {
+                    console.log('stopping interval');
                     clearInterval(basicMessageInterval);
                     firstMessage.innerText = textCZ.supportMessage;
                 }
