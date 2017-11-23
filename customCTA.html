@@ -24,21 +24,39 @@
             justify-content: center;
             align-items: center;
             border: 1px solid #1ca674;
+            overflow: hidden;
         }
         .CTA-image {
             /* max-width: 70%; */
-            max-height: 70%;
+            max-height: 60%;
             transform: rotateY(180deg);
             padding: 5px;
             box-sizing: border-box;
+            border-left: 1px solid #8dc63f;
+            
         }
         .CTA-text {
             padding: 5px;
         }
-        #Message {
+        .Message {
             margin: 0;
             font-size: 13px;
             font-family: Raleway;
+            transition: all ease-in-out 0.4s;
+            padding-left: 5px;
+            color: #3c6879;
+        }
+        .Message--first {
+            transform: translateY(33%);
+        }
+        .isFirstMessageHiddden {
+            transform: translateY(-120%) !important;
+        }
+        .Message--second {
+            transform: translateY(-70%);
+        }
+        .isSecondMessageHidden {
+            transform: translateY(120%) !important;
         }
 
     </style>
@@ -48,26 +66,35 @@
         <div class="CTA">
             <img src="Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
             <div class="CTA-text">
-                <p id="Message">Chcete se dozvědět více o našem produktu?</p>
+                <p class="Message Message--first">Chcete se dozvědět více o našem produktu?</p>
+                <p class="Message Message--second isSecondMessageHidden">Neváhejte nás kontaktovat!</p>
             </div>
         </div>
     </div>
     <script>
     
-        const message = document.getElementById('Message');
+        const firstMessage = document.getElementsByClassName('Message--first')[0];
+        const secondMessage = document.getElementsByClassName('Message--second')[0];
         let firstTrigger = true;
         let messageToShow;
         setInterval(function() {
             if(firstTrigger) {
-                messageToShow = 'Chcete se dozvědět více o našem produktu?';
+                // messageToShow = 'Neváhejte nás kontaktovat!';
+                firstMessage.classList.add('isFirstMessageHiddden');
+                secondMessage.classList.remove('isSecondMessageHidden');
             }
             else {
-                messageToShow = 'Neváhejte nás kontaktovat!';
+                // messageToShow = 'Chcete se dozvědět více o našem produktu?';
+                firstMessage.classList.remove('isFirstMessageHiddden');
+                secondMessage.classList.add('isSecondMessageHidden');
             }
-            message.innerText = messageToShow;
+            // message.innerText = messageToShow;
             firstTrigger = !firstTrigger;
         }, 5000);
 
     </script>
 </body>
 </html>
+
+
+<!-- Je mozne se dostat k nastaveni jazyka widgetu? -->
