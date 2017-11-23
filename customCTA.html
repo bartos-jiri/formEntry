@@ -133,6 +133,7 @@
         });
 
         window.addEventListener('message', function(msg) {
+            console.log(msg);
             if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
                 if(msg.data.params.oo1_widget_lang === 'cs') {
                     firstMessage.innerText = textCZ.firstMessage;
