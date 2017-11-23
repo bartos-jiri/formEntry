@@ -88,8 +88,8 @@
         <div class="CTA">
             <img src="Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
             <div class="CTA-text">
-                <p class="Message Message--first">Chcete se dozvědět více o našem produktu?</p>
-                <p class="Message Message--second isSecondMessageHidden">Neváhejte nás kontaktovat!</p>
+                <p class="Message Message--first"></p>
+                <p class="Message Message--second isSecondMessageHidden"></p>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@
                 if(msg.data.params.oo1_widget_lang === 'cs') {
                     firstMessage.innerText = textCZ.firstMessage;
                     secondMessage.innerText = textCZ.secondMessage;
-                } else if(msg.data.params.oo1_widget_lang === 'en') {
+                } else {
                     firstMessage.innerText = textENG.firstMessage;
                     secondMessage.innerText = textENG.secondMessage;
                 }
