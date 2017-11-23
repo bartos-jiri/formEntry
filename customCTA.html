@@ -94,6 +94,14 @@
         </div>
     </div>
     <script>
+        const textCZ = {
+            firstMessage: 'Chcete se dozvědět více o našem produktu?',
+            secondMessage: 'Neváhejte nás kontaktovat!'
+        };
+        const textENG = {
+            firstMessage: 'Do you want to know more about our product?',
+            secondMessage: 'Don\'t hesitate to contact us!'
+        };
     
         const firstMessage = document.getElementsByClassName('Message--first')[0];
         const secondMessage = document.getElementsByClassName('Message--second')[0];
@@ -125,7 +133,15 @@
         });
 
         window.addEventListener('message', function(msg) {
-            console.log(msg);
+            if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
+                if(msg.data.params.oo1_widget_lang === 'cs') {
+                    firstMessage.innetText = textCZ.firstMessage;
+                    secondMessage.innerText = textCZ.secondMessage;
+                } else {
+                    firstMessage.innetText = textENG.firstMessage;
+                    secondMessage.innerText = textENG.secondMessage;
+                }
+            }
         });
 
         window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
