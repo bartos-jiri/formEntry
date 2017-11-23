@@ -96,11 +96,13 @@
     <script>
         const textCZ = {
             firstMessage: 'Chcete se dozvědět více o našem produktu?',
-            secondMessage: 'Neváhejte nás kontaktovat!'
+            secondMessage: 'Neváhejte nás kontaktovat!',
+            supportMessage: 'Máte problém s naším produktem?'
         };
         const textENG = {
             firstMessage: 'Do you want to know more about our product?',
-            secondMessage: 'Don\'t hesitate to contact us!'
+            secondMessage: 'Don\'t hesitate to contact us!',
+            supportMessage: 'Having problems with our product?'            
         };
     
         const firstMessage = document.getElementsByClassName('Message--first')[0];
@@ -142,6 +144,14 @@
                     firstMessage.innerText = textENG.firstMessage;
                     secondMessage.innerText = textENG.secondMessage;
                 }
+
+                if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page1.html') {
+                    
+                }
+                if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page2.html') {
+                    clearInterval(basicMessageInterval);
+                    firstMessage.innerText = textCZ.supportMessage;
+                }
             }
         });
 
@@ -152,4 +162,4 @@
 </html>
 
 
-<!-- Je mozne se dostat k nastaveni jazyka widgetu? -->
+<!-- Jaké jsou další typy message eventu? -->
