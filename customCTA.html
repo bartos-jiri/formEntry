@@ -75,6 +75,7 @@
             right: 0;
             color: #3c6879;
             margin: 3px;
+            cursor: pointer;
         }
 
     </style>
@@ -116,6 +117,11 @@
         const closeCross = document.getElementsByClassName('Close')[0];
         closeCross.addEventListener('click', function() {
             window.parent.postMessage({type:"HIDE_MLUVII_CHAT"},"*");
+        });
+
+        const ctaImage = document.getElementsByClassName('CTAImage')[0];
+        ctaImage.addEventListener('click', function() {
+            window.parent.postMessage({type:"OPEN_MLUVII_CHAT"},"*");
         });
 
     </script>
