@@ -152,7 +152,7 @@
                     console.log('stopping interval');
                     clearInterval(basicMessageInterval);
                     firstMessage.innerText = textCZ.supportMessage;
-                    firstMessage.style.transform = 'translateY(40%);';
+                    secondMessage.style.setProperty('display', 'none', '!important');
                 }
             }
         });
