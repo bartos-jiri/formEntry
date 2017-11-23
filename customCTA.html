@@ -99,7 +99,7 @@
         const secondMessage = document.getElementsByClassName('Message--second')[0];
         let firstTrigger = true;
         let messageToShow;
-        setInterval(function() {
+        let basicMessageInterval = setInterval(function() {
             if(firstTrigger) {
                 // messageToShow = 'Neváhejte nás kontaktovat!';
                 firstMessage.classList.add('isFirstMessageHiddden');
@@ -123,6 +123,12 @@
         ctaImage.addEventListener('click', function() {
             window.parent.postMessage({type:"OPEN_MLUVII_CHAT"},"*");
         });
+
+        window.addEventListener('message', function(msg) {
+            console.log(msg);
+        });
+
+        window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 
     </script>
 </body>
