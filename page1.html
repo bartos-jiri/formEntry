@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,10 @@
         scr.$owidgetOnLoad = function (owidget) {
           if (!owidget.isSupported) { return; }
           owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'JirkaTest2');
+
+
+          owidget.setCustomData({ navod_clientName: "Jirka" })
+
           owidget.connectToServer();
         };
         var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
