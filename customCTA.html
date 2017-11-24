@@ -103,12 +103,16 @@
         const textCZ = {
             firstMessage: 'Chcete se dozvědět více o našem produktu?',
             secondMessage: 'Neváhejte nás kontaktovat!',
-            supportMessage: 'Máte problém s naším produktem?'
+            supportMessage: 'Máte problém s naším produktem?',
+            loggedWelcomeFirst: 'Dobrý den, ',
+            loggedWelcomeSecond: 'Potřebujete poradit s nastavením?'
         };
         const textENG = {
             firstMessage: 'Do you want to know more about our product?',
             secondMessage: 'Don\'t hesitate to contact us!',
-            supportMessage: 'Having problems with our product?'            
+            supportMessage: 'Having problems with our product?',
+            loggedWelcomeFirst: 'Hello, ',
+            loggedWelcomeSecond: 'Need help with settings?'        
         };
         let shownMessages = {};
     
@@ -151,6 +155,11 @@
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page1.html') {
                     firstMessage.innerText = shownMessages.firstMessage;
                     secondMessage.innerText = shownMessages.secondMessage;
+
+                    if(msg.data.params.navod_clientName) {
+                        firstMessage.innerText = shownMessages.loggedWelcomeFirst + msg.data.params.navod_clientName;
+                        secondMessage.innerText = shownMessages.loggedWelcomeSecond;
+                    }
                 }
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page2.html') {
                     console.log('stopping interval');
