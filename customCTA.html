@@ -81,6 +81,8 @@
     </style>
 </head>
 <body>
+
+
     <div class="CTAWrapper">
         <div class="Close">
             <i class="fa fa-times" aria-hidden="true"></i>                
@@ -93,7 +95,11 @@
             </div>
         </div>
     </div>
+
+
+
     <script>
+
         const textCZ = {
             firstMessage: 'Chcete se dozvědět více o našem produktu?',
             secondMessage: 'Neváhejte nás kontaktovat!',
@@ -104,6 +110,7 @@
             secondMessage: 'Don\'t hesitate to contact us!',
             supportMessage: 'Having problems with our product?'            
         };
+        let shownMessages = {};
     
         const firstMessage = document.getElementsByClassName('Message--first')[0];
         const secondMessage = document.getElementsByClassName('Message--second')[0];
@@ -134,28 +141,33 @@
             window.parent.postMessage({type:"OPEN_MLUVII_CHAT"},"*");
         });
 
+
+
         window.addEventListener('message', function(msg) {
             console.log(msg);
             if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
-                if(msg.data.params.oo1_widget_lang === 'cs') {
-                    firstMessage.innerText = textCZ.firstMessage;
-                    secondMessage.innerText = textCZ.secondMessage;
-                } else {
-                    firstMessage.innerText = textENG.firstMessage;
-                    secondMessage.innerText = textENG.secondMessage;
-                }
+                setLanguage(msg.data.params.oo1_widget_lang);
 
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page1.html') {
-                    
+                    firstMessage.innerText = shownMessages.firstMessage;
+                    secondMessage.innerText = shownMessages.secondMessage;
                 }
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page2.html') {
                     console.log('stopping interval');
                     clearInterval(basicMessageInterval);
-                    firstMessage.innerText = textCZ.supportMessage;
+                    firstMessage.innerText = shownMessages.supportMessage;
                     secondMessage.style.display = 'none';
                 }
             }
         });
+
+        function setLanguage(language) {
+            if(language === 'cs') {
+                shownMessages = textCZ;
+            } else {
+                shownMessages = textENG;
+            }
+        }
 
         window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 
@@ -164,4 +176,4 @@
 </html>
 
 
-<!-- Jaké jsou další typy message eventu? -->
+<!-- Jaké jsou další typy message eventu, s kterymi je mozno v pop-upu pracovat? -->
