@@ -161,19 +161,19 @@
                 setLanguage(msg.data.params.oo1_widget_lang);
 
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page1.html') {
-                    firstMessage.innerText = shownMessages.firstMessage;
-                    secondMessage.innerText = shownMessages.secondMessage;
+                    // firstMessage.innerText = shownMessages.firstMessage;
+                    // secondMessage.innerText = shownMessages.secondMessage;
 
                     if(msg.data.params.navod_clientName) {
-                        firstMessage.innerText = shownMessages.loggedWelcomeFirst + msg.data.params.navod_clientName;
-                        secondMessage.innerText = shownMessages.loggedWelcomeSecond;
+                        // firstMessage.innerText = shownMessages.loggedWelcomeFirst + msg.data.params.navod_clientName;
+                        // secondMessage.innerText = shownMessages.loggedWelcomeSecond;
                     }
                 }
                 if(msg.data.params.oo1_ref_url === 'http://localhost:4500/page2.html') {
                     console.log('stopping interval');
                     clearInterval(basicMessageInterval);
-                    firstMessage.innerText = shownMessages.supportMessage;
-                    secondMessage.style.display = 'none';
+                    // firstMessage.innerText = shownMessages.supportMessage;
+                    // secondMessage.style.display = 'none';
                 }
             }
         });
