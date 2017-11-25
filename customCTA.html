@@ -33,18 +33,19 @@
             border: 1px solid #1ca674;
             overflow: hidden;
             box-sizing: border-box;
+            /* display: flex; */
         }
         .CTA-image {
-            /* max-width: 70%; */
-            max-height: 60%;
-            transform: rotateY(180deg);
             padding: 5px;
             box-sizing: border-box;
             border-left: 1px solid #8dc63f;
-            
+            width: 70px;
+            transform: rotateY(180deg);
+            /* flex: 7; */
         }
         .CTA-text {
             padding: 5px;
+            /* flex: 3; */
         }
         .Message {
             margin: 0;
@@ -53,22 +54,22 @@
             transition: all ease-in-out 0.4s;
             padding-left: 5px;
             color: #3c6879;
-            opacity: 1ů
+            opacity: 1;
         }
-        .Message--first {
+        /* .Message--first {
             transform: translateY(33%);
-        }
-        .isFirstMessageHiddden {
-            transform: translateY(-120%);
+        } */
+        .isMessageHiddden {
+            /* transform: translateY(-120%); */
             opacity: 0;
         }
-        .Message--second {
+        /* .Message--second {
             transform: translateY(-70%);
         }
         .isSecondMessageHidden {
             transform: translateY(120%);
             opacity: 0;
-        }
+        } */
         .Close {
             position: absolute;
             top: 0;
@@ -90,8 +91,8 @@
         <div class="CTA">
             <img src="Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
             <div class="CTA-text">
-                <p class="Message Message--first"></p>
-                <p class="Message Message--second isSecondMessageHidden"></p>
+                <p class="Message">Chcete se dozvědět více o našem produktu?</p>
+                <!-- <p class="Message Message--second isSecondMessageHidden">Neváhejte nás kontaktovat!</p> -->
             </div>
         </div>
     </div>
@@ -116,24 +117,30 @@
         };
         let shownMessages = {};
     
-        const firstMessage = document.getElementsByClassName('Message--first')[0];
-        const secondMessage = document.getElementsByClassName('Message--second')[0];
+        const firstMessage = document.getElementsByClassName('Message')[0];
+        // const secondMessage = document.getElementsByClassName('Message--second')[0];
         let firstTrigger = true;
 
         let basicMessageInterval = setInterval(function() {
             if(firstTrigger) {
 
-                firstMessage.classList.add('isFirstMessageHiddden');
-                secondMessage.classList.remove('isSecondMessageHidden');
+                changeMessage(shownMessages.secondMessage);
             }
             else {
   
-                firstMessage.classList.remove('isFirstMessageHiddden');
-                secondMessage.classList.add('isSecondMessageHidden');
+                changeMessage(shownMessages.firstMessage);
             }
 
             firstTrigger = !firstTrigger;
         }, 5000);
+
+        function changeMessage(newMsg) {
+            firstMessage.classList.add('isMessageHidden');
+            firstMessage.addEventListener('transitionends', function() {
+                firstMessage.innerText(newMsg);
+                firstMessage.classList.remove('isMessageHidden');
+            });
+        }
 
         const closeCross = document.getElementsByClassName('Close')[0];
         closeCross.addEventListener('click', function() {
