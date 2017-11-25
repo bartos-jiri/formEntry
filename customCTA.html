@@ -137,7 +137,7 @@
 
         function changeMessage(newMsg) {
             firstMessage.classList.add('isMessageHidden');
-            firstMessage.addEventListener('transitionends', function() {
+            firstMessage.addEventListener('transitionend', function() {
                 firstMessage.innerText(newMsg);
                 firstMessage.classList.remove('isMessageHidden');
             });
