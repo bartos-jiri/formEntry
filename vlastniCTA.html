@@ -93,9 +93,14 @@
     console.log(msg);
   });
 
-  window.parent.$owidget.addCustomData(
-      'navod_clientId', 'as65d1as6d5s1a6d5-sa1d56a'
-  );
+  // window.parent.$owidget.addCustomData(
+  //     'navod_clientId', 'as65d1as6d5s1a6d5-sa1d56a'
+  // );
+  window.parent.postMessage({
+    type: 'ADD_CUSTOM_DATA',
+    name: 'navod_clientId',
+    value: 'das65da1ssad165-as6d51'
+  }, '*');
 
   window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 </script>
