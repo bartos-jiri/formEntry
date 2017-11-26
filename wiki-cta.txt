@@ -14,15 +14,21 @@ Abychom získali konkrétní představu, jak CTA vytvořit a jaké možnosti apl
 
 Konečná podoba CTA bude vypadat takto:
 
+{{#iDisplay://codepen.io/patricke004/embed/yPqoBy/?height=265&theme-id=0&default-tab=html,result&embed-version=2}}
+
 
 == Jak postupovat ==
 
 === HTML dokument ===
 Vytvoříme základní html, s kterým následně budeme pracovat. Upozorňujeme, že codepen.io nepodporuje ve free verzi vkládání obrázků, je nutné je uložit na vlastním uložišti a odkázat na ně. My jsme použili Github stránky, jelikož s nimi budeme v tomto návodu pracovat později. CTA může obsahovat libovolné množství html elementů - obrázky, text, inputy, tlačítka apod.
 
+{{#iDisplay://codepen.io/patricke004/embed/yPqoBy/?height=265&theme-id=0&default-tab=html&embed-version=2}}
+
 
 === CSS Styly ===
 Máme-li vytvořenou strukturu CTA pomocí HTML, můžeme vložit CSS styly. Tím máme základní CTA vytvořeno a příp. jej můžeme přidat k libovolnému konfiguračnímu balíčku.
+
+{{#iDisplay://codepen.io/patricke004/embed/yPqoBy/?height=265&theme-id=0&default-tab=css&embed-version=2}}
 
 
 === Javascript ===
@@ -32,18 +38,20 @@ Chceme-li mít CTA interaktivní a dynamické, můžeme k tomu použít Javascri
 <syntaxhighlight lang="javascript">
 window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 </syntaxhighlight>
-Pomocí této funkce si do našeho CTA můžeme zavolat všechny custom proměnné, které jsou se zákazníkem do doby zavolání funkce spojeny. Základně se jedná o proměnné jazyk widgetu (který se řídí jazykem browseru nebo jazykem daného webu), URL stránky, kde se daný klient nachází a jméno daného widgetu.
+Pomocí této funkce si do našeho CTA můžeme zavolat všechny custom proměnné, které jsou se zákazníkem do doby zavolání funkce spojeny. Základně se jedná o proměnné jazyk widgetu (který se řídí jazykem browseru nebo jazykem daného webu), URL a název stránky, kde se daný klient nachází a jméno daného widgetu.
 
-Uvedená funkce se spojí se serverem aplikace Mluvii a pošle zpět event, který obsahuje dané proměnné. Tomuto eventu musíme naslouchat, a to ještě předtím, než první funkci zavoláme:
+Uvedená funkce se spojí se serverem aplikace Mluvii a pošle zpět event, který obsahuje dané proměnné. Tomuto eventu musíme naslouchat, a to ještě předtím, než tuto funkci zavoláme:
 <syntaxhighlight lang="javascript">
 window.addEventListener('message', function(msg) {
- // Zde bude návazný kód, který se provede při obdržení dat.
-}
+ if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
+  // Zde bude návazný kód, který se provede při obdržení proměnných.
+ }
+});
 </syntaxhighlight>
 Parametr "msg" callback funkce obsahuje všechna potřebná data.
 
 ==== Změna zobrazení CTA na základě proměnných ====
-Do naší callback funkce můžeme nálsedně vložit kód, kterým změníme to, co se v CTA zobrazuje.
+Do naší callback funkce můžeme následně vložit kód, kterým změníme to, co se v CTA zobrazuje.
 
 Prvním příkladem budiž proměnná oo1_widget_lang, tedy jazyk widgetu. Pokud je jazyk widgetu čeština, zobrazí se český popis, pokud jiný jazyk, zobrazí se anglicky:
 <syntaxhighlight lang="javascript">
@@ -55,7 +63,7 @@ if(msg.data.params.oo1_widget_lang === 'cs') {
 }
 </syntaxhighlight>
 
-Druhým příkladem budiž proměnná oo1_ref_url, neboli stránka, kde se klient nachází. Můžeme si představit webovou stránku, kde se nachází index.html - hlavní stránka a support.html - technická podpora. Na základě toho, kde se klient nachází, zobrazíme text našeho CTA:
+Druhým příkladem budiž proměnná oo1_ref_url, neboli url stránky, kde se klient nachází. Můžeme si představit webovou stránku, která má podstránky index.html - hlavní stránka a support.html - technická podpora. Na základě toho, kde se klient nachází, zobrazíme text našeho CTA:
 <syntaxhighlight lang="javascript">
 const message = document.getElementsByClass('Message')[0];
 if(msg.data.params.oo1_ref_url === 'https://www.example.com/index.html') {
@@ -65,14 +73,43 @@ if(msg.data.params.oo1_ref_url === 'https://www.example.com/index.html') {
 }
 </syntaxhighlight>
 
-Obdobně můžeme využít i proměnnou oo1_widget. Máme-li na různých podstránkách webu různé konfigurační balíčky, můžeme i tak využít stejné CTA a jen jej poupravit na základě jména daného balíčku.
+Obdobně můžeme využít i proměnnou oo1_widget. Máme-li na různých podstránkách webu různé konfigurační balíčky, můžeme i tak využít stejné CTA a jen jej upravit na základě jména daného balíčku.
+
+{{#iDisplay://codepen.io/patricke004/embed/yPqoBy/?height=265&theme-id=0&default-tab=js&embed-version=2}}
+
 
 ==== Změna zobrazení CTA na základě vlastních proměnných ====
-Aplikace Mluvii umožňuje získat nejen již přednastavené proměnné, ale i vlastní proměnné, které je možné nastavit v administraci v sekci Aplikace.
+Aplikace Mluvii umožňuje pro CTA získat nejen již přednastavené proměnné, ale i vlastní proměnné, které je však nejdříve nutné nastavit v administraci v sekci Aplikace.
 
-Tyto proměnné lze aplikaci poslat např. v rámci konfiguračního balíčku, ve vstupním formuláři, ale i pomocí vlastní webové stránky, či samotného CTA. Poslední dvě možnosti si zde ukážeme.
+Abychom proměnné mohli použíz, musí je nejdříve aplikace přijmout, lze je poslat např. v rámci konfiguračního balíčku, ve vstupním formuláři, ale i pomocí vlastní webové stránky, či samotného CTA. Jak toto provést z webové stránky (např. po přihlášení uživatele, při kliknutí na dané tlačítko apod.), si nyní ukážeme.
 
-K zasílání vlastních proměnných na server slouží tato funkce, která následně emituje event typu 'message', který již nasloucháme.
+K zasílání vlastních proměnných na server z webové stránky slouží tato funkce, která je následovaná funkcí pro získání dat ze serveru, jež emituje event typu 'message', který již nasloucháme v našem CTA.
 <syntaxhighlight lang="javascript">
-
+$owidget.addCustomData(
+   'navod_clientName', 'Jan Novak'
+);
+postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 </syntaxhighlight>
+$owidget je objekt reprezentující náš konfigurační balíček a který je dostupný v rámci našeho webu (více viz Konfigurace vlastního widgetu).
+
+K tomu, abychom si ukázali, jak tuto funkci na vašem webu využít, založíme si jednoduché webové stránky na Github pages. Podrobnější návod, jak na to, zde.
+
+Stránku zatím necháme prázdnou, pouze vložíme kód našeho konfiguračního balíčku (viz návod, jak na to zde).
+
+Za tímto kódem následně v tagu 'script' vložíme výše uvedený kód. Tímto v našem CTA získáme přístup k vlastní proměnné 'navod_clientName'.
+
+V reálném světě tuto možnost využijeme např. při přihlášení zákazníka na našem webu. Jednodušše si to můžeme napodobit přidáním tlačítka login a funkcí, která bude volána v momentě, kdy na tlačítko uživatel klikne.
+
+{{#iDisplay://codepen.io/patricke004/embed/LOBeLd/?height=265&theme-id=0&default-tab=html,result&embed-version=2}}
+
+Následně upravíme naše CTA, aby se v něm zobrazovalo jméno uživatele. Uživateli však můžeme na základě jeho přihlášení zobrazit např. speciální nabídku pro stávající klienty, osobní konzultaci apod.
+
+<syntaxhighlight lang="javascript">
+if(msg.data.params.navod_clientName) {
+   message.innerText = 'Uživatel: ' + msg.data.params.navod_clientName + '\n Máme pro Vás speciální nabídku!';
+}
+</syntaxhighlight>
+
+{{#iDisplay://codepen.io/patricke004/embed/gXjoBN/?height=265&theme-id=0&default-tab=js&embed-version=2}}
+
+Konečný výsledek, tedy CTA, které se dynamicky mění dle jazyka widgetu, podstránky webu a přihlášení uživatele můžete v live verzi vidět na této Github stránce.

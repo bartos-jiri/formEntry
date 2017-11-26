@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="Login">Login</button>
+
+    <script type="text/javascript">
+      (function () {
+        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+        scr.src = '//app.mluvii.com/widget/OOWidget.js';
+        scr.$owidgetOnLoad = function (owidget) {
+          if (!owidget.isSupported) { return; }
+          owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTest3');
+          owidget.connectToServer();
+        };
+        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+      })();
+    </script>
+
+    <script>
+      window.addEventListener('load', function() {
+          const loginButton = document.getElementById('Login');
+
+          loginButton.addEventListener('click', function() {
+            // zde by měla být logika autentizace uživatele, jakmile se tak stane, zavoláme funkci:
+            $owidget.addCustomData(
+              'navod_clientName', 'Jan Novak'
+            );
+            postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
+          });
+        
+      });
+    </script>
+</body>
+</html>

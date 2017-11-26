@@ -91,16 +91,36 @@
 <script>
   window.addEventListener('message', function(msg) {
     console.log(msg);
+    if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
+
+      const message = document.getElementsByClass('Message')[0];
+
+      if(msg.data.params.oo1_widget_lang === 'cs') {
+        message.innerText = 'Chcete se dozvědět více o našem produktu?';
+      } else {
+        message.innerText = 'Do you want to know more about our product?';
+      }
+
+      if(msg.data.params.oo1_ref_url === 'https://www.example.com/index.html') {
+        // Zde nemusíme provádět nic, necháme původní textaci příp. přeloženou do angličtiny
+      } else if (msg.data.params.oo1_ref_url === 'https://www.example.com/support.html') {
+        message.innerText = 'Naši technici jsou Vám nyní k dispozici!';
+      }
+
+      if(msg.data.params.navod_clientName) {
+        message.innerText = 'Uživatel: ' + msg.data.params.navod_clientName + '\n Máme pro Vás speciální nabídku!';
+      }
+    }
   });
 
   // window.parent.$owidget.addCustomData(
   //     'navod_clientId', 'as65d1as6d5s1a6d5-sa1d56a'
   // );
-  window.parent.postMessage({
-    type: 'ADD_CUSTOM_DATA',
-    name: 'navod_clientId',
-    value: 'das65da1ssad165-as6d51'
-  }, '*');
+  // window.parent.postMessage({
+  //   type: 'ADD_CUSTOM_DATA',
+  //   name: 'navod_clientId',
+  //   value: 'das65da1ssad165-as6d51'
+  // }, '*');
 
   window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 </script>
