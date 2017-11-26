@@ -16,8 +16,6 @@
         scr.$owidgetOnLoad = function (owidget) {
           if (!owidget.isSupported) { return; }
           owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTest3');
-
-          
           owidget.connectToServer();
         };
         var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
@@ -27,7 +25,16 @@
     <script>
       window.addEventListener('load', function() {
         setTimeout(function() {
-          $owidget.setCustomData({ navod_clientName: "Jirka" });
+          console.log('about to add custom data');
+          $owidget.addCustomData(
+            'navod_clientName', 'Jan Novak'
+          );
+          // postMessage({
+          //   type: 'ADD_CUSTOM_DATA',
+          //   name: 'navod_clientName',
+          //   value: 'Jan Novák'
+          // }, '*');
+          postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
         }, 5000);
         
       });
