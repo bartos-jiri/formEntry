@@ -1,0 +1,78 @@
+
+== Jak vytvořit vlastní CTA? ==
+V podstatě se jedná o malou webovou stránku, která se následně zobrazí místo výchozího pop-upu. Tudíž je potřeba:
+
+# Vytvořit html dokument
+# Přidat CSS styly
+# Přidat Javascript, je-li potřeba
+# Nahrát CTA na libovolný webový hosting nebo na Vaší webovou stránku
+# Přidat odkaz na CTA v administraci aplikace Mluvii
+
+Pro jednoduchost a přehlednost doporučujeme vytvářet vlastní CTA pomocí webové aplikace codepen.io.
+
+Abychom získali konkrétní představu, jak CTA vytvořit a jaké možnosti aplikace Mluvii v tomto ohledu nabízí, rozebereme si vytvoření vlastního jednoduchého CTA.
+
+Konečná podoba CTA bude vypadat takto:
+
+
+== Jak postupovat ==
+
+=== HTML dokument ===
+Vytvoříme základní html, s kterým následně budeme pracovat. Upozorňujeme, že codepen.io nepodporuje ve free verzi vkládání obrázků, je nutné je uložit na vlastním uložišti a odkázat na ně. My jsme použili Github stránky, jelikož s nimi budeme v tomto návodu pracovat později. CTA může obsahovat libovolné množství html elementů - obrázky, text, inputy, tlačítka apod.
+
+
+=== CSS Styly ===
+Máme-li vytvořenou strukturu CTA pomocí HTML, můžeme vložit CSS styly. Tím máme základní CTA vytvořeno a příp. jej můžeme přidat k libovolnému konfiguračnímu balíčku.
+
+
+=== Javascript ===
+Chceme-li mít CTA interaktivní a dynamické, můžeme k tomu použít Javascript. Aplikace Mluvii nabízí několik funkcí, které nám s naším záměrem mohou pomoci.
+
+==== Získání přednastavených proměnných ====
+<syntaxhighlight lang="javascript">
+window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
+</syntaxhighlight>
+Pomocí této funkce si do našeho CTA můžeme zavolat všechny custom proměnné, které jsou se zákazníkem do doby zavolání funkce spojeny. Základně se jedná o proměnné jazyk widgetu (který se řídí jazykem browseru nebo jazykem daného webu), URL stránky, kde se daný klient nachází a jméno daného widgetu.
+
+Uvedená funkce se spojí se serverem aplikace Mluvii a pošle zpět event, který obsahuje dané proměnné. Tomuto eventu musíme naslouchat, a to ještě předtím, než první funkci zavoláme:
+<syntaxhighlight lang="javascript">
+window.addEventListener('message', function(msg) {
+ // Zde bude návazný kód, který se provede při obdržení dat.
+}
+</syntaxhighlight>
+Parametr "msg" callback funkce obsahuje všechna potřebná data.
+
+==== Změna zobrazení CTA na základě proměnných ====
+Do naší callback funkce můžeme nálsedně vložit kód, kterým změníme to, co se v CTA zobrazuje.
+
+Prvním příkladem budiž proměnná oo1_widget_lang, tedy jazyk widgetu. Pokud je jazyk widgetu čeština, zobrazí se český popis, pokud jiný jazyk, zobrazí se anglicky:
+<syntaxhighlight lang="javascript">
+const message = document.getElementsByClass('Message')[0];
+if(msg.data.params.oo1_widget_lang === 'cs') {
+   message.innerText = 'Chcete se dozvědět více o našem produktu?';
+} else {
+   message.innerText = 'Do you want to know more about our product?';
+}
+</syntaxhighlight>
+
+Druhým příkladem budiž proměnná oo1_ref_url, neboli stránka, kde se klient nachází. Můžeme si představit webovou stránku, kde se nachází index.html - hlavní stránka a support.html - technická podpora. Na základě toho, kde se klient nachází, zobrazíme text našeho CTA:
+<syntaxhighlight lang="javascript">
+const message = document.getElementsByClass('Message')[0];
+if(msg.data.params.oo1_ref_url === 'https://www.example.com/index.html') {
+   // Zde nemusíme provádět nic, necháme původní textaci příp. přeloženou do angličtiny
+} else if (msg.data.params.oo1_ref_url === 'https://www.example.com/support.html') {
+   message.innerText = 'Naši technici jsou Vám nyní k dispozici!';
+}
+</syntaxhighlight>
+
+Obdobně můžeme využít i proměnnou oo1_widget. Máme-li na různých podstránkách webu různé konfigurační balíčky, můžeme i tak využít stejné CTA a jen jej poupravit na základě jména daného balíčku.
+
+==== Změna zobrazení CTA na základě vlastních proměnných ====
+Aplikace Mluvii umožňuje získat nejen již přednastavené proměnné, ale i vlastní proměnné, které je možné nastavit v administraci v sekci Aplikace.
+
+Tyto proměnné lze aplikaci poslat např. v rámci konfiguračního balíčku, ve vstupním formuláři, ale i pomocí vlastní webové stránky, či samotného CTA. Poslední dvě možnosti si zde ukážeme.
+
+K zasílání vlastních proměnných na server slouží tato funkce, která následně emituje event typu 'message', který již nasloucháme.
+<syntaxhighlight lang="javascript">
+
+</syntaxhighlight>
