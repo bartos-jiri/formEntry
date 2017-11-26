@@ -92,8 +92,7 @@
   window.addEventListener('message', function(msg) {
     console.log(msg);
     if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
-
-      const message = document.getElementsByClass('Message')[0];
+      const message = document.getElementsByClassName('Message')[0];
 
       if(msg.data.params.oo1_widget_lang === 'cs') {
         message.innerText = 'Chcete se dozvědět více o našem produktu?';
