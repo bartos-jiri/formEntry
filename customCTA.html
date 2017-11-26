@@ -185,11 +185,9 @@
                 shownMessages = textENG;
             }
         }
-        window.parent.postMessage({
-        type: 'ADD_CUSTOM_DATA',
-        name: 'navod_clientId',
-        value: 's16d5v1h5f1vs6d5c1sd-das1d6as16'
-        }, '*');
+        $owidget.addCustomData(
+            'navod_clientName', 'Jan Novak'
+        );
         window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 
     </script>
