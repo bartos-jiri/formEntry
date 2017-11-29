@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        #square {
-            width: 100px;
-            height: 100px;
-            background-color: darkblue;
+        body {
+            font-size: Raleway;
         }
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        .Page {
+            display: flex;
+            /* width: 80%; */
+            /* margin: 60px auto 0; */
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(to right, #6ca6bd, #8dc63f);
+        }
+
     </style>
 </head>
 <body>
-    <div id="square"></div>
-
+    
+    <div class="Page"></div>
 
     <script type="text/javascript">
         (function () {
@@ -27,11 +39,11 @@
 
             owidget.connectToServer();
 
-            $owidget._changeColor = function() {
-                console.log(owidget);
-                const square = document.getElementById('square');
-                square.style.setProperty('background-color', 'darkgreen');
-            }
+            // $owidget._changeColor = function() {
+            //     console.log(owidget);
+            //     const square = document.getElementById('square');
+            //     square.style.setProperty('background-color', 'darkgreen');
+            // }
           };
           var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
         })();
