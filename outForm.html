@@ -233,7 +233,7 @@
             const data = {
                 type: "FEEDBACK_ACTION",
                 email: Form2Check.checked ? Form2Email.value : null,
-                content: {evaluation: evaluation}
+                content: evaluation
             };
             console.log(data);
             
@@ -256,12 +256,7 @@
             const data = {
                 type: "FEEDBACK_ACTION",
                 email: null,
-                content: {
-                    evaluation: evaluation, 
-                    zavolat_znovu: true, 
-                    phone: Form4Phone.value,
-                    reason: Form4Reason.value
-                }
+                content: evaluation
             }
             console.log(data);
 
