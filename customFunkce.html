@@ -15,38 +15,63 @@
         }
         .Page {
             display: flex;
-            /* width: 80%; */
-            /* margin: 60px auto 0; */
             height: 100vh;
             align-items: center;
-            justify-content: center;
-            background-image: linear-gradient(to right, #6ca6bd, #8dc63f);
+            justify-content: left;
+        }
+        #Banner {
+            width: 100px;
+            height: 80vh;
+            background-color: grey;
+            margin-left: 20px;
+            display: none;
+        }
+        #Banner>p {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 20px;
+            height: 100%;
+            text-align: center;
+            margin: 0 auto;
         }
 
     </style>
 </head>
 <body>
     
-    <div class="Page"></div>
+    <div class="Page">
+        <div id="Banner">
+            <p>Reklamní banner</p>
+        </div>
+    </div>
 
     <script type="text/javascript">
         (function () {
           var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-          scr.src = '//appdev.mluvii.com/widget/OOWidget.js';
+          scr.src = '//app.mluvii.com/widget/OOWidget.js';
           scr.$owidgetOnLoad = function (owidget) {
             if (!owidget.isSupported) { return; }
-            owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'JirkaTest2');
+            owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'navodFunkce');
 
             owidget.connectToServer();
 
-            // $owidget._changeColor = function() {
-            //     console.log(owidget);
-            //     const square = document.getElementById('square');
-            //     square.style.setProperty('background-color', 'darkgreen');
-            // }
           };
           var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
         })();
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+            $owidget._vlastniFunkce = function() {
+                const banner = document.getElementById('Banner');
+                banner.style.display = 'block';
+            }
+
+            $owidget._clientUndecided = function() {
+                $owidget.addCustomData('navod_undecided', true);
+            }
+        });
+
     </script>
 
 

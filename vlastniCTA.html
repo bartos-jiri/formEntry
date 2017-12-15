@@ -38,7 +38,7 @@
 .CTA-text {
   padding: 5px;
 }
-.Message {
+#Message {
   margin: 0;
   font-size: 13px;
   font-family: Raleway;
@@ -47,7 +47,7 @@
   color: #3c6879;
   opacity: 1;
 }
-.Close {
+#Close {
   position: absolute;
   top: 0;
   right: 0;
@@ -57,7 +57,7 @@
   height: 16px;
   opacity: 0.5;
 }
-.Close:before, .Close:after {
+#Close:before, #Close:after {
   position: absolute;
   left: 7px;
   content: ' ';
@@ -65,34 +65,39 @@
   width: 2px;
   background-color: #1ca674;
 }
-.Close:before {
+#Close:before {
   transform: rotate(45deg);
 }
-.Close:after {
+#Close:after {
   transform: rotate(-45deg);
 }
-.Close:hover {
+#Close:hover {
   opacity: 1;
 }
   </style>
 </head>
 <body>
     <div class="CTA">
-        <div class="Close">
+        <div id="Close">
         </div>
         <div class="View">
             <img src="https://patricke004.github.io/formEntry/Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
             <div class="CTA-text">
-                <p class="Message">Chcete se dozvědět více o našem produktu?</p>
+                <p id="Message">Chcete se dozvědět více o našem produktu?</p>
             </div>
         </div>
     </div>
 </body>
 <script>
+  const cross = document.getElementById('Close');
+  cross.addEventListener('click', function() {
+    window.parent.postMessage({type:"HIDE_MLUVII_CHAT"},"*");
+  });
+  
   window.addEventListener('message', function(msg) {
-    console.log(msg);
+
     if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
-      const message = document.getElementsByClassName('Message')[0];
+      const message = document.getElementById('Message');
 
       if(msg.data.params.oo1_widget_lang === 'cs') {
         message.innerText = 'Chcete se dozvědět více o našem produktu?';
