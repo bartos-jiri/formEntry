@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  body, html {
+    margin: 0 !important;
+  }
+  .CTA {
+  width: 200px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #e4e5e8;
+  border: 1px solid #1ca674;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0;
+}
+.View {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.CTA-image {
+  padding: 5px;
+  box-sizing: border-box;
+  border-left: 1px solid #8dc63f;
+  width: 70px;
+  transform: rotateY(180deg);
+}
+.CTA-text {
+  padding: 5px;
+}
+#Message {
+  margin: 0;
+  font-size: 13px;
+  font-family: Raleway;
+  transition: all ease-in-out 0.4s;
+  padding-left: 5px;
+  color: #3c6879;
+  opacity: 1;
+}
+#Close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 3px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+#Close:before, #Close:after {
+  position: absolute;
+  left: 7px;
+  content: ' ';
+  height: 17px;
+  width: 2px;
+  background-color: #1ca674;
+}
+#Close:before {
+  transform: rotate(45deg);
+}
+#Close:after {
+  transform: rotate(-45deg);
+}
+#Close:hover {
+  opacity: 1;
+}
+  </style>
+</head>
+<body>
+    <div class="CTA">
+        <div id="Close">
+        </div>
+        <div class="View">
+            <img src="https://patricke004.github.io/formEntry/Images/mluvik_konverzace-01.png" alt="" class="CTA-image">
+            <div class="CTA-text">
+                <p id="Message">Chcete se dozvědět více o našem produktu?</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+  const cross = document.getElementById('Close');
+  cross.addEventListener('click', function() {
+    window.parent.postMessage({type:"HIDE_MLUVII_CHAT"},"*");
+  });
+  
+//   window.addEventListener('message', function(msg) {
+
+//     if(msg.data.type === 'SET_MLUVII_CUSTOM_PARAMS') {
+//       const message = document.getElementById('Message');
+
+//       if(msg.data.params.oo1_widget_lang === 'cs') {
+//         message.innerText = 'Chcete se dozvědět více o našem produktu?';
+//       } else {
+//         message.innerText = 'Do you want to know more about our product?';
+//       }
+
+//       if(msg.data.params.oo1_ref_url === 'https://www.example.com/index.html') {
+//         // Zde nemusíme provádět nic, necháme původní textaci příp. přeloženou do angličtiny
+//       } else if (msg.data.params.oo1_ref_url === 'https://www.example.com/support.html') {
+//         message.innerText = 'Naši technici jsou Vám nyní k dispozici!';
+//       }
+
+//       if(msg.data.params.navod_clientName) {
+//         message.innerText = 'Uživatel: ' + msg.data.params.navod_clientName + '\n Máme pro Vás speciální nabídku!';
+//       }
+//     }
+//   });
+
+  // window.parent.$owidget.addCustomData(
+  //     'navod_clientId', 'as65d1as6d5s1a6d5-sa1d56a'
+  // );
+  // window.parent.postMessage({
+  //   type: 'ADD_CUSTOM_DATA',
+  //   name: 'navod_clientId',
+  //   value: 'das65da1ssad165-as6d51'
+  // }, '*');
+
+  window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
+</script>
+</html>
