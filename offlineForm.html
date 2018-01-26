@@ -85,7 +85,10 @@
       form.onsubmit = function (e) {
         e.preventDefault();
           const contact = `email: ${document.getElementById('contact').value}, anotherContact: '999999999'`;
-          const message = document.getElementById('message').value;
+          const message = `
+                                  First Message: ${document.getElementById('message').value}
+                                  Second Message: TEST 2
+                          `;
 
           window.parent.postMessage({
               type: "OFFLINE_ACTION",
