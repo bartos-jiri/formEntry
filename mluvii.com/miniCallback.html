@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+
+        }
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="callbackWidget">
+        <div class="img">
+            <img src="" alt="">
+        </div>
+        <div class="callback">
+            <div id="status">
+                Jsme online
+            </div>
+            <input type="text" id="phone" placeholder="Váš telefon">
+            <button id="send">Odeslat</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+            scr.src = 'https://app.mluvii.com/widget/OOWidget.js';
+            scr.$owidgetOnLoad = function (owidget) {
+                if (!owidget.isSupported) { return; }
+                owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTestCustomWidget');
+
+                let widgetOnline = true;
+
+                owidget.setStatusUpdateCallback(function(code) {
+                    const statusIndicatorText = document.getElementById('status');
+
+                    switch(code) {
+                        case 0:
+                            statusIndicatorText.innerText = 'Jsme offline';
+                            statusIndicatorText.style.color = '#bf464f';
+                            widgetOnline = false; 
+                            break;
+                        case 1:
+                            statusIndicatorText.innerText = 'Jsme online';
+                            statusIndicatorText.style.color = '#8dc63f';
+                            widgetOnline = true;
+                            break;
+                        case 2:
+                            statusIndicatorText.innerText = 'Máme toho hodně';
+                            statusIndicatorText.style.color = '#ffbb06';                                           
+                            widgetOnline = true;                        
+                            break;
+                    }
+                });
+
+
+                const widgetButton = document.getElementById('send');
+                const widgetInput = document.getElementById('phone');
+
+                const nameInput = document.getElementById('inputName');
+                const idInput = document.getElementById('inputId');
+
+                const regNumberLength9 = new RegExp('^\\d{9}$');
+
+                widgetButton.addEventListener('click', function(e) {
+                    if(!widgetOnline) return;
+                    
+                    // if(!regNumberLength6.test(widgetInput.value) || !regNumberLength9.test(widgetInput.value)) {
+                    //     hints.classList.remove('isHidden');
+                    // }
+
+                    if(regNumberLength9.test(widgetInput.value)) {
+                        owidget.numberNormalization(widgetInput.value)
+                        const normalizedNumber = owidget.numberNormalization(widgetInput.value);
+                        owidget.openApp('callback', normalizedNumber);
+                    }
+                });
+
+                // widgetInput.addEventListener('input', function() {
+                //     if(regNumberLength9.test(widgetInput.value)) {
+                //         hints.classList.add('isHidden');
+                //     }
+                // });
+
+                owidget.connectToServer();
+            };
+            var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+        })();
+    </script>
+</body>
+</html>
