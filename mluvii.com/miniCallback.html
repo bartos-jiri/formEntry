@@ -4,29 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <title>Document</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #dbedee;
+            margin: 0;
+            font-size: 16px;
+        }
         .container {
+            width: 99%;
+
 
         }
+
+        /* FROM HERE */
+        .callbackWidget {
+            width: 100%;
+            height: 115px;
+            display: flex;
+            flex-direction: row;
+            padding: 15px;
+            font-family: Raleway;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 0 10px 10px;
+            overflow: hidden;
+        }
+
+        .img {
+            width: 85px;
+            min-width: 85px;
+            height: 100%;
+            margin-right: 15px;
+        }
+        .img > img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+        .callback {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+        .nameAndStatus {
+            color: #546a84;
+            font-size: 1.5rem;
+            padding-bottom: 12px;
+            position: relative;
+        }
+        .nameAndStatus:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 70px;
+            height: 2px;
+            background: #72b9be;
+        }
+        .form {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #phone {
+            display: block;
+            width: 0;
+            flex: 1;
+            box-sizing: border-box;
+            border: 1px solid #72b9be;
+            padding: 5px;
+            border-radius: 0 0 0 5px;
+            text-align: center;
+            outline: none;
+            font-family: Raleway;
+            margin-right: 6px;
+            height: 32px;
+            font-size: 16px;
+            min-width: unset;
+
+        }
+        #send {
+            color: #fff;
+            background: #72b9be;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-family: Raleway;
+            height: 32px;
+            font-size: 16px;
+            position: relative;
+            padding: 1px 34px 1px 10px;
+            outline: none;
+            transition: 0.3s all;
+        }
+        #send:hover, #send:active, #send:focus {
+            background: #88cfc0;
+        }
+    #icon {
+        background: #88cfc0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 0 5px 5px 0;
+    }
+    #mluviikIcon {
+        max-width: 18px;
+        margin: 7px 4px;
+        display: block;
+    }
+
 
     </style>
 </head>
 <body>
     
-
-    <div class="callbackWidget">
-        <div class="img">
-            <img src="" alt="">
-        </div>
-        <div class="callback">
-            <div id="status">
-                Jsme online
+    <div class="container">
+            <div class="callbackWidget">
+                <div class="img">
+                    <img src="./giraffe.jpg" alt="">
+                </div>
+                <div class="callback">
+                    <div class="nameAndStatus">
+                        Iveta, <span id="status">online</span>
+                    </div>
+                    <div class="form">
+                            <input type="tel" id="phone" placeholder="Váš telefon">
+                            <button id="send">Kontaktovat <span id="icon"><img id="mluviikIcon" src="./mluviik-icon-white.png" alt=""></span></button>
+                    </div>
+                </div>
             </div>
-            <input type="text" id="phone" placeholder="Váš telefon">
-            <button id="send">Odeslat</button>
-        </div>
     </div>
+
 
     <script>
         (function () {
@@ -43,17 +159,17 @@
 
                     switch(code) {
                         case 0:
-                            statusIndicatorText.innerText = 'Jsme offline';
+                            statusIndicatorText.innerText = 'offline';
                             statusIndicatorText.style.color = '#bf464f';
                             widgetOnline = false; 
                             break;
                         case 1:
-                            statusIndicatorText.innerText = 'Jsme online';
+                            statusIndicatorText.innerText = 'online';
                             statusIndicatorText.style.color = '#8dc63f';
                             widgetOnline = true;
                             break;
                         case 2:
-                            statusIndicatorText.innerText = 'Máme toho hodně';
+                            statusIndicatorText.innerText = 'zaneprázdněná';
                             statusIndicatorText.style.color = '#ffbb06';                                           
                             widgetOnline = true;                        
                             break;
@@ -88,6 +204,21 @@
                 //         hints.classList.add('isHidden');
                 //     }
                 // });
+                
+                let prevInputValue = '';
+                widgetInput.addEventListener('input', function(e) {
+                    const value = e.target.value;
+                    if (value.replace(/\s/g, "").length > 9) {
+                        widgetInput.value = prevInputValue;
+                        return false;
+                    };
+                    console.log(value.length % 3);
+                    if (value.length > prevInputValue.length && value.replace(/\s/g, "").length % 3 === 0) {
+                        value = value + ' ';
+                    }
+                    prevInputValue = value;
+                    console.log(prevInputValue);
+                });
 
                 owidget.connectToServer();
             };
