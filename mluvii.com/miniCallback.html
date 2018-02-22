@@ -23,7 +23,7 @@
         }
 
         /* FROM HERE */
-        .callbackWidget {
+        .cb_callbackWidget {
             width: 100%;
             height: 115px;
             display: flex;
@@ -36,17 +36,17 @@
             overflow: hidden;
         }
 
-        .img {
+        .cb_img {
             width: 85px;
             min-width: 85px;
             height: 100%;
             margin-right: 15px;
         }
-        .img > img {
+        .cb_img > img {
             max-width: 100%;
             border-radius: 50%;
         }
-        .callback {
+        .cb_callback {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -54,13 +54,13 @@
             justify-content: space-between;
             box-sizing: border-box;
         }
-        .nameAndStatus {
+        .cb_nameAndStatus {
             color: #546a84;
             font-size: 1.5rem;
             padding-bottom: 12px;
             position: relative;
         }
-        .nameAndStatus:after {
+        .cb_nameAndStatus:after {
             content: "";
             position: absolute;
             left: 0;
@@ -75,7 +75,7 @@
             flex-direction: row;
             justify-content: space-between;
         }
-        #phone {
+        #cb_phone {
             display: block;
             width: 0;
             flex: 1;
@@ -92,7 +92,7 @@
             min-width: unset;
 
         }
-        #send {
+        #cb_send {
             color: #fff;
             background: #72b9be;
             border: none;
@@ -105,10 +105,10 @@
             outline: none;
             transition: 0.3s all;
         }
-        #send:hover, #send:active, #send:focus {
+        #cb_send:hover, #send:active, #send:focus {
             background: #88cfc0;
         }
-    #icon {
+    #cb_icon {
         background: #88cfc0;
         position: absolute;
         top: 0;
@@ -127,17 +127,17 @@
 <body>
     
     <div class="container">
-            <div class="callbackWidget">
-                <div class="img">
+            <div class="cb_callbackWidget">
+                <div class="cb_img">
                     <img src="./giraffe.jpg" alt="">
                 </div>
-                <div class="callback">
-                    <div class="nameAndStatus">
-                        Iveta, <span id="status">online</span>
+                <div class="cb_callback">
+                    <div class="cb_nameAndStatus">
+                        Iveta, <span id="cb_status">online</span>
                     </div>
                     <div class="form">
-                            <input type="tel" id="phone" placeholder="Váš telefon">
-                            <button id="send">Kontaktovat <span id="icon"><img id="mluviikIcon" src="./mluviik-icon-white.png" alt=""></span></button>
+                            <input type="tel" id="cb_phone" placeholder="Váš telefon">
+                            <button id="cb_send">Kontaktovat <span id="cb_icon"><img id="mluviikIcon" src="./mluviik-icon-white.png" alt=""></span></button>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@
                 let widgetOnline = true;
 
                 owidget.setStatusUpdateCallback(function(code) {
-                    const statusIndicatorText = document.getElementById('status');
+                    const statusIndicatorText = document.getElementById('cb_status');
 
                     switch(code) {
                         case 0:
@@ -177,11 +177,8 @@
                 });
 
 
-                const widgetButton = document.getElementById('send');
-                const widgetInput = document.getElementById('phone');
-
-                const nameInput = document.getElementById('inputName');
-                const idInput = document.getElementById('inputId');
+                const widgetButton = document.getElementById('cb_send');
+                const widgetInput = document.getElementById('cb_phone');
 
                 const regNumberLength9 = new RegExp('^\\d{9}$');
 
