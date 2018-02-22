@@ -273,7 +273,8 @@
                 if(regNumberLength9.test(widgetInput.value)) {
                     owidget.numberNormalization(widgetInput.value)
                     const normalizedNumber = owidget.numberNormalization(widgetInput.value);
-                    owidget.openApp('callback', normalizedNumber);
+                    // owidget.openApp('callback', normalizedNumber);
+                    owidget.openChat();
                     // const openedCB = owidget.openApp('callback', normalizedNumber); 
                     // if(!openedCB) return;
                 }
