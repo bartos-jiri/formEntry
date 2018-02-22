@@ -247,7 +247,7 @@
             const regNumberLength9 = new RegExp('^\\d{9}$');
 
             widgetButton.addEventListener('click', function(e) {
-                // if(!widgetOnline) return;
+                if(!widgetOnline) return;
 
                 // const customData = {};
                 if(nameInput.value !== '') {
@@ -273,8 +273,7 @@
                 if(regNumberLength9.test(widgetInput.value)) {
                     owidget.numberNormalization(widgetInput.value)
                     const normalizedNumber = owidget.numberNormalization(widgetInput.value);
-                    // owidget.openApp('callback', normalizedNumber);
-                    owidget.openChat();
+                    owidget.openApp('callback', normalizedNumber);
                     // const openedCB = owidget.openApp('callback', normalizedNumber); 
                     // if(!openedCB) return;
                 }
