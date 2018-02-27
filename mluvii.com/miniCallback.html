@@ -18,13 +18,11 @@
         }
         .container {
             width: 99%;
-
-
         }
 
         /* FROM HERE */
         .cb_callbackWidget {
-            width: 100%;
+            width: 90%;
             height: 115px;
             display: flex;
             flex-direction: row;
@@ -34,6 +32,7 @@
             background: #fff;
             border-radius: 0 10px 10px;
             overflow: hidden;
+            margin: 0 auto;
         }
 
         .cb_img {
@@ -44,7 +43,6 @@
         }
         .cb_img > img {
             max-width: 100%;
-            border-radius: 50%;
         }
         .cb_callback {
             flex: 1;
@@ -75,7 +73,7 @@
             flex-direction: row;
             justify-content: space-between;
         }
-        #cb_phone {
+        .cb_phoneInput {
             display: block;
             width: 0;
             flex: 1;
@@ -120,6 +118,10 @@
         margin: 7px 4px;
         display: block;
     }
+    #callback_sections {
+        max-height: 175px;
+        padding: 30px 0;
+    }
 
 
     </style>
@@ -129,15 +131,15 @@
     <div class="container">
             <div class="cb_callbackWidget">
                 <div class="cb_img">
-                    <img src="./giraffe.jpg" alt="">
+                    <img src="https://www.mluvii.com/wp-content/uploads/2017/11/Iveta_icon-01.png" alt="Iveta Makovská">
                 </div>
                 <div class="cb_callback">
                     <div class="cb_nameAndStatus">
                         Iveta, <span id="cb_status">online</span>
                     </div>
                     <div class="form">
-                            <input type="tel" id="cb_phone" placeholder="Váš telefon">
-                            <button id="cb_send">Kontaktovat <span id="cb_icon"><img id="mluviikIcon" src="./mluviik-icon-white.png" alt=""></span></button>
+                            <input class="cb_phoneInput" type="tel" id="cb_phone1" placeholder="Váš telefon">
+                            <button id="cb_send">Kontaktovat <span id="cb_icon"><img id="mluviikIcon" src="https://www.mluvii.com/wp-content/uploads/2017/11/mluviik-icon-white.png" alt="Mluviik Icon"></span></button>
                     </div>
                 </div>
             </div>
@@ -150,7 +152,7 @@
             scr.src = 'https://app.mluvii.com/widget/OOWidget.js';
             scr.$owidgetOnLoad = function (owidget) {
                 if (!owidget.isSupported) { return; }
-                owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'jirkaTestCustomWidget');
+                owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'IvetCallback');
 
                 let widgetOnline = true;
 
@@ -178,43 +180,18 @@
 
 
                 const widgetButton = document.getElementById('cb_send');
-                const widgetInput = document.getElementById('cb_phone');
+                const widgetInput = document.getElementById('cb_phone1');
 
                 const regNumberLength9 = new RegExp('^\\d{9}$');
 
                 widgetButton.addEventListener('click', function(e) {
                     if(!widgetOnline) return;
-                    
-                    // if(!regNumberLength6.test(widgetInput.value) || !regNumberLength9.test(widgetInput.value)) {
-                    //     hints.classList.remove('isHidden');
-                    // }
 
                     if(regNumberLength9.test(widgetInput.value)) {
                         owidget.numberNormalization(widgetInput.value)
                         const normalizedNumber = owidget.numberNormalization(widgetInput.value);
                         owidget.openApp('callback', normalizedNumber);
                     }
-                });
-
-                // widgetInput.addEventListener('input', function() {
-                //     if(regNumberLength9.test(widgetInput.value)) {
-                //         hints.classList.add('isHidden');
-                //     }
-                // });
-                
-                let prevInputValue = '';
-                widgetInput.addEventListener('input', function(e) {
-                    const value = e.target.value;
-                    if (value.replace(/\s/g, "").length > 9) {
-                        widgetInput.value = prevInputValue;
-                        return false;
-                    };
-                    console.log(value.length % 3);
-                    if (value.length > prevInputValue.length && value.replace(/\s/g, "").length % 3 === 0) {
-                        value = value + ' ';
-                    }
-                    prevInputValue = value;
-                    console.log(prevInputValue);
                 });
 
                 owidget.connectToServer();
