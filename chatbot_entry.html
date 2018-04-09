@@ -66,6 +66,7 @@
     }, '*');
 
     window.addEventListener('message', msg => {
+      console.warn(msg);
       if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
         personId = msg.data.payload.personId;
 
