@@ -61,10 +61,6 @@
     const spinner = document.getElementById('spinner');
     const formContainer = document.getElementById('formContainer');
 
-    window.parent.postMessage({
-      type: 'IDENTIFY_FACE'
-    }, '*');
-
     window.addEventListener('message', msg => {
       console.warn(msg);
       if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
@@ -86,6 +82,10 @@
         }
       }
     });
+
+    window.parent.postMessage({
+      type: 'IDENTIFY_FACE'
+    }, '*');
 
     window.setTimeout(() => {
       console.warn('Settimeout called');
