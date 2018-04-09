@@ -47,18 +47,22 @@
       
     }
     .button:first-child {
-      /* margin-top: 20px;
-      margin-bottom: 20px; */
+      margin-top: 20px;
     }
     .button:last-child {
-      /* margin-top: 20px;
-      margin-bottom: 20px;       */
+      margin-bottom: 20px;      
     }
     .button:active, .button:focus {
       outline: 2px #2f7cb3;
     }
     .button:active {
       box-shadow: none;
+    }
+    .inputs {
+      width: 100%;
+    }
+    .inputs > .form-group:first-child {
+      margin-bottom: 20px;
     }
     .form-group {
       display: flex;
@@ -118,13 +122,15 @@
       <div class="form-group">
         <p>Nebyl jste rozpoznán. Zadejte prosím Vaše jméno a PIN:</p>
       </div>
-      <div class="form-group">
-        <label for="identity">Jméno a příjmení</label>
-        <input name="identity" type="text" class="form-control" id="identity">
-      </div>
-      <div class="form-group">
-        <label for="pin">PIN</label>
-        <input name="pin" type="password" class="form-control" id="pin">
+      <div class="inputs">
+        <div class="form-group">
+          <label for="identity">Jméno a příjmení</label>
+          <input name="identity" type="text" class="form-control" id="identity">
+        </div>
+        <div class="form-group">
+          <label for="pin">PIN</label>
+          <input name="pin" type="password" class="form-control" id="pin">
+        </div>
       </div>
       <button type="submit" class="button">Pokračovat</button>
     </form>
