@@ -81,10 +81,13 @@
         }
       }
     });
-
-    window.parent.postMessage({
-      type: 'IDENTIFY_FACE'
-    }, '*');
+    
+    window.addEventListener('load', () => {
+      console.warn('IDENTIFY_FACE to be called');
+      window.parent.postMessage({
+        type: 'IDENTIFY_FACE'
+      }, '*');
+    })
 
     setTimeout(() => {
       console.warn('Settimeout called');
