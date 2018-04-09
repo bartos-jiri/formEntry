@@ -10,7 +10,7 @@
       .entryForm {
         display: flex;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         justify-content: center;
         align-items: center;
       }
@@ -72,8 +72,7 @@
           formContainer.style.removeProperty('display');
         } else if (typeof personId === 'string') {
           window.parent.postMessage({
-            type: 'ADD_CUSTOM_DATA',
-            name: 'oo1_guest_ident',
+            type: 'SET_NAME',
             value: personId
           }, '*');
           window.parent.postMessage({
@@ -83,9 +82,12 @@
       }
     });
 
-    window.parent.postMessage({
-      type: 'IDENTIFY_FACE'
-    }, '*');
+    setTimeout((e) => {
+      window.parent.postMessage({
+        type: 'IDENTIFY_FACE'
+      }, '*');
+    }, 1000);
+
 
     setTimeout(() => {
       console.warn('Settimeout called');
