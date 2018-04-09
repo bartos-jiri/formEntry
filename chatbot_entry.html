@@ -83,16 +83,15 @@
     });
     
     window.addEventListener('load', () => {
-      console.warn('IDENTIFY_FACE to be called');
+      console.warn('IDENTIFY_FACE');
       window.parent.postMessage({
-        type: 'SET_NAME',
-        name: 'trol'
+        type: 'IDENTIFY_FACE'
       }, '*');
     })
 
     setTimeout(() => {
       console.warn('Settimeout called');
-      window.parent.postMessage({
+      window.postMessage({
         type: 'IDENTIFY_FACE_RESULT',
         payload: {
           personId: null
