@@ -61,42 +61,39 @@
     const spinner = document.getElementById('spinner');
     const formContainer = document.getElementById('formContainer');
 
-    document.addEventListener('load', (e) => {
+    window.parent.postMessage({
+      type: 'IDENTIFY_FACE'
+    }, '*');
 
-      window.parent.postMessage({
-        type: 'IDENTIFY_FACE'
-      }, '*');
+    window.addEventListener('message', msg => {
+      if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
+        personId = msg.data.payload.personId;
 
-      window.addEventListener('message', msg => {
-        if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
-          personId = msg.data.payload.personId;
-
-          if (personId === null) { // null !== undefined?
-            spinner.style.setProperty('display', 'none', 'important');
-            formContainer.style.removeProperty('display');
-          } else if (typeof personId === 'string') {
-            window.parent.postMessage({
-              type: 'ADD_CUSTOM_DATA',
-              name: 'oo1_guest_ident',
-              value: personId
-            }, '*');
-            window.parent.postMessage({
-              type: 'ENQUEUE'
-            }, '*');
-          }
+        if (personId === null) { // null !== undefined?
+          spinner.style.setProperty('display', 'none', 'important');
+          formContainer.style.removeProperty('display');
+        } else if (typeof personId === 'string') {
+          window.parent.postMessage({
+            type: 'ADD_CUSTOM_DATA',
+            name: 'oo1_guest_ident',
+            value: personId
+          }, '*');
+          window.parent.postMessage({
+            type: 'ENQUEUE'
+          }, '*');
         }
-      });
-
-      setTimeout(() => {
-        console.warn('Settimeout called');
-        window.parent.postMessage({
-          type: 'IDENTIFY_FACE_RESULT',
-          payload: {
-            personId: null
-          }
-        }, '*');
-      }, 6000);
+      }
     });
+
+    setTimeout(() => {
+      console.warn('Settimeout called');
+      window.parent.postMessage({
+        type: 'IDENTIFY_FACE_RESULT',
+        payload: {
+          personId: null
+        }
+      }, '*');
+    }, 6000);
 
 
   </script>
