@@ -61,13 +61,13 @@
     const spinner = document.getElementById('spinner');
     const formContainer = document.getElementById('formContainer');
 
-    window.parent.addEventListener('message', msg => {
+    window.addEventListener('message', msg => {
       console.warn(msg);
       if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
         personId = msg.data.payload.personId;
         console.warn('personId: ', personId);
 
-        if (personId === null) { // null !== undefined?
+        if (personId === null) {
           spinner.style.setProperty('display', 'none', 'important');
           formContainer.style.removeProperty('display');
         } else if (typeof personId === 'string') {
