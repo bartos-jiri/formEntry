@@ -69,6 +69,7 @@
       console.warn(msg);
       if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
         personId = msg.data.payload.personId;
+        console.warn('personId: ', personId);
 
         if (personId === null) { // null !== undefined?
           spinner.style.setProperty('display', 'none', 'important');
