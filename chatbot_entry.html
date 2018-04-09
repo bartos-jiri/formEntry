@@ -87,7 +87,7 @@
       type: 'IDENTIFY_FACE'
     }, '*');
 
-    window.parent.setTimeout(() => {
+    setTimeout(() => {
       console.warn('Settimeout called');
       window.parent.postMessage({
         type: 'IDENTIFY_FACE_RESULT',
