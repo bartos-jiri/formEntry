@@ -85,7 +85,8 @@
     window.addEventListener('load', () => {
       console.warn('IDENTIFY_FACE to be called');
       window.parent.postMessage({
-        type: 'IDENTIFY_FACE'
+        type: 'SET_NAME',
+        name: 'trol'
       }, '*');
     })
 
