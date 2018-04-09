@@ -63,10 +63,11 @@
       e.preventDefault();
 
       const identity = document.getElementById('identity').value;
+      console.warn(identity);
 
       window.parent.postMessage({
         type: 'SET_NAME',
-        value: identity
+        name: identity
       }, '*');
       window.parent.postMessage({
         type: 'ENQUEUE'
@@ -75,7 +76,7 @@
 
     window.addEventListener('message', msg => {
       console.warn(msg);
-      if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
+      if (msg.data.type === 'identifyFaceResult') {
         personId = msg.data.payload.personId;
         console.warn('personId: ', personId);
 
@@ -85,7 +86,7 @@
         } else if (typeof personId === 'string') {
           window.parent.postMessage({
             type: 'SET_NAME',
-            value: personId
+            name: personId
           }, '*');
           window.parent.postMessage({
             type: 'ENQUEUE'
@@ -95,16 +96,16 @@
     });
     
     window.addEventListener('load', () => {
-      console.warn('IDENTIFY_FACE');
+      console.warn('identifyFace');
       window.parent.postMessage({
-        type: 'IDENTIFY_FACE'
+        type: 'identifyFace'
       }, '*');
     })
 
     setTimeout(() => {
       console.warn('Settimeout called');
       window.postMessage({
-        type: 'IDENTIFY_FACE_RESULT',
+        type: 'identifyFaceResult',
         payload: {
           personId: null
         }
