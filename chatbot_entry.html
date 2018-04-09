@@ -153,9 +153,7 @@
 
     form.onsubmit = (e) => {
       e.preventDefault();
-
       const identity = nameInput.value;
-      console.warn(identity);
 
       window.parent.postMessage({
         type: 'SET_NAME',
@@ -167,10 +165,8 @@
     }
 
     window.addEventListener('message', msg => {
-      console.warn(msg);
       if (msg.data.type === 'identifyFaceResult') {
         personId = msg.data.payload.personId;
-        console.warn('personId: ', personId);
 
         if (personId === null) {
           spinner.style.setProperty('display', 'none', 'important');
@@ -188,23 +184,10 @@
     });
     
     window.addEventListener('load', () => {
-      console.warn('identifyFace');
       window.parent.postMessage({
         type: 'identifyFace'
       }, '*');
-    })
-
-    setTimeout(() => {
-      console.warn('Settimeout called');
-      window.postMessage({
-        type: 'identifyFaceResult',
-        payload: {
-          personId: 'Jirka Bartosek'
-        }
-      }, '*');
-    }, 2000);
-
-
+    });
   </script>
 </body>
 </html>
