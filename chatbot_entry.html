@@ -61,7 +61,7 @@
     const spinner = document.getElementById('spinner');
     const formContainer = document.getElementById('formContainer');
 
-    window.addEventListener('message', msg => {
+    window.parent.addEventListener('message', msg => {
       console.warn(msg);
       if (msg.data.type === 'IDENTIFY_FACE_RESULT') {
         personId = msg.data.payload.personId;
@@ -82,12 +82,9 @@
       }
     });
 
-    setTimeout((e) => {
-      window.parent.postMessage({
-        type: 'IDENTIFY_FACE'
-      }, '*');
-    }, 1000);
-
+    window.parent.postMessage({
+      type: 'IDENTIFY_FACE'
+    }, '*');
 
     setTimeout(() => {
       console.warn('Settimeout called');
