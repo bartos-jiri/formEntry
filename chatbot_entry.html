@@ -38,20 +38,18 @@
       </svg>
     </div>
 
-    <div id="formContainer" style="display: none !important;">
-      <form id="form">
-        <button type="button" class="btn btn-info btn-block w-80">Předvyplnit formulář</button>
-        <div class="form-group">
-          <label for="identity">Jméno a příjmení</label>
-          <input name="identity" type="text" class="form-control" id="identity">
-        </div>
-        <div class="form-group">
-          <label for="pin">PIN</label>
-          <input name="pin" type="password" class="form-control" id="pin">
-        </div>
-        <button type="submit" class="btn btn-info btn-block w-80">Pokračovat</button>
-      </form>
-    </div>
+    <form id="form" style="display: none !important;">
+      <button type="button" class="btn btn-info btn-block w-80">Předvyplnit formulář</button>
+      <div class="form-group">
+        <label for="identity">Jméno a příjmení</label>
+        <input name="identity" type="text" class="form-control" id="identity">
+      </div>
+      <div class="form-group">
+        <label for="pin">PIN</label>
+        <input name="pin" type="password" class="form-control" id="pin">
+      </div>
+      <button type="submit" class="btn btn-info btn-block w-80">Pokračovat</button>
+    </form>
 
   </div>
 
@@ -59,7 +57,21 @@
     let personId;
 
     const spinner = document.getElementById('spinner');
-    const formContainer = document.getElementById('formContainer');
+    const form = document.getElementById('form');
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+
+      const identity = document.getElementById('identity');
+
+      window.parent.postMessage({
+        type: 'SET_NAME',
+        value: identity
+      }, '*');
+      window.parent.postMessage({
+        type: 'ENQUEUE'
+      }, '*');
+    }
 
     window.addEventListener('message', msg => {
       console.warn(msg);
@@ -69,7 +81,7 @@
 
         if (personId === null) {
           spinner.style.setProperty('display', 'none', 'important');
-          formContainer.style.removeProperty('display');
+          form.style.removeProperty('display');
         } else if (typeof personId === 'string') {
           window.parent.postMessage({
             type: 'SET_NAME',
