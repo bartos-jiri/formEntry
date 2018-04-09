@@ -62,7 +62,7 @@
     form.onsubmit = (e) => {
       e.preventDefault();
 
-      const identity = document.getElementById('identity');
+      const identity = document.getElementById('identity').value;
 
       window.parent.postMessage({
         type: 'SET_NAME',
