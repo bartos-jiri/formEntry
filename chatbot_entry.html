@@ -86,17 +86,19 @@
           }
         }
       });
+
+      setTimeout(() => {
+        console.warn('Settimeout called');
+        window.parent.postMessage({
+          type: 'IDENTIFY_FACE_RESULT',
+          payload: {
+            personId: null
+          }
+        }, '*');
+      }, 2000);
     });
 
-    setTimeout(() => {
-      console.warn('Settimeout called');
-      window.parent.postMessage({
-        type: 'IDENTIFY_FACE_RESULT',
-        payload: {
-          personId: null
-        }
-      }, '*');
-    }, 2000);
+
   </script>
 </body>
 </html>
