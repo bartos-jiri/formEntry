@@ -210,7 +210,7 @@
     function tryDetectLanguage() {
       try {
         if (('documentElement' in document) && document.documentElement.lang) {
-          return document.documentElement.lang;
+          return window.parent.document.documentElement.lang;
         }
 
         return null;
