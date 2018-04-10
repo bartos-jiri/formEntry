@@ -165,8 +165,9 @@
     }
 
     window.addEventListener('message', msg => {
+      console.warn(msg);
       if (msg.data.type === 'identifyFaceResult') {
-        console.warn(msg);
+       
         personId = msg.data.payload.personId;
 
         if (personId === null) {
