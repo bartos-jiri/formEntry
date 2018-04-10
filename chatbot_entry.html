@@ -151,7 +151,7 @@
       pin.value = '12345';
     });
 
-    form.onsubmit = (e) => {
+    form.onsubmit = function(e) {
       e.preventDefault();
       const identity = nameInput.value;
 
@@ -164,7 +164,7 @@
       }, '*');
     }
 
-    window.addEventListener('message', msg => {
+    window.addEventListener('message', function(msg) {
       console.warn(msg);
       if (msg.data.type === 'identifyFaceResult') {
        
@@ -189,7 +189,7 @@
       }
     });
     
-    window.addEventListener('load', () => {
+    window.addEventListener('load', function() {
       window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
 
       window.parent.postMessage({
@@ -197,7 +197,7 @@
       }, '*');
     });
 
-    setTimeout(() => {
+    setTimeout(function() {
       window.postMessage({
         type: 'identifyFaceResult',
         payload: {
