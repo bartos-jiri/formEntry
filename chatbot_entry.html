@@ -169,6 +169,10 @@
         personId = msg.data.payload.personId;
 
         if (personId === null) {
+          window.parent.postMessage({
+            type: 'SET_NAME',
+            name: ''
+          }, '*');
           spinner.style.setProperty('display', 'none', 'important');
           form.style.removeProperty('display');
         } else if (typeof personId === 'string') {
