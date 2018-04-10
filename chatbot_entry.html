@@ -190,7 +190,8 @@
     });
     
     window.addEventListener('load', function() {
-      window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
+      const lang = tryDetectLanguage();
+      console.warn('lang: ', lang);
 
       window.parent.postMessage({
         type: 'identifyFace'
@@ -205,6 +206,19 @@
         }
       }, '*')
     }, 2000);
+
+    function tryDetectLanguage() {
+      try {
+        if (('documentElement' in document) && document.documentElement.lang) {
+          return document.documentElement.lang;
+        }
+
+        return null;
+      }
+      catch (ignored) {
+        return null;
+      }
+    }
   </script>
 </body>
 </html>
