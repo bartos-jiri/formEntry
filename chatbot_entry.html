@@ -166,6 +166,12 @@
 
     window.addEventListener('message', function(msg) {
       console.warn(msg);
+
+      if (msg.data.type === 'mluviiLanguage') {
+        language = msg.data.lang;
+        console.warn('Widget Language: ', lang);
+      }
+
       if (msg.data.type === 'identifyFaceResult') {
        
         personId = msg.data.payload.personId;
@@ -190,8 +196,9 @@
     });
     
     window.addEventListener('load', function() {
-      const lang = tryDetectLanguage();
-      console.warn('lang: ', lang);
+      window.parent.postMessage({
+        type: 'GET_MLUVII_LANGUAGE'
+      }, '*')
 
       window.parent.postMessage({
         type: 'identifyFace'
@@ -207,18 +214,6 @@
       }, '*')
     }, 2000);
 
-    function tryDetectLanguage() {
-      try {
-        if (('documentElement' in document) && document.documentElement.lang) {
-          return window.parent.document.documentElement.lang;
-        }
-
-        return null;
-      }
-      catch (ignored) {
-        return null;
-      }
-    }
   </script>
 </body>
 </html>
