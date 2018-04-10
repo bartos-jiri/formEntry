@@ -190,6 +190,8 @@
     });
     
     window.addEventListener('load', () => {
+      window.parent.postMessage({type:"GET_MLUVII_CUSTOM_PARAMS"},"*");
+
       window.parent.postMessage({
         type: 'identifyFace'
       }, '*');
