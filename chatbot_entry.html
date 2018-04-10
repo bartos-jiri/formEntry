@@ -193,6 +193,15 @@
         type: 'identifyFace'
       }, '*');
     });
+
+    setTimeout(() => {
+      window.postMessage({
+        type: 'identifyFaceResult',
+        payload: {
+          personId: null
+        }
+      })
+    }, 2000);
   </script>
 </body>
 </html>
