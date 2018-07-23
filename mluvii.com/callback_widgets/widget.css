@@ -1,0 +1,1172 @@
+/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+
+.topPadding{
+  padding-top: 40px !important;
+  }
+  
+  .nav-highlight-ghost>a:after, .nav-highlight>a:after {
+   border-top-left-radius: 0;
+  }
+  
+  
+  #masthead .navbar-brand img{
+   max-height: 40% !important;
+   padding-left: 15px;
+  }
+  
+  #masthead .nav > li > a {
+    margin-left: 10px;
+  }
+  
+  .nav>li>a{
+  padding-left: 10px;
+  padding-right: 10px;
+  }
+  
+  .swatch-red-white .section-header:after, [class*="swatch-"] .swatch-red-white .section-header:after, .swatch-red-white .bordered-header:after, [class*="swatch-"] .swatch-red-white .bordered-header:after{
+   background: #72b9be;
+  }
+  
+  .swatch-white-red hr, [class*="swatch-"] .swatch-white-red hr{
+   border-top-color: #72b9be;
+  }
+  
+  .swatch-mluvii-header.navbar .nav > li > a:before, [class*="swatch-"] .swatch-mluvii-header.navbar .nav > li > a:before {
+      background-color: #72b9be;
+  }
+  
+  .swatch-mluvii-header.navbar .nav-highlight > a:after, [class*="swatch-"] .swatch-mluvii-header.navbar .nav-highlight > a:after {
+      background: #e74c3c;
+  }
+  
+  .swatch-mluvii-header.navbar li.nav-highlight-ghost > a:after, [class*="swatch-"] .swatch-mluvii-header.navbar li.nav-highlight-ghost > a:after {
+      border: 1px solid #72b9be;
+  }
+  
+  .swatch-mluvii-header.navbar li.nav-highlight-ghost > a, [class*="swatch-"] .swatch-mluvii-header.navbar li.nav-highlight-ghost > a {
+      color: #72b9be;
+  }
+  
+  .text-caps{
+      text-transform: lowercase!important;
+  }
+  
+  .hesperiden.tparrows{
+    background-color: #6db6bc !important;
+    opacity: 0.6;
+  }
+  
+  .hesperiden.tparrows:hover{
+    opacity: 1;
+  }
+  
+  .counter .value{
+   text-align: right;
+  }
+  
+  .leftPercentagePart{
+    padding-right: 0;
+  }
+  
+  .rightPercentagePart{
+    padding-left: 0;
+  }
+  
+  .pricingColumn{
+  
+  }
+  
+  .panel-heading .accordion-toggle.collapsed:before {
+      content: "\f107";
+  }
+  
+  .panel-heading .accordion-toggle:before {
+      position: absolute;
+      display: block;
+      font-family: FontAwesome;
+      content: "\f106";
+      font-size: 24px;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+  }
+  
+  .specialAccordion .panel-heading{
+   text-align: center;
+   border-bottom: 1px solid #72b9be;
+  
+  }
+  
+  
+  
+  .specialAccordion .accordion-toggle:after{
+   background: #fff;
+  font-size: 24px;
+  }
+  
+  .swatch-white-red .specialAccordion .panel-heading, [class*="swatch-"] .swatch-white-red .specialAccordion .panel-heading {
+      background: #fff;
+    color: #72b9be;
+  }
+  
+  .swatch-white-red .specialAccordion .panel-heading a, [class*="swatch-"] .swatch-white-red .specialAccordion .panel-heading a, .swatch-white-red .specialAccordion .panel-heading .panel-title, [class*="swatch-"] .swatch-white-red .specialAccordion .panel-heading .panel-title {
+      color: #72b9be;
+      text-decoration: none;
+  }
+  
+  .topLine {
+     border-bottom: 1px solid #72b9be;
+  margin-left: -11px;
+    margin-right: -11px;
+  }
+  
+  .marginColumn{
+      border-bottom-left-radius: 26px;
+      border-bottom-right-radius: 26px;
+      border-top-right-radius: 26px;
+      background: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  
+  
+  
+  .swatch-red-white .pricingColumn hr, [class*="swatch-"] .swatch-red-white .pricingColumn hr {
+      border-top-color:  #72b9be;
+  }
+  
+  .hidden{
+   display: none;
+  }
+  
+  .centered{
+   text-align: center;
+   width: 100%;
+  }
+  
+  .no-top-padding{
+  padding-top: 0px;
+  }
+  
+  .pricingColumn ul {
+      list-style: none;
+      padding: 0px;
+  }
+  
+  .pricingColumn ul li:before
+  {
+      content: '\2713';
+    color: #72b9be;
+      margin: 0 10px 0 0;
+  }
+  
+  .btnRoundedWithShadow{
+      border-radius: 6px;
+      box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+  }
+  
+  .topLine p{
+    margin: 6px 0 6px 0;
+  }
+  
+  
+  
+  /**
+  *
+  *
+  *
+  * Toggle SWITCH 
+  *
+  *
+  *
+  **/
+  
+  
+  @charset "UTF-8";
+  /*
+  * CSS TOGGLE SWITCH
+  *
+  * Ionuț Colceriu - ghinda.net
+  * https://github.com/ghinda/css-toggle-switch
+  *
+  */
+  /* supported values are px, rem-calc, em-calc
+   */
+  /* imports
+   */
+  /* Functions
+   */
+  /* Shared
+   */
+  /* Hide by default
+   */
+  .switch-toggle a,
+  .switch-light span span {
+    display: none; }
+  
+  /* We can't test for a specific feature,
+   * so we only target browsers with support for media queries.
+   */
+  @media only screen {
+    /* Checkbox
+   */
+    .switch-light {
+      position: relative;
+      /* simulate default browser focus outlines on the switch,
+     * when the inputs are focused.
+     */ }
+      .switch-light::after {
+        clear: both;
+        content: "";
+        display: table; }
+      .switch-light *,
+      .switch-light *:before,
+      .switch-light *:after {
+        box-sizing: border-box; }
+      .switch-light a {
+        display: block;
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out; }
+      .switch-light label,
+      .switch-light > span {
+        /* breathing room for bootstrap/foundation classes.
+       */
+        line-height: 2em;
+        vertical-align: middle; }
+      .switch-light input:focus ~ span a,
+      .switch-light input:focus + label {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: Highlight;
+        /* Chrome/Opera gets its native focus styles.
+       */ } }
+      @media only screen and (-webkit-min-device-pixel-ratio: 0) {
+        .switch-light input:focus ~ span a,
+        .switch-light input:focus + label {
+          outline-color: -webkit-focus-ring-color;
+          outline-style: auto; } }
+  
+  @media only screen {
+    /* don't hide the input from screen-readers and keyboard access
+   */
+    .switch-light input {
+      position: absolute;
+      opacity: 0;
+      z-index: 3; }
+    .switch-light input:checked ~ span a {
+      right: 0%; }
+    /* inherit from label
+   */
+    .switch-light strong {
+      font-weight: inherit; }
+    .switch-light > span {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      min-height: 2em;
+      /* overwrite 3rd party classes padding
+     * eg. bootstrap .well
+     */
+      padding: 0;
+      text-align: left; }
+    .switch-light span span {
+      position: relative;
+      z-index: 2;
+      display: block;
+      float: left;
+      width: 50%;
+      text-align: center;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+    .switch-light a {
+      position: absolute;
+      right: 50%;
+      top: 0;
+      z-index: 1;
+      display: block;
+      width: 50%;
+      height: 100%;
+      padding: 0; }
+    /* Radio Switch
+   */
+    .switch-toggle {
+      position: relative;
+      display: block;
+      /* simulate default browser focus outlines on the switch,
+     * when the inputs are focused.
+     */
+      /* For callout panels in foundation
+    */
+      padding: 0 !important;
+      /* 2 items
+     */
+      /* 3 items
+     */
+      /* 4 items
+     */
+      /* 5 items
+     */
+      /* 6 items
+     */ }
+      .switch-toggle::after {
+        clear: both;
+        content: "";
+        display: table; }
+      .switch-toggle *,
+      .switch-toggle *:before,
+      .switch-toggle *:after {
+        box-sizing: border-box; }
+      .switch-toggle a {
+        display: block;
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out; }
+      .switch-toggle label,
+      .switch-toggle > span {
+        /* breathing room for bootstrap/foundation classes.
+       */
+        line-height: 2em;
+        vertical-align: middle; }
+      .switch-toggle input:focus ~ span a,
+      .switch-toggle input:focus + label {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: Highlight;
+        /* Chrome/Opera gets its native focus styles.
+       */ } }
+      @media only screen and (-webkit-min-device-pixel-ratio: 0) {
+        .switch-toggle input:focus ~ span a,
+        .switch-toggle input:focus + label {
+          outline-color: -webkit-focus-ring-color;
+          outline-style: auto; } }
+  
+  @media only screen {
+      .switch-toggle input {
+        position: absolute;
+        left: 0;
+        opacity: 0; }
+      .switch-toggle input + label {
+        position: relative;
+        z-index: 2;
+        display: block;
+        float: left;
+        padding: 0 0.5em;
+        margin: 0;
+        text-align: center; }
+      .switch-toggle a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        z-index: 1;
+        width: 10px;
+        height: 100%; }
+      .switch-toggle label:nth-child(2):nth-last-child(4),
+      .switch-toggle label:nth-child(2):nth-last-child(4) ~ label,
+      .switch-toggle label:nth-child(2):nth-last-child(4) ~ a {
+        width: 50%; }
+      .switch-toggle label:nth-child(2):nth-last-child(4) ~ input:checked:nth-child(3) + label ~ a {
+        left: 50%; }
+      .switch-toggle label:nth-child(2):nth-last-child(6),
+      .switch-toggle label:nth-child(2):nth-last-child(6) ~ label,
+      .switch-toggle label:nth-child(2):nth-last-child(6) ~ a {
+        width: 33.33%; }
+      .switch-toggle label:nth-child(2):nth-last-child(6) ~ input:checked:nth-child(3) + label ~ a {
+        left: 33.33%; }
+      .switch-toggle label:nth-child(2):nth-last-child(6) ~ input:checked:nth-child(5) + label ~ a {
+        left: 66.66%; }
+      .switch-toggle label:nth-child(2):nth-last-child(8),
+      .switch-toggle label:nth-child(2):nth-last-child(8) ~ label,
+      .switch-toggle label:nth-child(2):nth-last-child(8) ~ a {
+        width: 25%; }
+      .switch-toggle label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(3) + label ~ a {
+        left: 25%; }
+      .switch-toggle label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(5) + label ~ a {
+        left: 50%; }
+      .switch-toggle label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(7) + label ~ a {
+        left: 75%; }
+      .switch-toggle label:nth-child(2):nth-last-child(10),
+      .switch-toggle label:nth-child(2):nth-last-child(10) ~ label,
+      .switch-toggle label:nth-child(2):nth-last-child(10) ~ a {
+        width: 20%; }
+      .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(3) + label ~ a {
+        left: 20%; }
+      .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(5) + label ~ a {
+        left: 40%; }
+      .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(7) + label ~ a {
+        left: 60%; }
+      .switch-toggle label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(9) + label ~ a {
+        left: 80%; }
+      .switch-toggle label:nth-child(2):nth-last-child(12),
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ label,
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ a {
+        width: 16.6%; }
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(3) + label ~ a {
+        left: 16.6%; }
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(5) + label ~ a {
+        left: 33.2%; }
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(7) + label ~ a {
+        left: 49.8%; }
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(9) + label ~ a {
+        left: 66.4%; }
+      .switch-toggle label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(11) + label ~ a {
+        left: 83%; }
+    /* Candy Theme
+   * Based on the "Sort Switches / Toggles (PSD)" by Ormal Clarck
+   * http://www.premiumpixels.com/freebies/sort-switches-toggles-psd/
+   */
+    .switch-toggle.switch-candy,
+    .switch-light.switch-candy > span {
+      background-color: #2d3035;
+      border-radius: 3px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.2); }
+    .switch-light.switch-candy span span,
+    .switch-light.switch-candy input:checked ~ span span:first-child,
+    .switch-toggle.switch-candy label {
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 1px 1px 1px #191b1e; }
+    .switch-light.switch-candy input ~ span span:first-child,
+    .switch-light.switch-candy input:checked ~ span span:nth-child(2),
+    .switch-candy input:checked + label {
+      color: #333;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+    .switch-candy a {
+      border: 1px solid #333;
+      border-radius: 3px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+      background-color: #70c66b;
+      background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), transparent);
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent); }
+    .switch-candy-blue a {
+      background-color: #38a3d4; }
+    .switch-candy-yellow a {
+      background-color: #f5e560; }
+    /* iOS Theme
+  */
+    .switch-ios.switch-light span span {
+      color: #888b92; }
+    .switch-ios.switch-light a {
+      left: 0;
+      top: 0;
+      width: 2em;
+      height: 2em;
+      background-color: #fff;
+      border-radius: 100%;
+      border: 0.25em solid #D8D9DB;
+      -webkit-transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out; }
+    .switch-ios.switch-light > span {
+      display: block;
+      width: 100%;
+      height: 2em;
+      background-color: #D8D9DB;
+      border-radius: 1.75em;
+      -webkit-transition: all 0.4s ease-out;
+      -moz-transition: all 0.4s ease-out;
+      transition: all 0.4s ease-out; }
+    .switch-ios.switch-light > span span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      line-height: 1.875em;
+      vertical-align: middle;
+      -webkit-transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out; }
+      .switch-ios.switch-light > span span:first-of-type {
+        opacity: 1;
+        padding-left: 1.875em; }
+      .switch-ios.switch-light > span span:last-of-type {
+        padding-right: 1.875em; }
+    .switch-ios.switch-light input:checked ~ span a {
+      left: 100%;
+      border-color: #4BD865;
+      margin-left: -2em; }
+    .switch-ios.switch-light input:checked ~ span {
+      border-color: #4BD865;
+      box-shadow: inset 0 0 0 30px #4BD865; }
+    .switch-ios.switch-light input:checked ~ span span:first-of-type {
+      opacity: 0; }
+    .switch-ios.switch-light input:checked ~ span span:last-of-type {
+      opacity: 1;
+      color: #fff; }
+    .switch-ios.switch-toggle {
+      background-color: #D8D9DB;
+      border-radius: 30px;
+      box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0; }
+      .switch-ios.switch-toggle a {
+        background-color: #4BD865;
+        border: 0.125em solid #D8D9DB;
+        border-radius: 1.75em;
+        -webkit-transition: all 0.12s ease-out;
+        -moz-transition: all 0.12s ease-out;
+        transition: all 0.12s ease-out; }
+      .switch-ios.switch-toggle label {
+        height: 2.4em;
+        color: #888b92;
+        line-height: 2.4em;
+        vertical-align: middle; }
+    .switch-ios input:checked + label {
+      color: #3e4043; }
+    /* Holo Theme
+   */
+    .switch-toggle.switch-holo,
+    .switch-light.switch-holo > span {
+      background-color: #464747;
+      border-radius: 1px;
+      box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0;
+      color: #fff;
+      text-transform: uppercase; }
+    .switch-holo label {
+      color: #fff; }
+    .switch-holo > span span {
+      opacity: 0;
+      -webkit-transition: all 0.1s;
+      -moz-transition: all 0.1s;
+      transition: all 0.1s; }
+      .switch-holo > span span:first-of-type {
+        opacity: 1; }
+    .switch-holo > span span,
+    .switch-holo label {
+      font-size: 85%;
+      line-height: 2.15625em; }
+    .switch-holo a {
+      background-color: #666;
+      border-radius: 1px;
+      box-shadow: inset rgba(255, 255, 255, 0.2) 0 1px 0, inset rgba(0, 0, 0, 0.3) 0 -1px 0; }
+    /* Selected ON switch-light
+  */
+    .switch-holo.switch-light input:checked ~ span a {
+      background-color: #0E88B1; }
+    .switch-holo.switch-light input:checked ~ span span:first-of-type {
+      opacity: 0; }
+    .switch-holo.switch-light input:checked ~ span span:last-of-type {
+      opacity: 1; }
+    /* Material Theme
+   */
+    /* switch-light
+   */
+    .switch-light.switch-material a {
+      top: -0.1875em;
+      width: 1.75em;
+      height: 1.75em;
+      border-radius: 50%;
+      background: #fafafa;
+      box-shadow: 0 0.125em 0.125em 0 rgba(0, 0, 0, 0.14), 0 0.1875em 0.125em -0.125em rgba(0, 0, 0, 0.2), 0 0.125em 0.25em 0 rgba(0, 0, 0, 0.12);
+      -webkit-transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      -moz-transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+    .switch-material.switch-light {
+      overflow: visible; }
+      .switch-material.switch-light::after {
+        clear: both;
+        content: "";
+        display: table; }
+    .switch-material.switch-light > span {
+      overflow: visible;
+      position: relative;
+      top: 0.1875em;
+      width: 3.25em;
+      height: 1.5em;
+      min-height: auto;
+      border-radius: 1em;
+      background: rgba(0, 0, 0, 0.26); }
+    .switch-material.switch-light span span {
+      position: absolute;
+      clip: rect(0 0 0 0); }
+    .switch-material.switch-light input:checked ~ span a {
+      right: 0;
+      background: #3f51b5;
+      box-shadow: 0 0.1875em 0.25em 0 rgba(0, 0, 0, 0.14), 0 0.1875em 0.1875em -0.125em rgba(0, 0, 0, 0.2), 0 0.0625em 0.375em 0 rgba(0, 0, 0, 0.12); }
+    .switch-material.switch-light input:checked ~ span {
+      background: rgba(63, 81, 181, 0.5); }
+    /* switch-toggle
+   */
+    .switch-toggle.switch-material {
+      overflow: visible; }
+      .switch-toggle.switch-material::after {
+        clear: both;
+        content: "";
+        display: table; }
+    .switch-toggle.switch-material a {
+      top: 48%;
+      width: 0.375em !important;
+      height: 0.375em;
+      margin-left: 0.25em;
+      background: #3f51b5;
+      border-radius: 100%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: -webkit-transform 0.4s ease-in;
+      -moz-transition: -moz-transform 0.4s ease-in;
+      transition: transform 0.4s ease-in; }
+    .switch-toggle.switch-material label {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 1em; }
+    .switch-toggle.switch-material label:before {
+      content: '';
+      position: absolute;
+      top: 48%;
+      left: 0;
+      display: block;
+      width: 0.875em;
+      height: 0.875em;
+      border-radius: 100%;
+      border: 0.125em solid rgba(0, 0, 0, 0.54);
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%); }
+    .switch-toggle.switch-material input:checked + label:before {
+      border-color: #3f51b5; }
+    /* ripple
+   */
+    .switch-light.switch-material > span:before,
+    .switch-light.switch-material > span:after,
+    .switch-toggle.switch-material label:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      display: block;
+      width: 4em;
+      height: 4em;
+      border-radius: 100%;
+      background: #3f51b5;
+      opacity: .4;
+      margin-left: -1.25em;
+      margin-top: -1.25em;
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      -ms-transform: scale(0);
+      -o-transform: scale(0);
+      transform: scale(0);
+      -webkit-transition: opacity 0.4s ease-in;
+      -moz-transition: opacity 0.4s ease-in;
+      transition: opacity 0.4s ease-in; }
+    .switch-light.switch-material > span:after {
+      left: auto;
+      right: 0;
+      margin-left: 0;
+      margin-right: -1.25em; }
+    .switch-toggle.switch-material label:after {
+      width: 3.25em;
+      height: 3.25em;
+      margin-top: -0.75em; }
+    @-webkit-keyframes materialRipple {
+      0% {
+        -webkit-transform: scale(0); }
+      20% {
+        -webkit-transform: scale(1); }
+      100% {
+        opacity: 0;
+        -webkit-transform: scale(1); } }
+    @-moz-keyframes materialRipple {
+      0% {
+        -moz-transform: scale(0); }
+      20% {
+        -moz-transform: scale(1); }
+      100% {
+        opacity: 0;
+        -moz-transform: scale(1); } }
+    @keyframes materialRipple {
+      0% {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0); }
+      20% {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1); }
+      100% {
+        opacity: 0;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1); } }
+    .switch-material.switch-light input:not(:checked) ~ span:after,
+    .switch-material.switch-light input:checked ~ span:before,
+    .switch-toggle.switch-material input:checked + label:after {
+      -webkit-animation: materialRipple 0.4s ease-in;
+      -moz-animation: materialRipple 0.4s ease-in;
+      animation: materialRipple 0.4s ease-in; }
+    /* trick to prevent the default checked ripple animation from showing
+   * when the page loads.
+   * the ripples are hidden by default, and shown only when the input is focused.
+   */
+    .switch-light.switch-material.switch-light input ~ span:before,
+    .switch-light.switch-material.switch-light input ~ span:after,
+    .switch-material.switch-toggle input + label:after {
+      visibility: hidden; }
+    .switch-light.switch-material.switch-light input:focus:checked ~ span:before,
+    .switch-light.switch-material.switch-light input:focus:not(:checked) ~ span:after,
+    .switch-material.switch-toggle input:focus:checked + label:after {
+      visibility: visible; } }
+  
+  /* Bugfix for older Webkit, including mobile Webkit. Adapted from
+   * http://css-tricks.com/webkit-sibling-bug/
+   */
+  @media only screen and (-webkit-max-device-pixel-ratio: 2) and (max-device-width: 80em) {
+    .switch-light,
+    .switch-toggle {
+      -webkit-animation: webkitSiblingBugfix infinite 1s; } }
+  
+  @-webkit-keyframes webkitSiblingBugfix {
+    from {
+      -webkit-transform: translate3d(0, 0, 0); }
+    to {
+      -webkit-transform: translate3d(0, 0, 0); } }
+  
+  .switch-light .btn.btn-primary {
+   border-radius: 10px;
+  }
+  
+  .swatch-red-white .panel, [class*="swatch-"] .swatch-red-white .panel, .swatch-red-white .well, [class*="swatch-"] .swatch-red-white .well{
+   background: #fff;
+  width: 250px;
+  border-radius: 10px;
+  }
+  
+  .switch-light .well a{
+    outline: none;
+  }
+  
+  .swatch-white-red .panel {
+   background: #fff;
+  }
+  
+  .panel-body{
+    padding-top: 0;
+  }
+  
+  .functionAnchor{
+   cursor: pointer;
+   color: #72b9be !important;
+  }
+  
+  .swatch-red-white .functionAnchor i, [class*="swatch-"] .swatch-red-white .functionAnchor i{
+   color: #72b9be !important;
+  }
+  
+  .swatch-white-red .panel .blueBackground{
+  background: #dbedee;
+  }
+  
+  /*# sourceMappingURL=toggle-switch.css.map */
+  
+  
+  /* CUSTOM CALLBACK WIDGET IN CONTACTS */
+          .cb_callbackWidget {
+              width: 90%;
+              height: 115px;
+              display: flex;
+              flex-direction: row;
+              padding: 15px;
+              font-family: Raleway;
+              box-sizing: border-box;
+              background: #fff;
+              border-radius: 0 10px 10px;
+              overflow: hidden;
+        margin: 0 auto;
+          }
+          .cb_callbackWidget.cb_secondCb {
+        margin: 60px auto 0;
+  }
+  
+          .cb_img {
+              width: 85px;
+              min-width: 85px;
+              height: 100%;
+              margin-right: 15px;
+          }
+          .cb_img > img {
+              max-width: 100%;
+          }
+          .cb_callback {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: left;
+              justify-content: space-between;
+              box-sizing: border-box;
+          }
+          .cb_nameAndStatus {
+              color: #546a84;
+              font-size: 24px;
+              padding-bottom: 6px;
+              position: relative;
+          }
+          .cb_nameAndStatus:after {
+              content: "";
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 70px;
+              height: 2px;
+              background: #72b9be;
+          }
+          .form {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+          }
+          .cb_formInputs {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          .cb_phoneInput {
+              display: block;
+              width: 0;
+              flex: 1;
+              box-sizing: border-box;
+              border: 1px solid #72b9be !important;
+              padding: 5px;
+              border-radius: 0 0 0 5px;
+              text-align: center;
+              outline: none;
+              font-family: Raleway;
+              margin-right: 6px;
+              height: 32px;
+              font-size: 16px;
+              min-width: unset;
+        box-shadow: none !important;
+  
+          }
+          #cb_send1, #cb_send2, #cb_send3 {
+              color: #fff;
+              background: #72b9be;
+              border: none;
+              border-radius: 0 5px 5px 0;
+              font-family: Raleway;
+              height: 32px;
+              font-size: 16px;
+              position: relative;
+              padding: 1px 34px 1px 10px;
+              outline: none;
+              transition: 0.3s all;
+          }
+          #cb_send1:hover, #send1:active, #send1:focus, #cb_send2:hover, #send2:active, #send2:focus, #cb_send3:hover, #send3:active, #send3:focus {
+              background: #4AA0AA;
+          }
+      #cb_icon {
+          background: #88cfc0;
+          position: absolute;
+          top: 0;
+          right: 0;
+          border-radius: 0 5px 5px 0;
+      }
+      #mluviikIcon {
+          max-width: 18px;
+          margin: 7px 4px;
+          display: block;
+      }
+  #callback_sections {
+    max-height: 255px;
+      padding: 30px 0 50px;
+  }
+  
+  .cb_callbackWidget.cb_entireRow {
+    max-width: 480px !important;
+    margin-top: 48px !important;
+  }
+
+  .form > .cb_formGroup {
+    display: block;
+    /* width: 0; */
+    flex: 1;
+    box-sizing: border-box;
+    /* padding: 5px; */
+    border-radius: 0 0 0 5px;
+    text-align: center;
+    outline: none;
+    /* font-family: Raleway; */
+    /* margin-right: 6px; */
+    min-width: unset;
+  }
+
+  .cb_formFeedback {
+    color: rgb(191, 70, 79);
+    font-size: 11px;
+    text-align: left;
+    margin-top: 5px;
+  }
+  
+  @media (max-width: 991px) {
+    #callback_sections {
+      max-height: 530px;
+    }
+    .cb_callbackWidget {
+      width: 100%;
+      height: 165px;
+    }
+    .cb_callback {
+      justify-content: space-evenly;
+    }
+    .cb_nameAndStatus {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .cb_phoneInput {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .cb_img {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+        justify-content: center;
+    }
+    .cb_formInputs {
+      flex-direction: column;
+    }
+
+    .cb_formFeedback {
+      margin-top: 5px;
+    }
+  }
+  
+  /* CUSTOM CALLBACK WIDGET IN CONTACTS ENDS HERE*/
+  
+  .job_filters {
+    display: none;
+  }
+  
+  .noLeftMargin {
+    margin-left: 0px !important;
+  }
+  
+  .noPaddingTop {
+    padding-top: 0px !important;
+  }
+  
+  .pt-90 {
+    padding-top: 90px;
+  }
+  
+  .pt-32 {
+    padding-top: 32px;
+  }
+  
+  .noMargin {
+    margin: 0 !important;
+  }
+  
+  .kariera-heading h1 {
+    margin: 30px 0 0 !important;
+  }
+  
+  .single-job-section {
+    padding-top: 20px !important;
+  }
+  
+  .single-job-title {
+    font-size: 32px;
+  }
+  
+  .mluviik_single_job {
+    position: absolute;
+    left: -3%;
+    top: 15%;
+    min-width: 110%;
+    opacity: 0.02;
+  }
+  
+  .d-block {
+    display: block !important;
+  }
+  
+  .application_details {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  
+  .job_description h3 {
+    margin-top: 24px !important;
+    color: #72b9be !important;
+  }
+  
+  .jobs_header {
+  
+  }
+  .jobs_header:nth-child(2) {
+  
+  }
+  .jobs_header_image {
+  
+  }
+  .jobs_header_image img {
+      max-width: 100%;
+  }
+  .jobs_header_heading {
+  }
+  .jobs_header_subheading {
+  
+  }
+  .jobs_subheader {
+  
+  }
+  
+  .single-job-back-btn {
+    margin: 20px 0 10px;
+  }
+  
+  .single-job-back-btn-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .header-row {
+    background-color: #72b9be !important;
+    padding: 40px 0;
+  }
+  
+  .jobs-header h1 {
+    margin: 30px 0 20px !important;
+  }
+  
+  .job_listings.as-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+  }
+  
+  [data-job-item] {
+    flex-basis: 23.5%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    
+    margin: 1% !important;
+    border: 1px solid #eee !important;
+  
+    height: 130px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: #72b9be;
+    transition: all 0.15s ease-out;
+    border-radius: 0 8px 8px;
+  }
+  
+  [data-job-item]:hover {
+    background-color: #546a84;
+    color: #fff !important;
+  }
+  
+  [data-job-item]:hover a h3 {
+    color: #fff !important;
+  }
+  
+  [data-job-item]:nth-child(4n) {
+    margin-right: 0 !important;
+  }
+  
+  [data-job-item]:nth-child(4n-3) {
+    margin-left: 0 !important;
+  }
+  
+  [alt="imgjobheader"] {
+    border-radius: 0 16px 16px;
+  }
+  
+  [data-job-item] a {
+    height: 100%;
+    width: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 10px !important;
+  }
+  
+  [data-job-item] a .position {
+    text-align: center;
+  }
+  
+  [data-job-item] a h3 {
+    font-size: 20px !important;
+    color: #fff !important;
+  }
+  
+  [data-job-item] a:hover, [data-job-item] a:focus {
+    background-color: transparent !important;
+  }
+  
+  ul.job_listings li.job_listing a div.position {
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
+  
+  @media (max-width: 991px) {
+    .single-job-section {
+      padding-top: 0px !important;
+    }
+    [data-job-item] {
+      flex-basis: 48%;
+      margin: 1% !important;
+    }
+    [data-job-item]:nth-child(4n) {
+      margin-right: 1% !important;
+    }
+    [data-job-item]:nth-child(4n-3) {
+      margin-right: 1% !important;
+    }
+    [data-job-item]:nth-child(odd) {
+      margin-left: 0 !important;
+    }
+    [data-job-item]:nth-child(even) {
+      margin-right: 0 !important;
+    }
+  }
+  
+  @media (max-width: 330px) {
+    [data-job-item] {
+      flex-basis: 100%;
+      margin: 1% 0 !important;
+    }
+    [data-job-item]:nth-child(4n) {
+      margin-right: 0 !important;
+    }
+    [data-job-item]:nth-child(4n-3) {
+      margin-right: 0 !important;
+    }
+    [data-job-item]:nth-child(odd) {
+      margin-left: 0 !important;
+    }
+    [data-job-item]:nth-child(even) {
+      margin-right: 0 !important;
+    }
+  }

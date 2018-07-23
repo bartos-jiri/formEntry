@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./widget.css">
+</head>
+<body>
+
+
+  <!-- .......................................................... -->
+  
+
+
+  <div class="cb_callbackWidget">
+    <div class="cb_img">
+        <img src="https://www.mluvii.com/wp-content/uploads/2017/11/rsz_lenka_mluvii.png" alt="Lenka Sovová">
+    </div>
+    <div class="cb_callback">
+        <div class="cb_nameAndStatus">
+            Lenka, <span id="cb_status3">online</span>
+        </div>
+        <form class="form" id="form_widget3">
+            <div class="cb_formInputs">
+              <input class="cb_phoneInput" type="tel" id="cb_phone3" placeholder="Váš telefon">
+              <button type="submit" id="cb_send3">Kontaktovat <span id="cb_icon"><img id="mluviikIcon" src="https://www.mluvii.com/wp-content/uploads/2017/11/mluviik-icon-white.png" alt="Mluviik Icon"></span></button>
+            </div>
+            <div class="cb_formFeedback" id="cb_formFeedback3" style="visibility: hidden;">
+              Vložte šestimístný kód nebo devítimístné telefonní číslo
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function () {
+var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+scr.src = 'https://app.mluvii.com/widget/OOWidget.js';
+scr.$owidgetOnLoad = function (owidget) {
+    if (!owidget.isSupported) { return; }
+    owidget.init('295b1064-cf5b-4a5d-9e05-e7a74f86ae5e', 'LenkaCallback');
+
+    let widgetOnline = true;
+
+    owidget.setStatusUpdateCallback(function(code) {
+        const statusIndicatorText = document.getElementById('cb_status3');
+
+        switch(code) {
+            case 0:
+                statusIndicatorText.innerText = 'offline';
+                statusIndicatorText.style.color = '#bf464f';
+                widgetOnline = false; 
+                break;
+            case 1:
+                statusIndicatorText.innerText = 'online';
+                statusIndicatorText.style.color = '#8dc63f';
+                widgetOnline = true;
+                break;
+            case 2:
+                statusIndicatorText.innerText = 'zaneprázdněný';
+                statusIndicatorText.style.color = '#ffbb06';                                           
+                widgetOnline = true;                        
+                break;
+        }
+    });
+
+
+    const widgetButton = document.getElementById('cb_send3');
+    const widgetInput = document.getElementById('cb_phone3');
+
+    const regNumberLength9 = new RegExp('^\\d{9}$');
+    const regNumberLength6 = new RegExp('^\\d{6}$');
+
+    const form = document.getElementById('form_widget3');
+    const formFeedback = document.getElementById('cb_formFeedback3');
+
+    form.addEventListener('submit', function(e) {
+
+        e.preventDefault();
+
+        if (!regNumberLength6.test(widgetInput.value) && !regNumberLength9.test(widgetInput.value)) {
+          widgetInput.style.setProperty('border', '1px solid rgb(191, 70, 79)', 'important');
+          formFeedback.style.setProperty('visibility', 'visible', 'important');
+          return;
+        } else {
+          widgetInput.style.removeProperty('border');
+          formFeedback.style.setProperty('visibility', 'hidden');
+        }
+
+        if(!widgetOnline) {
+          owidget.openChat();
+          return;
+        };
+
+        if(regNumberLength6.test(widgetInput.value)) {
+          owidget.openApp('callshow', widgetInput.value);
+          return;
+        }
+
+        if(regNumberLength9.test(widgetInput.value)) {
+          owidget.numberNormalization(widgetInput.value);
+          const normalizedNumber = owidget.numberNormalization(widgetInput.value);
+          owidget.openApp('callback', normalizedNumber);
+          return;
+        }
+    });
+
+    owidget.connectToServer();
+};
+var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+})();
+</script>
+
+
+
+<!-- .......................................................... -->
+
+
+
+</body>
+</html>
