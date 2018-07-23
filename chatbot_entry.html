@@ -120,11 +120,11 @@
     <form id="form" style="display: none !important;">
       <button id="prefill" type="button" class="button">Předvyplnit formulář</button>
       <div class="form-group">
-        <p>Nebyl jste rozpoznán. Zadejte prosím Vaše jméno a PIN:</p>
+        <p id="pText">Nebyl jste rozpoznán. Zadejte prosím Vaše jméno a PIN:</p>
       </div>
       <div class="inputs">
         <div class="form-group">
-          <label for="identity">Jméno a příjmení</label>
+          <label id="nameAndSurname" for="identity">Jméno a příjmení</label>
           <input name="identity" type="text" class="form-control" id="identity">
         </div>
         <div class="form-group">
@@ -132,12 +132,35 @@
           <input name="pin" type="password" class="form-control" id="pin">
         </div>
       </div>
-      <button type="submit" class="button">Pokračovat</button>
+      <button id="submit" type="submit" class="button">Pokračovat</button>
     </form>
 
   </div>
 
   <script>
+
+    function setTranslation(lang) {
+      const prefill = document.getElementById('prefill');
+      const pText = document.getElementById('pText');
+      const nameAndSurname = document.getElementById('nameAndSurname');
+      const pin = document.getElementById('pin');
+      const submit = document.getElementById('submit');
+
+      if(lang === 'cs') {
+        prefill.innerText = 'Předvyplnit formulář';
+        pText.innerText = 'Nebyl jste rozpoznán. Zadejte prosím Vaše jméno a PIN:';
+        nameAndSurname.innerText = 'Jméno a příjmení';
+        pin.innerText = 'PIN';
+        submit.innerText = 'Pokračovat';
+      } else {
+        prefill.innerText = 'Prefill the Form';
+        pText.innerText = 'You have not been recognized. Please, enter you name and PIN:';
+        nameAndSurname.innerText = 'Name and Surname';
+        pin.innerText = 'PIN';
+        submit.innerText = 'Next';
+      }
+    }
+
     let personId;
 
     const spinner = document.getElementById('spinner');
@@ -151,7 +174,7 @@
       pin.value = '12345';
     });
 
-    form.onsubmit = (e) => {
+    form.onsubmit = function(e) {
       e.preventDefault();
       const identity = nameInput.value;
 
@@ -164,8 +187,16 @@
       }, '*');
     }
 
-    window.addEventListener('message', msg => {
+    window.addEventListener('message', function(msg) {
+      console.warn(msg);
+
+      if (msg.data.type === 'mluviiLanguage') {
+        language = msg.data.lang;
+        setTranslation(language);
+      }
+
       if (msg.data.type === 'identifyFaceResult') {
+       
         personId = msg.data.payload.personId;
 
         if (personId === null) {
@@ -187,11 +218,25 @@
       }
     });
     
-    window.addEventListener('load', () => {
+    window.addEventListener('load', function() {
+      window.parent.postMessage({
+        type: 'GET_MLUVII_LANGUAGE'
+      }, '*')
+
       window.parent.postMessage({
         type: 'identifyFace'
       }, '*');
     });
+
+    setTimeout(function() {
+      window.postMessage({
+        type: 'identifyFaceResult',
+        payload: {
+          personId: null
+        }
+      }, '*')
+    }, 2000);
+
   </script>
 </body>
 </html>
