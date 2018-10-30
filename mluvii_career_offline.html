@@ -1,12 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    html, body {
+      margin: 0px;
+      padding: 0px;
+    }
+    #form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #F0F4F7;
+      height: 100%;
+      padding: 1rem;
+    }
+    .whiteBox {
+      background-color: #fff;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
+      border-radius: 16px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      padding: 24px;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    #submit {
+      height: 2.5rem;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      background-color: #71b8be;
+      line-height: 1;
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
+      margin-bottom: 2px;
+      transform: translateY(0);
+      outline: none !important;
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+      box-sizing: border-box;
+      min-width: 7rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0.25rem 0.75rem;
+      transition: .2s ease;
+      border-radius: 8px;
+    }
+    #submit:active {
+      box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
+      transform: translateY(2px);
+    }
+    #submit:hover {
+      box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.4);
+    }
+  </style>
 </head>
 <body>
-  
+  <form id="form" action="https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec" method="post">
+    <p>Máme nohy na stole, ale i tak nám můžeš, víš co... poslat své CV.</p>
+    <div class="whiteBox">
+      <input type="text">
+      <input type="email">
+      <input type="text">
+      <input id="cv_file" type="file">
+      <input id="motivation_file" type="file">
+      <div id="data"></div>
+    </div>
+    <button id="submit" type="submit">Poslat</button>
+  </form>
+  <script>
+    
+    var form = document.getElementById('form');
+    var cvFile = document.getElementById('cv_file');
+    var motivationFile = document.getElementById('motivation_file');
+    
+    var cv;
+
+    cvFile.onchange = function(e) {
+      var file = this.files[0];
+      var fr = new FileReader();
+      fr.fileName = file.name;
+      fr.onload = function(e) {
+        // cv = e.target.result;            
+        html = '<input type="hidden" name="data" value="' + e.target.result.replace(/^.*,/, '') + '" >';
+        html += '<input type="hidden" name="mimetype" value="' + e.target.result.match(/^.*(?=;)/)[0] + '" >';
+        html += '<input type="hidden" name="filename" value="' + e.target.fileName + '" >';
+        document.getElementById('data').innerHTML = html;
+      }
+      fr.readAsDataURL(file);
+    };
+
+    // form.onsubmit = function(e) {
+    //   e.preventDefault();
+
+    //   console.warn(e);
+
+    //   var formData = new FormData();
+    //   formData.append("data", cv);
+
+    //   var req = new XMLHttpRequest();
+
+    //   req.onload = function(e) {
+    //     console.log('done');
+    //   }
+
+    //   req.onerror = function(e) {
+    //     console.log('error');
+    //   }
+
+    //   req.open('POST', "https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec");
+    //   req.send(formData);
+        
+    // };
+
+  </script>
 </body>
 </html>
