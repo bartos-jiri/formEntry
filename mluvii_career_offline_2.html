@@ -3,6 +3,9 @@
   <head>
     <title>Drive API Quickstart</title>
     <meta charset="utf-8" />
+
+    <script src="https://apis.google.com/js/api.js"></script>
+
   </head>
   <body>
     <p>Drive API Quickstart</p>
@@ -14,6 +17,7 @@
     <pre id="content"></pre>
 
     <script type="text/javascript">
+      window.addEventListener('load', function() { handleClientLoad() });
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '1031271532404-44i1gsp8c9qeo5hru50hgnl1sfde9c16.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyAmpfPZO2IdQ8P1NhNqTxJFSaCzCwC7NlY';
@@ -120,9 +124,5 @@
 
     </script>
 
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
   </body>
 </html>
