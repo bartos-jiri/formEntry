@@ -10,9 +10,30 @@
   <iframe id="mluvii_carrer_iframe" frameborder="0" style="width: 100%; height: 100%;"></iframe>
 </body>
 <script>
+  var iframe = document.getElementById("mluvii_carrer_iframe");
   (function() {
-    var iframe = document.getElementById("mluvii_carrer_iframe");
     iframe.src = "https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec";
   })()
+
+
+  function checkForElements() {
+    var sandboxIframe = iframe.contentWindow.document.getElementById("sandboxFrame");
+
+    if (sandboxIframe) {
+      var userHtmlFrame = sandboxIframe.contentWindow.document.getElementById("userHtmlFrame");
+
+      if (userHtmlFrame) {
+        var whiteBox = userHtmlFrame.contentWindow.document.getElementById("file_motivation");
+        if (whiteBox) {
+          console.log(whiteBox);
+        }
+      }
+
+    }
+
+
+  }
+
+  setInterval(checkForElements, 1000);
 </script>
 </html>
