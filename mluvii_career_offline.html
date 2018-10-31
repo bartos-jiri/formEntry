@@ -64,7 +64,7 @@
   </style>
 </head>
 <body>
-  <form id="form" action="https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec" method="post">
+  <form id="form" action="https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec?callback=alert" method="POST">
     <p>Máme nohy na stole, ale i tak nám můžeš, víš co... poslat své CV.</p>
     <div class="whiteBox">
       <input type="text">
@@ -83,17 +83,22 @@
     var motivationFile = document.getElementById('motivation_file');
     
     var cv;
+    var motivation;
 
     cvFile.onchange = function(e) {
       var file = this.files[0];
       var fr = new FileReader();
       fr.fileName = file.name;
       fr.onload = function(e) {
-        // cv = e.target.result;            
         html = '<input type="hidden" name="data" value="' + e.target.result.replace(/^.*,/, '') + '" >';
         html += '<input type="hidden" name="mimetype" value="' + e.target.result.match(/^.*(?=;)/)[0] + '" >';
         html += '<input type="hidden" name="filename" value="' + e.target.fileName + '" >';
         document.getElementById('data').innerHTML = html;
+        // cv = {
+        //   data: e.target.result.replace(/^.*,/, ''),
+        //   mimetype: e.target.result.match(/^.*(?=;)/)[0],
+        //   filename: e.target.fileName
+        // };
       }
       fr.readAsDataURL(file);
     };
@@ -105,18 +110,22 @@
 
     //   var formData = new FormData();
     //   formData.append("data", cv);
+    //   formData.append("callback", 'alert');
 
     //   var req = new XMLHttpRequest();
 
+
     //   req.onload = function(e) {
     //     console.log('done');
+    //     console.warn(e);
     //   }
 
     //   req.onerror = function(e) {
     //     console.log('error');
+    //     console.warn(e);
     //   }
 
-    //   req.open('POST', "https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec");
+    //   req.open('POST', "https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec?callback=alert");
     //   req.send(formData);
         
     // };
