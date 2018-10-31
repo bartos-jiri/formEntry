@@ -90,50 +90,50 @@
       var fr = new FileReader();
       fr.fileName = file.name;
       fr.onload = function(e) {
-        // html = '<input type="hidden" name="data" value="' + e.target.result.replace(/^.*,/, '') + '" >';
-        // html += '<input type="hidden" name="mimetype" value="' + e.target.result.match(/^.*(?=;)/)[0] + '" >';
-        // html += '<input type="hidden" name="filename" value="' + e.target.fileName + '" >';
-        // document.getElementById('data').innerHTML = html;
-        cv = {
-          data: e.target.result.replace(/^.*,/, ''),
-          mimetype: e.target.result.match(/^.*(?=;)/)[0],
-          filename: e.target.fileName
-        };
+        html = '<input type="hidden" name="data" value="' + e.target.result.replace(/^.*,/, '') + '" >';
+        html += '<input type="hidden" name="mimetype" value="' + e.target.result.match(/^.*(?=;)/)[0] + '" >';
+        html += '<input type="hidden" name="filename" value="' + e.target.fileName + '" >';
+        document.getElementById('data').innerHTML = html;
+        // cv = {
+        //   data: e.target.result.replace(/^.*,/, ''),
+        //   mimetype: e.target.result.match(/^.*(?=;)/)[0],
+        //   filename: e.target.fileName
+        // };
       }
       fr.readAsDataURL(file);
     };
 
-    form.onsubmit = function(e) {
-      e.preventDefault();
+    // form.onsubmit = function(e) {
+    //   e.preventDefault();
 
-      // console.warn('from onSubmit function', e);
+    //   // console.warn('from onSubmit function', e);
 
-      var formData = new FormData();
-      formData.append("data", cv);
-      formData.append("callback", 'alert');
+    //   var formData = new FormData();
+    //   formData.append("data", cv);
+    //   formData.append("callback", 'alert');
 
-      var req = new XMLHttpRequest();
+    //   var req = new XMLHttpRequest();
 
 
-      req.onload = function(e) {
-        console.log('done');
-        console.warn(e);
-        window.parent.postMessage({
-          type: "OFFLINE_ACTION",
-          contact: 'some contact',
-          message: 'some message'
-        }, "*");
-      }
+    //   req.onload = function(e) {
+    //     console.log('done');
+    //     console.warn(e);
+    //     window.parent.postMessage({
+    //       type: "OFFLINE_ACTION",
+    //       contact: 'some contact',
+    //       message: 'some message'
+    //     }, "*");
+    //   }
 
-      req.onerror = function(e) {
-        console.log('error');
-        console.warn(e);
-      }
+    //   req.onerror = function(e) {
+    //     console.log('error');
+    //     console.warn(e);
+    //   }
 
-      req.open('POST', "https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec?callback=alert");
-      req.send(formData);
+    //   req.open('POST', "https://script.google.com/macros/s/AKfycbzuqfCab4mrHPyMToXvWvg7yIqQMjhEnWqvEMm7N3PuYHfHsma-/exec?callback=alert");
+    //   req.send(formData);
         
-    };
+    // };
 
   </script>
 </body>
