@@ -156,7 +156,7 @@
   </script>
 
 
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     (function () {
       var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
       scr.src = 'https://app.mluvii.com/widget/OOWidget.js';
@@ -173,42 +173,6 @@
       };
       var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
     })();
-    </script> -->
-    <script type="text/javascript">
-      (function () {
-        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-        scr.src = 'https://app.mluvii.com/widget/OOWidget.js';
-        scr.$owidgetOnLoad = function (owidget) {
-          if (!owidget.isSupported) { return; }
-          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirkaTest3");
-          owidget.connectToServer();
-
-                    chatWindowOpenner.onclick = function(e) {
-            e.preventDefault();
-
-            owidget.openChat();
-          }
-        };
-        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
-      })();
-      </script>
-    <!-- <script type="text/javascript">
-      (function () {
-        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-        scr.src = 'https://apptest.mluvii.com/widget/OOWidget.js';
-        scr.$owidgetOnLoad = function (owidget) {
-          if (!owidget.isSupported) { return; }
-          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirkaTest");
-          owidget.connectToServer();
-
-          chatWindowOpenner.onclick = function(e) {
-            e.preventDefault();
-
-            owidget.openChat();
-          }
-        };
-        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
-      })();
-    </script> -->
+    </script>
 </body>
 </html>
