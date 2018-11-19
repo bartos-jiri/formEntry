@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mluvii</title>
+  <link rel="stylesheet" href="reveal/css/reveal.css">
+  <style>    
+    .present {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    img {
+      width: 100%;
+    }
+    #img_07 {
+      width: 80%;
+    }
+    #openChat_01 {
+      position: absolute;
+      height: 44%;
+      width: 25%;
+      top: 16%;
+      left: 48.5%;
+      transform: translateX(-50%);
+      cursor: pointer;
+    }
+    input[type="email"] {
+      position: absolute;
+      top: 20%;
+      left: 53%;
+      width: 25%;
+
+      height: 40px !important;
+      outline: none;
+      box-sizing: border-box;
+      display: block;
+      padding: 0.344rem 0.5rem;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: #646E78;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #B4BEC8;
+      border-radius: 0.5rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    }
+    input[type="email"]:focus, input[type="email"]:active {
+      border-color: #71b8be;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <section>
+          <img src="01.png">
+          <div id="openChat_01"></div>
+        </section>
+        <section>
+          <img src="02.png">
+        </section>
+        <section>
+          <img src="03.png">
+        </section>
+        <section>
+          <img src="04.png">
+          <input type="email" placeholder="Email" />
+        </section>
+        <section>
+          <img src="05.png">
+        </section>
+        <section>
+          <img src="06.png">
+        </section>
+        <section>
+          <img id="img_07" src="07.png">
+        </section>
+        <section>
+          <img src="08.png">
+        </section>
+        <section>
+          <img src="09.png">
+        </section>
+        <section>
+          <img src="10.png">
+        </section>
+        <section>
+          <img src="11.png">
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="reveal/js/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      controls: true,
+      center: true,
+      width: "100%",
+      height: "100%",
+      margin: 0,
+      minScale: 0,
+      maxScale: 1.5
+    });
+  </script>
+  <script>
+    var chatWindowOpenner = document.getElementById('openChat_01');
+  </script>
+
+
+  <!-- <script type="text/javascript">
+    (function () {
+      var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+      scr.src = 'https://app.mluvii.com/widget/OOWidget.js';
+      scr.$owidgetOnLoad = function (owidget) {
+        if (!owidget.isSupported) { return; }
+        owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "karolTest");
+        owidget.connectToServer();
+
+        chatWindowOpenner.onclick = function(e) {
+          e.preventDefault();
+
+          owidget.openChat();
+        }
+      };
+      var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+    })();
+    </script> -->
+    <script type="text/javascript">
+      (function () {
+        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+        scr.src = 'https://apptest.mluvii.com/widget/OOWidget.js';
+        scr.$owidgetOnLoad = function (owidget) {
+          if (!owidget.isSupported) { return; }
+          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirkaTest");
+          owidget.connectToServer();
+
+          chatWindowOpenner.onclick = function(e) {
+            e.preventDefault();
+
+            owidget.openChat();
+          }
+        };
+        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+      })();
+    </script>
+</body>
+</html>
