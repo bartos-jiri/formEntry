@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display:flex">
+        <div style="flex: 1; display:flex; flex-direction: column; overflow: hidden;">
+            <button id="init1">Init 1</button>
+            <button id="toggle1">Toggle show 1</button>
+            <div id="widget1" style="flex: 1;"></div>
+        </div>
+        <div style="flex: 1; display:flex; flex-direction: column; overflow: hidden;">
+            <button id="init2">Init 2</button>
+            <button id="toggle2">Toggle show 2</button>
+            <div id="widget2" style="flex: 1;"></div>
+        </div>
+    </div>
+
+    <script>
+        const init1 = document.getElementById('init1');
+        const toggle1 = document.getElementById('toggle1');
+        const container1 = document.getElementById('widget1');
+        
+        const init2 = document.getElementById('init2');
+        const toggle2 = document.getElementById('toggle2');
+        const container2 = document.getElementById('widget2');
+
+        init1.onclick = () => {
+            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+            scr.src = 'https://localhost:44301/widget/OOWidget.js';
+            scr.$owidgetOnLoad = function (owidget) {
+            if (!owidget.isSupported) { return; }
+            owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirka");
+            owidget.connectToServer();
+            };
+            container1.appendChild(scr);
+            // var ffs = document.getElementsByTagName('script')[0];
+            // ffs.parentNode.insertBefore(scr, ffs);
+
+        }
+
+        init2.onclick = () => {
+            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+            scr.src = 'https://localhost:44301/widget/OOWidget.js';
+            scr.$owidgetOnLoad = function (owidget) {
+            if (!owidget.isSupported) { return; }
+            owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "alzbeta");
+            owidget.connectToServer();
+            };
+            container2.appendChild(scr);
+            // var ffs = document.getElementsByTagName('script')[0];
+            // ffs.parentNode.insertBefore(scr, ffs);
+        }
+    </script>
+
+    <!-- <script type="text/javascript">
+      (function () {
+        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+        scr.src = 'https://localhost:44301/widget/OOWidget.js';
+        scr.$owidgetOnLoad = function (owidget) {
+          if (!owidget.isSupported) { return; }
+          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirka");
+          owidget.connectToServer();
+        };
+        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+      })();
+      </script>
+    
+    
+    <script type="text/javascript">
+      (function () {
+        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+        scr.src = 'https://localhost:44301/widget/OOWidget.js';
+        scr.$owidgetOnLoad = function (owidget) {
+          if (!owidget.isSupported) { return; }
+          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "alzbeta");
+          owidget.connectToServer();
+        };
+        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
+      })();
+      </script> -->
+
+
+</body>
+</html>
