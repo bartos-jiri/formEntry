@@ -11,12 +11,16 @@
         <div style="flex: 1; display:flex; flex-direction: column; overflow: hidden;">
             <button id="init1">Init 1</button>
             <button id="toggle1">Toggle show 1</button>
-            <div id="widget1" style="flex: 1;"></div>
+            <div id="widget1" style="flex: 1; width: 100%; display: flex; flex-direction: column;">
+                <!-- <iframe src="/page_multiple_alzbeta" width="500px" height="400px"></iframe> -->
+            </div>
         </div>
         <div style="flex: 1; display:flex; flex-direction: column; overflow: hidden;">
             <button id="init2">Init 2</button>
             <button id="toggle2">Toggle show 2</button>
-            <div id="widget2" style="flex: 1;"></div>
+            <div id="widget2" style="flex: 1; width: 100%; display: flex; flex-direction: column;">
+                <!-- <iframe src="/page_multiple_jirka" width="500px" height="400px"></iframe> -->
+            </div>
         </div>
     </div>
 
@@ -32,26 +36,11 @@
         const container2 = document.getElementById('widget2');
 
         init1.onclick = () => {
-            // var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-            // scr.src = 'https://localhost:44301/widget/OOWidget.js';
-            // scr.$owidgetOnLoad = function (owidget) {
-            // if (!owidget.isSupported) { return; }
-            // owidget.init("6acd57a5-231e-40b0-9feb-d21048d403b5", "rofl");
-            // owidget.connectToServer();
-            // };
-
-            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-            scr.src = 'https://localhost:44301/widget/OOWidget.js';
-            scr.$owidgetOnLoad = function (owidget) {
-            if (!owidget.isSupported) { return; }
-            owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirka");
-            owidget.connectToServer();
-            };
-
-
-            container1.appendChild(scr);
-            // var ffs = document.getElementsByTagName('script')[0];
-            // ffs.parentNode.insertBefore(scr, ffs);
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_alzbeta.html';
+            container1.appendChild(iframe);
         }
 
         toggle1.onclick = () => {
@@ -60,16 +49,11 @@
         }
 
         init2.onclick = () => {
-            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-            scr.src = 'https://localhost:44301/widget/OOWidget.js';
-            scr.$owidgetOnLoad = function (owidget) {
-            if (!owidget.isSupported) { return; }
-            owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "alzbeta");
-            owidget.connectToServer();
-            };
-            container2.appendChild(scr);
-            // var ffs = document.getElementsByTagName('script')[0];
-            // ffs.parentNode.insertBefore(scr, ffs);
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_jirka.html';
+            container2.appendChild(iframe);
         }
 
         toggle2.onclick = () => {
