@@ -21,10 +21,12 @@
     </div>
 
     <script>
+        let show1 = true;
         const init1 = document.getElementById('init1');
         const toggle1 = document.getElementById('toggle1');
         const container1 = document.getElementById('widget1');
         
+        let show2 = true;
         const init2 = document.getElementById('init2');
         const toggle2 = document.getElementById('toggle2');
         const container2 = document.getElementById('widget2');
@@ -40,7 +42,11 @@
             container1.appendChild(scr);
             // var ffs = document.getElementsByTagName('script')[0];
             // ffs.parentNode.insertBefore(scr, ffs);
+        }
 
+        toggle1.onclick = () => {
+            container1.style.display = show1 ? 'flex' : 'none';
+            show1 = !show1;
         }
 
         init2.onclick = () => {
@@ -55,35 +61,11 @@
             // var ffs = document.getElementsByTagName('script')[0];
             // ffs.parentNode.insertBefore(scr, ffs);
         }
+
+        toggle2.onclick = () => {
+            container2.style.display = show2 ? 'flex' : 'none';
+            show2 = !show2;
+        }
     </script>
-
-    <!-- <script type="text/javascript">
-      (function () {
-        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-        scr.src = 'https://localhost:44301/widget/OOWidget.js';
-        scr.$owidgetOnLoad = function (owidget) {
-          if (!owidget.isSupported) { return; }
-          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirka");
-          owidget.connectToServer();
-        };
-        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
-      })();
-      </script>
-    
-    
-    <script type="text/javascript">
-      (function () {
-        var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-        scr.src = 'https://localhost:44301/widget/OOWidget.js';
-        scr.$owidgetOnLoad = function (owidget) {
-          if (!owidget.isSupported) { return; }
-          owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "alzbeta");
-          owidget.connectToServer();
-        };
-        var ffs = document.getElementsByTagName('script')[0]; ffs.parentNode.insertBefore(scr, ffs);
-      })();
-      </script> -->
-
-
 </body>
 </html>
