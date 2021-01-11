@@ -32,21 +32,21 @@
         const container2 = document.getElementById('widget2');
 
         init1.onclick = () => {
-            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
-            scr.src = 'https://localhost:44301/widget/OOWidget.js';
-            scr.$owidgetOnLoad = function (owidget) {
-            if (!owidget.isSupported) { return; }
-            owidget.init("6acd57a5-231e-40b0-9feb-d21048d403b5", "rofl");
-            owidget.connectToServer();
-            };
-
             // var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
             // scr.src = 'https://localhost:44301/widget/OOWidget.js';
             // scr.$owidgetOnLoad = function (owidget) {
             // if (!owidget.isSupported) { return; }
-            // owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirka");
+            // owidget.init("6acd57a5-231e-40b0-9feb-d21048d403b5", "rofl");
             // owidget.connectToServer();
             // };
+
+            var scr = document.createElement('script'); scr.type = 'text/javascript'; scr.async = true; scr.charset = 'UTF-8';
+            scr.src = 'https://localhost:44301/widget/OOWidget.js';
+            scr.$owidgetOnLoad = function (owidget) {
+            if (!owidget.isSupported) { return; }
+            owidget.init("295b1064-cf5b-4a5d-9e05-e7a74f86ae5e", "jirka");
+            owidget.connectToServer();
+            };
 
 
             container1.appendChild(scr);
