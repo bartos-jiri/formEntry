@@ -9,15 +9,25 @@
 <body style="margin: 0; height: 100vh;">
     <div style="display:flex; height: 100%;">
         <div style="flex: 1; display:flex; flex-direction: column; overflow: hidden;">
-            <button id="init1">Init 1</button>
-            <button id="toggle1">Toggle show 1</button>
+            <button id="initA1">Alzbeta - 1</button>
+            <br />
+            <button id="initA2">Alzbeta - 2</button>
+            <br />
+            <button id="initAJ11">Alzbeta - 1, Jirka - 1</button>
+            <br />
+            <button id="toggle1">Toggle show container 1</button>
             <div id="widget1" style="flex: 1; width: 100%; display: flex; flex-direction: column;">
                 <!-- <iframe src="/page_multiple_alzbeta" width="500px" height="400px"></iframe> -->
             </div>
         </div>
         <div style="flex: 1; display:flex; flex-direction: column; overflow: hidden;">
-            <button id="init2">Init 2</button>
-            <button id="toggle2">Toggle show 2</button>
+            <button id="initJ2">Jirka - 2</button>
+            <br />
+            <button id="initJ1">Jirka - 1</button>
+            <br />
+            <button id="initAJ12">Alzbeta - 1, Jirka - 2</button>
+            <br />
+            <button id="toggle2">Toggle show container 2</button>
             <div id="widget2" style="flex: 1; width: 100%; display: flex; flex-direction: column;">
                 <!-- <iframe src="/page_multiple_jirka" width="500px" height="400px"></iframe> -->
             </div>
@@ -25,41 +35,75 @@
     </div>
 
     <script>
-        let show1 = true;
-        const init1 = document.getElementById('init1');
-        const toggle1 = document.getElementById('toggle1');
         const container1 = document.getElementById('widget1');
-        
-        let show2 = true;
-        const init2 = document.getElementById('init2');
-        const toggle2 = document.getElementById('toggle2');
         const container2 = document.getElementById('widget2');
-
-        init1.onclick = () => {
-            const iframe = document.createElement('iframe');
-            iframe.width = '100%';
-            iframe.style.flex = '1';
-            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_alzbeta.html';
-            container1.appendChild(iframe);
-        }
+        const toggle1 = document.getElementById('toggle1');
+        const toggle2 = document.getElementById('toggle2');
+        let show1 = true;
+        let show2 = true;
 
         toggle1.onclick = () => {
             container1.style.display = show1 ? 'flex' : 'none';
             show1 = !show1;
         }
-
-        init2.onclick = () => {
-            const iframe = document.createElement('iframe');
-            iframe.width = '100%';
-            iframe.style.flex = '1';
-            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_jirka.html';
-            container2.appendChild(iframe);
-        }
-
         toggle2.onclick = () => {
             container2.style.display = show2 ? 'flex' : 'none';
             show2 = !show2;
         }
+
+        const initA1 = document.getElementById('initA1');
+        const initJ2 = document.getElementById('initJ2');
+        initA1.onclick = () => {
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_alzbeta_1.html';
+            container1.appendChild(iframe);
+        }
+        initJ2.onclick = () => {
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_jirka_2.html';
+            container2.appendChild(iframe);
+        }
+
+
+        const initA2 = document.getElementById('initA2');
+        const initJ1 = document.getElementById('initJ1');
+        initA2.onclick = () => {
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_alzbeta_2.html';
+            container1.appendChild(iframe);
+        }
+        initJ1.onclick = () => {
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_jirka_1.html';
+            container2.appendChild(iframe);
+        }
+
+
+        const initAJ11 = document.getElementById('initAJ11');
+        const initAJ12 = document.getElementById('initAJ12');
+        initAJ11.onclick = () => {
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_alzbeta_jirka_1_1.html';
+            container1.appendChild(iframe);
+        }
+        initAJ12.onclick = () => {
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.style.flex = '1';
+            iframe.src = 'https://bartos-jiri.github.io/formEntry/page_multiple_alzbeta_jirka_1_2.html';
+            container2.appendChild(iframe);
+        }
+
     </script>
 </body>
 </html>
